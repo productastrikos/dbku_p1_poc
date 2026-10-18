@@ -1,0 +1,122 @@
+[
+ {
+  "id": "D01",
+  "name": "Dealer 01 · Jalan Bako",
+  "licenceNo": "MOCK-SHD-0114",
+  "area": "Jalan Bako, Petra Jaya",
+  "lat": 1.574,
+  "lng": 110.358,
+  "licensedSince": "2014-05-02",
+  "profile": {
+   "avgKg": 70
+  }
+ },
+ {
+  "id": "D02",
+  "name": "Dealer 02 · Kampung Kudei",
+  "licenceNo": "MOCK-SHD-0211",
+  "area": "Kampung Kudei",
+  "lat": 1.551,
+  "lng": 110.3217,
+  "licensedSince": "2011-08-15",
+  "profile": {
+   "avgKg": 55
+  }
+ },
+ {
+  "id": "D03",
+  "name": "Dealer 03 · Jalan Satok",
+  "licenceNo": "MOCK-SHD-0316",
+  "area": "Jalan Satok",
+  "lat": 1.5512,
+  "lng": 110.3396,
+  "licensedSince": "2016-02-20",
+  "profile": {
+   "avgKg": 60
+  }
+ },
+ {
+  "id": "D04",
+  "name": "Dealer 04 · Jalan Semariang",
+  "licenceNo": "MOCK-SHD-0423",
+  "area": "Jalan Semariang",
+  "lat": 1.5845,
+  "lng": 110.3288,
+  "licensedSince": "2023-01-09",
+  "profile": {
+   "avgKg": 45
+  }
+ },
+ {
+  "id": "D05",
+  "name": "Dealer 05 · Matang Jaya",
+  "licenceNo": "MOCK-SHD-0512",
+  "area": "Matang Jaya",
+  "lat": 1.5862,
+  "lng": 110.2972,
+  "licensedSince": "2012-11-05",
+  "profile": {
+   "avgKg": 85
+  }
+ },
+ {
+  "id": "D06",
+  "name": "Dealer 06 · Pending Industrial Estate",
+  "licenceNo": "MOCK-SHD-0609",
+  "area": "Pending Industrial Estate",
+  "lat": 1.5462,
+  "lng": 110.3795,
+  "licensedSince": "2009-03-30",
+  "profile": {
+   "avgKg": 50
+  }
+ },
+ {
+  "id": "D07",
+  "name": "Dealer 07 · Demak Laut Industrial Park",
+  "licenceNo": "MOCK-SHD-0715",
+  "area": "Demak Laut Industrial Park",
+  "lat": 1.6215,
+  "lng": 110.4045,
+  "licensedSince": "2015-07-18",
+  "profile": {
+   "avgKg": 110
+  }
+ },
+ {
+  "id": "D08",
+  "name": "Dealer 08 · Sejingkat",
+  "licenceNo": "MOCK-SHD-0813",
+  "area": "Sejingkat",
+  "lat": 1.5895,
+  "lng": 110.4195,
+  "licensedSince": "2013-09-09",
+  "profile": {
+   "avgKg": 95
+  }
+ },
+ {
+  "id": "D09",
+  "name": "Dealer 09 · Batu Kawa",
+  "licenceNo": "MOCK-SHD-0917",
+  "area": "Batu Kawa",
+  "lat": 1.5135,
+  "lng": 110.3005,
+  "licensedSince": "2017-04-12",
+  "profile": {
+   "avgKg": 75
+  }
+ },
+ {
+  "id": "D10",
+  "name": "Dealer 10 · Kota Sentosa (7th Mile)",
+  "licenceNo": "MOCK-SHD-1010",
+  "area": "Kota Sentosa (7th Mile)",
+  "lat": 1.4735,
+  "lng": 110.3395,
+  "licensedSince": "2010-01-25",
+  "profile": {
+   "avgKg": 65
+  }
+ }
+]

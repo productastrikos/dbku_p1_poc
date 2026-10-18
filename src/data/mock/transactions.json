@@ -1,0 +1,3013 @@
+[
+ {
+  "id": "TX-0001",
+  "dealerId": "D02",
+  "date": "2026-06-17T10:55:00+08:00",
+  "sellerId": "S-1024",
+  "sellerIcMasked": "XXXXXX-XX-8614",
+  "material": "Aluminium",
+  "weightKg": 36.1,
+  "pricePerKgRM": 5.19,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0002",
+  "dealerId": "D05",
+  "date": "2026-06-17T11:53:00+08:00",
+  "sellerId": "S-1030",
+  "sellerIcMasked": "XXXXXX-XX-7611",
+  "material": "Iron/steel",
+  "weightKg": 108.8,
+  "pricePerKgRM": 1.18,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0003",
+  "dealerId": "D02",
+  "date": "2026-06-18T08:35:00+08:00",
+  "sellerId": "S-1038",
+  "sellerIcMasked": "XXXXXX-XX-3594",
+  "material": "Copper cable",
+  "weightKg": 27.8,
+  "pricePerKgRM": 34.37,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0004",
+  "dealerId": "D03",
+  "date": "2026-06-20T09:33:00+08:00",
+  "sellerId": "S-1050",
+  "sellerIcMasked": "XXXXXX-XX-5521",
+  "material": "Mixed metal",
+  "weightKg": 37.8,
+  "pricePerKgRM": 2.5,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0005",
+  "dealerId": "D03",
+  "date": "2026-06-22T12:39:00+08:00",
+  "sellerId": "S-1003",
+  "sellerIcMasked": "XXXXXX-XX-1363",
+  "material": "Aluminium",
+  "weightKg": 33.5,
+  "pricePerKgRM": 5.31,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0006",
+  "dealerId": "D06",
+  "date": "2026-06-22T14:11:00+08:00",
+  "sellerId": "S-1046",
+  "sellerIcMasked": "XXXXXX-XX-6378",
+  "material": "Copper (other)",
+  "weightKg": 10.7,
+  "pricePerKgRM": 27.79,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0007",
+  "dealerId": "D01",
+  "date": "2026-06-22T16:41:00+08:00",
+  "sellerId": "S-1014",
+  "sellerIcMasked": "XXXXXX-XX-2616",
+  "material": "Iron/steel",
+  "weightKg": 62.5,
+  "pricePerKgRM": 1.08,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0008",
+  "dealerId": "D01",
+  "date": "2026-06-23T15:04:00+08:00",
+  "sellerId": "S-1065",
+  "sellerIcMasked": "XXXXXX-XX-3600",
+  "material": "Brass",
+  "weightKg": 21.3,
+  "pricePerKgRM": 18.8,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0009",
+  "dealerId": "D04",
+  "date": "2026-06-24T11:08:00+08:00",
+  "sellerId": "S-1059",
+  "sellerIcMasked": "XXXXXX-XX-6083",
+  "material": "Aluminium",
+  "weightKg": 53.5,
+  "pricePerKgRM": 4.85,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0010",
+  "dealerId": "D04",
+  "date": "2026-06-24T12:37:00+08:00",
+  "sellerId": "S-1028",
+  "sellerIcMasked": "XXXXXX-XX-6998",
+  "material": "Aluminium",
+  "weightKg": 43.3,
+  "pricePerKgRM": 4.97,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0011",
+  "dealerId": "D10",
+  "date": "2026-06-24T15:58:00+08:00",
+  "sellerId": "S-1012",
+  "sellerIcMasked": "XXXXXX-XX-1188",
+  "material": "Aluminium",
+  "weightKg": 41.3,
+  "pricePerKgRM": 4.86,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0012",
+  "dealerId": "D09",
+  "date": "2026-06-24T16:56:00+08:00",
+  "sellerId": "S-1062",
+  "sellerIcMasked": "XXXXXX-XX-6396",
+  "material": "Aluminium",
+  "weightKg": 44.3,
+  "pricePerKgRM": 5.41,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0013",
+  "dealerId": "D10",
+  "date": "2026-06-25T11:31:00+08:00",
+  "sellerId": "S-1035",
+  "sellerIcMasked": "XXXXXX-XX-9259",
+  "material": "Iron/steel",
+  "weightKg": 74.5,
+  "pricePerKgRM": 1.13,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0014",
+  "dealerId": "D10",
+  "date": "2026-06-26T10:54:00+08:00",
+  "sellerId": "S-1005",
+  "sellerIcMasked": "XXXXXX-XX-7697",
+  "material": "Iron/steel",
+  "weightKg": 53.8,
+  "pricePerKgRM": 1.17,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0015",
+  "dealerId": "D04",
+  "date": "2026-06-27T12:56:00+08:00",
+  "sellerId": "S-1053",
+  "sellerIcMasked": "XXXXXX-XX-5147",
+  "material": "Iron/steel",
+  "weightKg": 42.7,
+  "pricePerKgRM": 1.16,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0016",
+  "dealerId": "D07",
+  "date": "2026-06-27T17:27:00+08:00",
+  "sellerId": "S-1017",
+  "sellerIcMasked": "XXXXXX-XX-7113",
+  "material": "Aluminium",
+  "weightKg": 82,
+  "pricePerKgRM": 5.35,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0017",
+  "dealerId": "D03",
+  "date": "2026-06-28T10:25:00+08:00",
+  "sellerId": "S-1040",
+  "sellerIcMasked": "XXXXXX-XX-2652",
+  "material": "Mixed metal",
+  "weightKg": 76.1,
+  "pricePerKgRM": 2.53,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0018",
+  "dealerId": "D07",
+  "date": "2026-06-29T11:05:00+08:00",
+  "sellerId": "S-1058",
+  "sellerIcMasked": "XXXXXX-XX-6158",
+  "material": "Iron/steel",
+  "weightKg": 128.1,
+  "pricePerKgRM": 1.19,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0019",
+  "dealerId": "D08",
+  "date": "2026-06-30T13:30:00+08:00",
+  "sellerId": "S-1009",
+  "sellerIcMasked": "XXXXXX-XX-4556",
+  "material": "Copper (other)",
+  "weightKg": 34.8,
+  "pricePerKgRM": 31.8,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0020",
+  "dealerId": "D06",
+  "date": "2026-06-30T15:14:00+08:00",
+  "sellerId": "S-1037",
+  "sellerIcMasked": "XXXXXX-XX-5714",
+  "material": "Brass",
+  "weightKg": 11.5,
+  "pricePerKgRM": 17.39,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0021",
+  "dealerId": "D04",
+  "date": "2026-07-02T10:18:00+08:00",
+  "sellerId": "S-1074",
+  "sellerIcMasked": "XXXXXX-XX-5299",
+  "material": "Aluminium",
+  "weightKg": 32.7,
+  "pricePerKgRM": 5.21,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0022",
+  "dealerId": "D09",
+  "date": "2026-07-03T08:15:00+08:00",
+  "sellerId": "S-1032",
+  "sellerIcMasked": "XXXXXX-XX-6547",
+  "material": "Mixed metal",
+  "weightKg": 93.6,
+  "pricePerKgRM": 2.29,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0023",
+  "dealerId": "D06",
+  "date": "2026-07-03T08:55:00+08:00",
+  "sellerId": "S-1027",
+  "sellerIcMasked": "XXXXXX-XX-3252",
+  "material": "Copper cable",
+  "weightKg": 17.1,
+  "pricePerKgRM": 32.67,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0024",
+  "dealerId": "D09",
+  "date": "2026-07-03T10:23:00+08:00",
+  "sellerId": "S-1025",
+  "sellerIcMasked": "XXXXXX-XX-8023",
+  "material": "Iron/steel",
+  "weightKg": 89.9,
+  "pricePerKgRM": 1.04,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0025",
+  "dealerId": "D06",
+  "date": "2026-07-03T11:02:00+08:00",
+  "sellerId": "S-1051",
+  "sellerIcMasked": "XXXXXX-XX-2066",
+  "material": "Iron/steel",
+  "weightKg": 41.5,
+  "pricePerKgRM": 1.01,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0026",
+  "dealerId": "D05",
+  "date": "2026-07-04T09:08:00+08:00",
+  "sellerId": "S-1023",
+  "sellerIcMasked": "XXXXXX-XX-4122",
+  "material": "Brass",
+  "weightKg": 18.2,
+  "pricePerKgRM": 16.76,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0027",
+  "dealerId": "D05",
+  "date": "2026-07-04T12:01:00+08:00",
+  "sellerId": "S-1024",
+  "sellerIcMasked": "XXXXXX-XX-8614",
+  "material": "Iron/steel",
+  "weightKg": 76.9,
+  "pricePerKgRM": 1.1,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0028",
+  "dealerId": "D10",
+  "date": "2026-07-04T13:10:00+08:00",
+  "sellerId": "S-1002",
+  "sellerIcMasked": "XXXXXX-XX-2666",
+  "material": "Copper (other)",
+  "weightKg": 27.8,
+  "pricePerKgRM": 29.91,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0029",
+  "dealerId": "D04",
+  "date": "2026-07-05T08:49:00+08:00",
+  "sellerId": "S-1068",
+  "sellerIcMasked": "XXXXXX-XX-1310",
+  "material": "Mixed metal",
+  "weightKg": 37.7,
+  "pricePerKgRM": 2.37,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0030",
+  "dealerId": "D03",
+  "date": "2026-07-06T11:40:00+08:00",
+  "sellerId": "S-1056",
+  "sellerIcMasked": "XXXXXX-XX-5195",
+  "material": "Iron/steel",
+  "weightKg": 68.3,
+  "pricePerKgRM": 1.18,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0031",
+  "dealerId": "D02",
+  "date": "2026-07-06T11:44:00+08:00",
+  "sellerId": "S-1006",
+  "sellerIcMasked": "XXXXXX-XX-8181",
+  "material": "Copper (other)",
+  "weightKg": 9.7,
+  "pricePerKgRM": 29.58,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0032",
+  "dealerId": "D09",
+  "date": "2026-07-06T12:58:00+08:00",
+  "sellerId": "S-1015",
+  "sellerIcMasked": "XXXXXX-XX-4999",
+  "material": "Copper (other)",
+  "weightKg": 28.7,
+  "pricePerKgRM": 30.6,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0033",
+  "dealerId": "D08",
+  "date": "2026-07-06T15:24:00+08:00",
+  "sellerId": "S-1016",
+  "sellerIcMasked": "XXXXXX-XX-9244",
+  "material": "Aluminium",
+  "weightKg": 123.1,
+  "pricePerKgRM": 4.89,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0034",
+  "dealerId": "D05",
+  "date": "2026-07-08T08:09:00+08:00",
+  "sellerId": "S-1050",
+  "sellerIcMasked": "XXXXXX-XX-5521",
+  "material": "Aluminium",
+  "weightKg": 70.1,
+  "pricePerKgRM": 5.48,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0035",
+  "dealerId": "D10",
+  "date": "2026-07-08T09:13:00+08:00",
+  "sellerId": "S-1020",
+  "sellerIcMasked": "XXXXXX-XX-3228",
+  "material": "Copper cable",
+  "weightKg": 20.9,
+  "pricePerKgRM": 31.93,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0036",
+  "dealerId": "D07",
+  "date": "2026-07-08T10:14:00+08:00",
+  "sellerId": "S-1007",
+  "sellerIcMasked": "XXXXXX-XX-5729",
+  "material": "E-waste",
+  "weightKg": 63.7,
+  "pricePerKgRM": 1.71,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0037",
+  "dealerId": "D04",
+  "date": "2026-07-08T14:39:00+08:00",
+  "sellerId": "S-1067",
+  "sellerIcMasked": "XXXXXX-XX-5831",
+  "material": "Aluminium",
+  "weightKg": 39.3,
+  "pricePerKgRM": 5.27,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0038",
+  "dealerId": "D07",
+  "date": "2026-07-09T13:20:00+08:00",
+  "sellerId": "S-1008",
+  "sellerIcMasked": "XXXXXX-XX-2129",
+  "material": "Aluminium",
+  "weightKg": 125.6,
+  "pricePerKgRM": 5.22,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0039",
+  "dealerId": "D04",
+  "date": "2026-07-10T15:00:00+08:00",
+  "sellerId": "S-1043",
+  "sellerIcMasked": "XXXXXX-XX-3203",
+  "material": "Copper (other)",
+  "weightKg": 11.8,
+  "pricePerKgRM": 32.18,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0040",
+  "dealerId": "D07",
+  "date": "2026-07-10T16:29:00+08:00",
+  "sellerId": "S-1039",
+  "sellerIcMasked": "XXXXXX-XX-7132",
+  "material": "Aluminium",
+  "weightKg": 87,
+  "pricePerKgRM": 5.25,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0041",
+  "dealerId": "D08",
+  "date": "2026-07-11T13:26:00+08:00",
+  "sellerId": "S-1028",
+  "sellerIcMasked": "XXXXXX-XX-6998",
+  "material": "Copper (other)",
+  "weightKg": 30.1,
+  "pricePerKgRM": 30.96,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0042",
+  "dealerId": "D07",
+  "date": "2026-07-12T17:07:00+08:00",
+  "sellerId": "S-1066",
+  "sellerIcMasked": "XXXXXX-XX-2857",
+  "material": "Iron/steel",
+  "weightKg": 27.5,
+  "pricePerKgRM": 1.18,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0043",
+  "dealerId": "D02",
+  "date": "2026-07-12T17:18:00+08:00",
+  "sellerId": "S-1046",
+  "sellerIcMasked": "XXXXXX-XX-6378",
+  "material": "Iron/steel",
+  "weightKg": 52.1,
+  "pricePerKgRM": 1.05,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0044",
+  "dealerId": "D04",
+  "date": "2026-07-13T09:17:00+08:00",
+  "sellerId": "S-1070",
+  "sellerIcMasked": "XXXXXX-XX-1247",
+  "material": "Iron/steel",
+  "weightKg": 45,
+  "pricePerKgRM": 1.16,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0045",
+  "dealerId": "D02",
+  "date": "2026-07-13T12:27:00+08:00",
+  "sellerId": "S-1017",
+  "sellerIcMasked": "XXXXXX-XX-7113",
+  "material": "Iron/steel",
+  "weightKg": 33.8,
+  "pricePerKgRM": 1.04,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0046",
+  "dealerId": "D07",
+  "date": "2026-07-13T16:55:00+08:00",
+  "sellerId": "S-1052",
+  "sellerIcMasked": "XXXXXX-XX-7368",
+  "material": "Iron/steel",
+  "weightKg": 109,
+  "pricePerKgRM": 1.13,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0047",
+  "dealerId": "D02",
+  "date": "2026-07-14T11:41:00+08:00",
+  "sellerId": "S-1049",
+  "sellerIcMasked": "XXXXXX-XX-2294",
+  "material": "Aluminium",
+  "weightKg": 71.7,
+  "pricePerKgRM": 5.32,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0048",
+  "dealerId": "D05",
+  "date": "2026-07-15T12:37:00+08:00",
+  "sellerId": "S-1014",
+  "sellerIcMasked": "XXXXXX-XX-2616",
+  "material": "Aluminium",
+  "weightKg": 85.9,
+  "pricePerKgRM": 5.03,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0049",
+  "dealerId": "D09",
+  "date": "2026-07-15T16:24:00+08:00",
+  "sellerId": "S-1058",
+  "sellerIcMasked": "XXXXXX-XX-6158",
+  "material": "Aluminium",
+  "weightKg": 46.6,
+  "pricePerKgRM": 4.86,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0050",
+  "dealerId": "D07",
+  "date": "2026-07-16T10:02:00+08:00",
+  "sellerId": "S-1037",
+  "sellerIcMasked": "XXXXXX-XX-5714",
+  "material": "Iron/steel",
+  "weightKg": 67.9,
+  "pricePerKgRM": 1.02,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0051",
+  "dealerId": "D08",
+  "date": "2026-07-16T13:09:00+08:00",
+  "sellerId": "S-1016",
+  "sellerIcMasked": "XXXXXX-XX-9244",
+  "material": "Iron/steel",
+  "weightKg": 102.9,
+  "pricePerKgRM": 1.14,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0052",
+  "dealerId": "D04",
+  "date": "2026-07-17T08:57:00+08:00",
+  "sellerId": "S-1042",
+  "sellerIcMasked": "XXXXXX-XX-7052",
+  "material": "Copper (other)",
+  "weightKg": 15.7,
+  "pricePerKgRM": 30.71,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0053",
+  "dealerId": "D07",
+  "date": "2026-07-17T14:01:00+08:00",
+  "sellerId": "S-1045",
+  "sellerIcMasked": "XXXXXX-XX-8903",
+  "material": "Mixed metal",
+  "weightKg": 123.8,
+  "pricePerKgRM": 2.29,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0054",
+  "dealerId": "D05",
+  "date": "2026-07-19T08:05:00+08:00",
+  "sellerId": "S-1057",
+  "sellerIcMasked": "XXXXXX-XX-5065",
+  "material": "Iron/steel",
+  "weightKg": 90.1,
+  "pricePerKgRM": 1.08,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0055",
+  "dealerId": "D02",
+  "date": "2026-07-19T08:12:00+08:00",
+  "sellerId": "S-1047",
+  "sellerIcMasked": "XXXXXX-XX-6083",
+  "material": "Copper (other)",
+  "weightKg": 19.8,
+  "pricePerKgRM": 32.39,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0056",
+  "dealerId": "D02",
+  "date": "2026-07-19T12:05:00+08:00",
+  "sellerId": "S-1031",
+  "sellerIcMasked": "XXXXXX-XX-4334",
+  "material": "Aluminium",
+  "weightKg": 59.9,
+  "pricePerKgRM": 5.01,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0057",
+  "dealerId": "D01",
+  "date": "2026-07-19T12:31:00+08:00",
+  "sellerId": "S-1060",
+  "sellerIcMasked": "XXXXXX-XX-7214",
+  "material": "Copper (other)",
+  "weightKg": 24.1,
+  "pricePerKgRM": 28.25,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0058",
+  "dealerId": "D07",
+  "date": "2026-07-19T13:13:00+08:00",
+  "sellerId": "S-1069",
+  "sellerIcMasked": "XXXXXX-XX-7707",
+  "material": "Aluminium",
+  "weightKg": 106.8,
+  "pricePerKgRM": 5.56,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0059",
+  "dealerId": "D04",
+  "date": "2026-07-20T11:15:00+08:00",
+  "sellerId": "S-1064",
+  "sellerIcMasked": "XXXXXX-XX-4802",
+  "material": "Iron/steel",
+  "weightKg": 51,
+  "pricePerKgRM": 1.07,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0060",
+  "dealerId": "D06",
+  "date": "2026-07-21T08:24:00+08:00",
+  "sellerId": "S-1072",
+  "sellerIcMasked": "XXXXXX-XX-1774",
+  "material": "Brass",
+  "weightKg": 22.4,
+  "pricePerKgRM": 17.35,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0061",
+  "dealerId": "D02",
+  "date": "2026-07-21T16:50:00+08:00",
+  "sellerId": "S-1073",
+  "sellerIcMasked": "XXXXXX-XX-6495",
+  "material": "Copper (other)",
+  "weightKg": 15.3,
+  "pricePerKgRM": 31.37,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0062",
+  "dealerId": "D01",
+  "date": "2026-07-22T08:12:00+08:00",
+  "sellerId": "S-1021",
+  "sellerIcMasked": "XXXXXX-XX-5677",
+  "material": "Aluminium",
+  "weightKg": 84,
+  "pricePerKgRM": 5.22,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0063",
+  "dealerId": "D08",
+  "date": "2026-07-22T08:18:00+08:00",
+  "sellerId": "S-1039",
+  "sellerIcMasked": "XXXXXX-XX-7132",
+  "material": "Aluminium",
+  "weightKg": 92.2,
+  "pricePerKgRM": 5.12,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0064",
+  "dealerId": "D03",
+  "date": "2026-07-22T10:38:00+08:00",
+  "sellerId": "S-1061",
+  "sellerIcMasked": "XXXXXX-XX-7089",
+  "material": "Iron/steel",
+  "weightKg": 78.1,
+  "pricePerKgRM": 1.17,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0065",
+  "dealerId": "D10",
+  "date": "2026-07-22T16:19:00+08:00",
+  "sellerId": "S-1017",
+  "sellerIcMasked": "XXXXXX-XX-7113",
+  "material": "Copper cable",
+  "weightKg": 23.3,
+  "pricePerKgRM": 33.09,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0066",
+  "dealerId": "D06",
+  "date": "2026-07-24T11:44:00+08:00",
+  "sellerId": "S-1034",
+  "sellerIcMasked": "XXXXXX-XX-6324",
+  "material": "Brass",
+  "weightKg": 14.9,
+  "pricePerKgRM": 19.44,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0067",
+  "dealerId": "D03",
+  "date": "2026-07-24T14:00:00+08:00",
+  "sellerId": "S-1011",
+  "sellerIcMasked": "XXXXXX-XX-7686",
+  "material": "Aluminium",
+  "weightKg": 61.6,
+  "pricePerKgRM": 5.23,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0068",
+  "dealerId": "D06",
+  "date": "2026-07-25T10:06:00+08:00",
+  "sellerId": "S-1036",
+  "sellerIcMasked": "XXXXXX-XX-2116",
+  "material": "E-waste",
+  "weightKg": 35.9,
+  "pricePerKgRM": 1.69,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0069",
+  "dealerId": "D05",
+  "date": "2026-07-25T12:40:00+08:00",
+  "sellerId": "S-1030",
+  "sellerIcMasked": "XXXXXX-XX-7611",
+  "material": "Iron/steel",
+  "weightKg": 121.7,
+  "pricePerKgRM": 1.18,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0070",
+  "dealerId": "D04",
+  "date": "2026-07-27T09:55:00+08:00",
+  "sellerId": "S-1050",
+  "sellerIcMasked": "XXXXXX-XX-5521",
+  "material": "Copper (other)",
+  "weightKg": 14.4,
+  "pricePerKgRM": 31.03,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0071",
+  "dealerId": "D09",
+  "date": "2026-07-27T09:58:00+08:00",
+  "sellerId": "S-1059",
+  "sellerIcMasked": "XXXXXX-XX-6083",
+  "material": "Iron/steel",
+  "weightKg": 79.4,
+  "pricePerKgRM": 1.16,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0072",
+  "dealerId": "D03",
+  "date": "2026-07-27T12:57:00+08:00",
+  "sellerId": "S-1044",
+  "sellerIcMasked": "XXXXXX-XX-2283",
+  "material": "Copper (other)",
+  "weightKg": 11.9,
+  "pricePerKgRM": 30,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0073",
+  "dealerId": "D07",
+  "date": "2026-07-27T14:13:00+08:00",
+  "sellerId": "S-1029",
+  "sellerIcMasked": "XXXXXX-XX-4992",
+  "material": "Iron/steel",
+  "weightKg": 144.3,
+  "pricePerKgRM": 1.13,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0074",
+  "dealerId": "D09",
+  "date": "2026-07-27T17:57:00+08:00",
+  "sellerId": "S-1052",
+  "sellerIcMasked": "XXXXXX-XX-7368",
+  "material": "Copper (other)",
+  "weightKg": 21.9,
+  "pricePerKgRM": 30.67,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0075",
+  "dealerId": "D01",
+  "date": "2026-07-29T09:15:00+08:00",
+  "sellerId": "S-1033",
+  "sellerIcMasked": "XXXXXX-XX-5044",
+  "material": "Aluminium",
+  "weightKg": 67.3,
+  "pricePerKgRM": 5.54,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0076",
+  "dealerId": "D07",
+  "date": "2026-07-29T11:41:00+08:00",
+  "sellerId": "S-1032",
+  "sellerIcMasked": "XXXXXX-XX-6547",
+  "material": "Mixed metal",
+  "weightKg": 139.9,
+  "pricePerKgRM": 2.55,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0077",
+  "dealerId": "D01",
+  "date": "2026-08-01T16:47:00+08:00",
+  "sellerId": "S-1048",
+  "sellerIcMasked": "XXXXXX-XX-3830",
+  "material": "Iron/steel",
+  "weightKg": 76.1,
+  "pricePerKgRM": 1.15,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0078",
+  "dealerId": "D07",
+  "date": "2026-08-01T17:32:00+08:00",
+  "sellerId": "S-1072",
+  "sellerIcMasked": "XXXXXX-XX-1774",
+  "material": "Aluminium",
+  "weightKg": 87.8,
+  "pricePerKgRM": 5.41,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0079",
+  "dealerId": "D06",
+  "date": "2026-08-02T12:48:00+08:00",
+  "sellerId": "S-1063",
+  "sellerIcMasked": "XXXXXX-XX-9611",
+  "material": "Copper cable",
+  "weightKg": 7.4,
+  "pricePerKgRM": 31.07,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0080",
+  "dealerId": "D05",
+  "date": "2026-08-03T12:07:00+08:00",
+  "sellerId": "S-1066",
+  "sellerIcMasked": "XXXXXX-XX-2857",
+  "material": "Iron/steel",
+  "weightKg": 52.4,
+  "pricePerKgRM": 1.12,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0081",
+  "dealerId": "D05",
+  "date": "2026-08-03T14:00:00+08:00",
+  "sellerId": "S-1030",
+  "sellerIcMasked": "XXXXXX-XX-7611",
+  "material": "Iron/steel",
+  "weightKg": 108.4,
+  "pricePerKgRM": 1.02,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0082",
+  "dealerId": "D09",
+  "date": "2026-08-07T16:13:00+08:00",
+  "sellerId": "S-1073",
+  "sellerIcMasked": "XXXXXX-XX-6495",
+  "material": "Copper (other)",
+  "weightKg": 27.5,
+  "pricePerKgRM": 29.1,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0083",
+  "dealerId": "D10",
+  "date": "2026-08-08T08:40:00+08:00",
+  "sellerId": "S-1008",
+  "sellerIcMasked": "XXXXXX-XX-2129",
+  "material": "Copper (other)",
+  "weightKg": 26.3,
+  "pricePerKgRM": 30.09,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0084",
+  "dealerId": "D06",
+  "date": "2026-08-08T11:43:00+08:00",
+  "sellerId": "S-1027",
+  "sellerIcMasked": "XXXXXX-XX-3252",
+  "material": "Iron/steel",
+  "weightKg": 50.5,
+  "pricePerKgRM": 1.16,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0085",
+  "dealerId": "D05",
+  "date": "2026-08-08T16:38:00+08:00",
+  "sellerId": "S-1010",
+  "sellerIcMasked": "XXXXXX-XX-9838",
+  "material": "Copper cable",
+  "weightKg": 24.5,
+  "pricePerKgRM": 30.56,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0086",
+  "dealerId": "D09",
+  "date": "2026-08-09T11:45:00+08:00",
+  "sellerId": "S-1009",
+  "sellerIcMasked": "XXXXXX-XX-4556",
+  "material": "Mixed metal",
+  "weightKg": 102.7,
+  "pricePerKgRM": 2.44,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0087",
+  "dealerId": "D01",
+  "date": "2026-08-09T12:17:00+08:00",
+  "sellerId": "S-1038",
+  "sellerIcMasked": "XXXXXX-XX-3594",
+  "material": "Iron/steel",
+  "weightKg": 110.8,
+  "pricePerKgRM": 1.07,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0088",
+  "dealerId": "D04",
+  "date": "2026-08-09T16:06:00+08:00",
+  "sellerId": "S-1057",
+  "sellerIcMasked": "XXXXXX-XX-5065",
+  "material": "Aluminium",
+  "weightKg": 16.9,
+  "pricePerKgRM": 5.5,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0089",
+  "dealerId": "D03",
+  "date": "2026-08-11T10:27:00+08:00",
+  "sellerId": "S-1020",
+  "sellerIcMasked": "XXXXXX-XX-3228",
+  "material": "Mixed metal",
+  "weightKg": 56.1,
+  "pricePerKgRM": 2.58,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0090",
+  "dealerId": "D06",
+  "date": "2026-08-12T15:51:00+08:00",
+  "sellerId": "S-1072",
+  "sellerIcMasked": "XXXXXX-XX-1774",
+  "material": "Aluminium",
+  "weightKg": 52,
+  "pricePerKgRM": 5.11,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0091",
+  "dealerId": "D06",
+  "date": "2026-08-13T14:00:00+08:00",
+  "sellerId": "S-1993",
+  "sellerIcMasked": "XXXXXX-XX-1209",
+  "material": "Aluminium",
+  "weightKg": 405,
+  "pricePerKgRM": 4.88,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Weight > 3σ above dealer average"
+ },
+ {
+  "id": "TX-0092",
+  "dealerId": "D07",
+  "date": "2026-08-13T16:41:00+08:00",
+  "sellerId": "S-1071",
+  "sellerIcMasked": "XXXXXX-XX-3979",
+  "material": "Mixed metal",
+  "weightKg": 71.1,
+  "pricePerKgRM": 2.41,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0093",
+  "dealerId": "D09",
+  "date": "2026-08-14T11:46:00+08:00",
+  "sellerId": "S-1025",
+  "sellerIcMasked": "XXXXXX-XX-8023",
+  "material": "Iron/steel",
+  "weightKg": 94.3,
+  "pricePerKgRM": 1.02,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0094",
+  "dealerId": "D10",
+  "date": "2026-08-14T14:21:00+08:00",
+  "sellerId": "S-1063",
+  "sellerIcMasked": "XXXXXX-XX-9611",
+  "material": "Aluminium",
+  "weightKg": 96,
+  "pricePerKgRM": 4.92,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0095",
+  "dealerId": "D02",
+  "date": "2026-08-14T17:56:00+08:00",
+  "sellerId": "S-1041",
+  "sellerIcMasked": "XXXXXX-XX-6902",
+  "material": "Brass",
+  "weightKg": 9,
+  "pricePerKgRM": 19.07,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0096",
+  "dealerId": "D10",
+  "date": "2026-08-15T08:23:00+08:00",
+  "sellerId": "S-1060",
+  "sellerIcMasked": "XXXXXX-XX-7214",
+  "material": "Aluminium",
+  "weightKg": 49.6,
+  "pricePerKgRM": 5.21,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0097",
+  "dealerId": "D03",
+  "date": "2026-08-16T08:15:00+08:00",
+  "sellerId": "S-1031",
+  "sellerIcMasked": "XXXXXX-XX-4334",
+  "material": "Iron/steel",
+  "weightKg": 70.6,
+  "pricePerKgRM": 1.18,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0098",
+  "dealerId": "D02",
+  "date": "2026-08-16T13:29:00+08:00",
+  "sellerId": "S-1006",
+  "sellerIcMasked": "XXXXXX-XX-8181",
+  "material": "Aluminium",
+  "weightKg": 53.7,
+  "pricePerKgRM": 5.58,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0099",
+  "dealerId": "D10",
+  "date": "2026-08-18T13:02:00+08:00",
+  "sellerId": "S-1007",
+  "sellerIcMasked": "XXXXXX-XX-5729",
+  "material": "Brass",
+  "weightKg": 14.5,
+  "pricePerKgRM": 18.81,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0100",
+  "dealerId": "D01",
+  "date": "2026-08-20T11:56:00+08:00",
+  "sellerId": "S-1022",
+  "sellerIcMasked": "XXXXXX-XX-9224",
+  "material": "Aluminium",
+  "weightKg": 81.3,
+  "pricePerKgRM": 5.04,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0101",
+  "dealerId": "D07",
+  "date": "2026-08-20T13:34:00+08:00",
+  "sellerId": "S-1020",
+  "sellerIcMasked": "XXXXXX-XX-3228",
+  "material": "Copper cable",
+  "weightKg": 28,
+  "pricePerKgRM": 30.86,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0102",
+  "dealerId": "D05",
+  "date": "2026-08-21T08:53:00+08:00",
+  "sellerId": "S-1005",
+  "sellerIcMasked": "XXXXXX-XX-7697",
+  "material": "Aluminium",
+  "weightKg": 83.8,
+  "pricePerKgRM": 5.58,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0103",
+  "dealerId": "D01",
+  "date": "2026-08-21T10:20:00+08:00",
+  "sellerId": "S-1001",
+  "sellerIcMasked": "XXXXXX-XX-5560",
+  "material": "Aluminium",
+  "weightKg": 68.3,
+  "pricePerKgRM": 5.35,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0104",
+  "dealerId": "D02",
+  "date": "2026-08-21T14:49:00+08:00",
+  "sellerId": "S-1065",
+  "sellerIcMasked": "XXXXXX-XX-3600",
+  "material": "Aluminium",
+  "weightKg": 71.4,
+  "pricePerKgRM": 4.86,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0105",
+  "dealerId": "D07",
+  "date": "2026-08-23T08:42:00+08:00",
+  "sellerId": "S-1023",
+  "sellerIcMasked": "XXXXXX-XX-4122",
+  "material": "Copper cable",
+  "weightKg": 28,
+  "pricePerKgRM": 31.49,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0106",
+  "dealerId": "D02",
+  "date": "2026-08-23T14:09:00+08:00",
+  "sellerId": "S-1055",
+  "sellerIcMasked": "XXXXXX-XX-3184",
+  "material": "Copper (other)",
+  "weightKg": 11.8,
+  "pricePerKgRM": 27.72,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0107",
+  "dealerId": "D03",
+  "date": "2026-08-24T15:43:00+08:00",
+  "sellerId": "S-1051",
+  "sellerIcMasked": "XXXXXX-XX-2066",
+  "material": "Copper (other)",
+  "weightKg": 18.6,
+  "pricePerKgRM": 29.99,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0108",
+  "dealerId": "D07",
+  "date": "2026-08-24T17:33:00+08:00",
+  "sellerId": "S-1054",
+  "sellerIcMasked": "XXXXXX-XX-2960",
+  "material": "Mixed metal",
+  "weightKg": 132.4,
+  "pricePerKgRM": 2.47,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0109",
+  "dealerId": "D02",
+  "date": "2026-08-26T13:19:00+08:00",
+  "sellerId": "S-1074",
+  "sellerIcMasked": "XXXXXX-XX-5299",
+  "material": "E-waste",
+  "weightKg": 33.5,
+  "pricePerKgRM": 1.51,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0110",
+  "dealerId": "D01",
+  "date": "2026-08-28T14:35:00+08:00",
+  "sellerId": "S-1041",
+  "sellerIcMasked": "XXXXXX-XX-6902",
+  "material": "Aluminium",
+  "weightKg": 122.5,
+  "pricePerKgRM": 5.14,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0111",
+  "dealerId": "D01",
+  "date": "2026-08-28T17:46:00+08:00",
+  "sellerId": "S-1070",
+  "sellerIcMasked": "XXXXXX-XX-1247",
+  "material": "Aluminium",
+  "weightKg": 31.7,
+  "pricePerKgRM": 5.51,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0112",
+  "dealerId": "D03",
+  "date": "2026-08-30T14:22:00+08:00",
+  "sellerId": "S-1033",
+  "sellerIcMasked": "XXXXXX-XX-5044",
+  "material": "Copper (other)",
+  "weightKg": 22.5,
+  "pricePerKgRM": 28.84,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0113",
+  "dealerId": "D10",
+  "date": "2026-08-30T17:38:00+08:00",
+  "sellerId": "S-1029",
+  "sellerIcMasked": "XXXXXX-XX-4992",
+  "material": "E-waste",
+  "weightKg": 56.2,
+  "pricePerKgRM": 1.55,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0114",
+  "dealerId": "D09",
+  "date": "2026-08-30T17:47:00+08:00",
+  "sellerId": "S-1008",
+  "sellerIcMasked": "XXXXXX-XX-2129",
+  "material": "Iron/steel",
+  "weightKg": 116.2,
+  "pricePerKgRM": 1.13,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0115",
+  "dealerId": "D10",
+  "date": "2026-08-31T15:23:00+08:00",
+  "sellerId": "S-1058",
+  "sellerIcMasked": "XXXXXX-XX-6158",
+  "material": "Iron/steel",
+  "weightKg": 48.6,
+  "pricePerKgRM": 1.1,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0116",
+  "dealerId": "D07",
+  "date": "2026-09-01T14:39:00+08:00",
+  "sellerId": "S-1022",
+  "sellerIcMasked": "XXXXXX-XX-9224",
+  "material": "Aluminium",
+  "weightKg": 95,
+  "pricePerKgRM": 5.39,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0117",
+  "dealerId": "D03",
+  "date": "2026-09-01T15:20:00+08:00",
+  "sellerId": "S-1047",
+  "sellerIcMasked": "XXXXXX-XX-6083",
+  "material": "Iron/steel",
+  "weightKg": 49.4,
+  "pricePerKgRM": 1.06,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0118",
+  "dealerId": "D08",
+  "date": "2026-09-01T17:42:00+08:00",
+  "sellerId": "S-1069",
+  "sellerIcMasked": "XXXXXX-XX-7707",
+  "material": "Aluminium",
+  "weightKg": 89.5,
+  "pricePerKgRM": 4.94,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0119",
+  "dealerId": "D10",
+  "date": "2026-09-02T09:37:00+08:00",
+  "sellerId": "S-1045",
+  "sellerIcMasked": "XXXXXX-XX-8903",
+  "material": "Aluminium",
+  "weightKg": 45.5,
+  "pricePerKgRM": 5.4,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0120",
+  "dealerId": "D02",
+  "date": "2026-09-02T16:54:00+08:00",
+  "sellerId": "S-1062",
+  "sellerIcMasked": "XXXXXX-XX-6396",
+  "material": "Copper cable",
+  "weightKg": 22.4,
+  "pricePerKgRM": 32.7,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0121",
+  "dealerId": "D09",
+  "date": "2026-09-03T12:59:00+08:00",
+  "sellerId": "S-1009",
+  "sellerIcMasked": "XXXXXX-XX-4556",
+  "material": "Mixed metal",
+  "weightKg": 63.9,
+  "pricePerKgRM": 2.42,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0122",
+  "dealerId": "D04",
+  "date": "2026-09-03T15:48:00+08:00",
+  "sellerId": "S-1002",
+  "sellerIcMasked": "XXXXXX-XX-2666",
+  "material": "Iron/steel",
+  "weightKg": 36,
+  "pricePerKgRM": 1.12,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0123",
+  "dealerId": "D03",
+  "date": "2026-09-04T09:16:00+08:00",
+  "sellerId": "S-1010",
+  "sellerIcMasked": "XXXXXX-XX-9838",
+  "material": "E-waste",
+  "weightKg": 30,
+  "pricePerKgRM": 1.72,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0124",
+  "dealerId": "D06",
+  "date": "2026-09-04T09:20:00+08:00",
+  "sellerId": "S-1038",
+  "sellerIcMasked": "XXXXXX-XX-3594",
+  "material": "Iron/steel",
+  "weightKg": 67.9,
+  "pricePerKgRM": 1.17,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0125",
+  "dealerId": "D02",
+  "date": "2026-09-05T15:41:00+08:00",
+  "sellerId": "S-1064",
+  "sellerIcMasked": "XXXXXX-XX-4802",
+  "material": "Copper (other)",
+  "weightKg": 12.4,
+  "pricePerKgRM": 32.24,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0126",
+  "dealerId": "D04",
+  "date": "2026-09-06T10:35:00+08:00",
+  "sellerId": "S-1054",
+  "sellerIcMasked": "XXXXXX-XX-2960",
+  "material": "Iron/steel",
+  "weightKg": 42.3,
+  "pricePerKgRM": 1.07,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0127",
+  "dealerId": "D03",
+  "date": "2026-09-06T13:57:00+08:00",
+  "sellerId": "S-1067",
+  "sellerIcMasked": "XXXXXX-XX-5831",
+  "material": "E-waste",
+  "weightKg": 46.7,
+  "pricePerKgRM": 1.62,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0128",
+  "dealerId": "D01",
+  "date": "2026-09-06T17:13:00+08:00",
+  "sellerId": "S-1026",
+  "sellerIcMasked": "XXXXXX-XX-8085",
+  "material": "E-waste",
+  "weightKg": 34.4,
+  "pricePerKgRM": 1.49,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0129",
+  "dealerId": "D07",
+  "date": "2026-09-07T12:05:00+08:00",
+  "sellerId": "S-1055",
+  "sellerIcMasked": "XXXXXX-XX-3184",
+  "material": "Brass",
+  "weightKg": 17.9,
+  "pricePerKgRM": 16.57,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0130",
+  "dealerId": "D03",
+  "date": "2026-09-07T14:21:00+08:00",
+  "sellerId": "S-1053",
+  "sellerIcMasked": "XXXXXX-XX-5147",
+  "material": "Copper (other)",
+  "weightKg": 6.4,
+  "pricePerKgRM": 30.29,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0131",
+  "dealerId": "D01",
+  "date": "2026-09-07T14:27:00+08:00",
+  "sellerId": "S-1049",
+  "sellerIcMasked": "XXXXXX-XX-2294",
+  "material": "Aluminium",
+  "weightKg": 53.4,
+  "pricePerKgRM": 5.24,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0132",
+  "dealerId": "D03",
+  "date": "2026-09-08T10:00:00+08:00",
+  "sellerId": "S-1992",
+  "sellerIcMasked": "XXXXXX-XX-6620",
+  "material": "Copper cable",
+  "weightKg": 57.2,
+  "pricePerKgRM": 31.64,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Copper cable > 50 kg"
+ },
+ {
+  "id": "TX-0133",
+  "dealerId": "D04",
+  "date": "2026-09-08T11:53:00+08:00",
+  "sellerId": "S-1068",
+  "sellerIcMasked": "XXXXXX-XX-1310",
+  "material": "Brass",
+  "weightKg": 15.7,
+  "pricePerKgRM": 17.28,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0134",
+  "dealerId": "D08",
+  "date": "2026-09-09T09:20:00+08:00",
+  "sellerId": "S-1013",
+  "sellerIcMasked": "XXXXXX-XX-9679",
+  "material": "Copper cable",
+  "weightKg": 28,
+  "pricePerKgRM": 34.41,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0135",
+  "dealerId": "D05",
+  "date": "2026-09-09T12:38:00+08:00",
+  "sellerId": "S-1011",
+  "sellerIcMasked": "XXXXXX-XX-7686",
+  "material": "Copper (other)",
+  "weightKg": 31.6,
+  "pricePerKgRM": 28.1,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0136",
+  "dealerId": "D05",
+  "date": "2026-09-09T12:51:00+08:00",
+  "sellerId": "S-1039",
+  "sellerIcMasked": "XXXXXX-XX-7132",
+  "material": "Aluminium",
+  "weightKg": 137.2,
+  "pricePerKgRM": 5.27,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0137",
+  "dealerId": "D08",
+  "date": "2026-09-09T13:56:00+08:00",
+  "sellerId": "S-1044",
+  "sellerIcMasked": "XXXXXX-XX-2283",
+  "material": "Aluminium",
+  "weightKg": 113.7,
+  "pricePerKgRM": 5.03,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0138",
+  "dealerId": "D02",
+  "date": "2026-09-10T10:40:00+08:00",
+  "sellerId": "S-1023",
+  "sellerIcMasked": "XXXXXX-XX-4122",
+  "material": "Iron/steel",
+  "weightKg": 96.3,
+  "pricePerKgRM": 1.07,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0139",
+  "dealerId": "D04",
+  "date": "2026-09-11T10:53:00+08:00",
+  "sellerId": "S-1048",
+  "sellerIcMasked": "XXXXXX-XX-3830",
+  "material": "Aluminium",
+  "weightKg": 14.8,
+  "pricePerKgRM": 5.45,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0140",
+  "dealerId": "D01",
+  "date": "2026-09-12T08:33:00+08:00",
+  "sellerId": "S-1066",
+  "sellerIcMasked": "XXXXXX-XX-2857",
+  "material": "Aluminium",
+  "weightKg": 60.1,
+  "pricePerKgRM": 5.61,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0141",
+  "dealerId": "D08",
+  "date": "2026-09-12T14:25:00+08:00",
+  "sellerId": "S-1015",
+  "sellerIcMasked": "XXXXXX-XX-4999",
+  "material": "Iron/steel",
+  "weightKg": 77.8,
+  "pricePerKgRM": 1.16,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0142",
+  "dealerId": "D08",
+  "date": "2026-09-12T15:02:00+08:00",
+  "sellerId": "S-1001",
+  "sellerIcMasked": "XXXXXX-XX-5560",
+  "material": "Iron/steel",
+  "weightKg": 60.3,
+  "pricePerKgRM": 1.15,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0143",
+  "dealerId": "D10",
+  "date": "2026-09-12T16:08:00+08:00",
+  "sellerId": "S-1035",
+  "sellerIcMasked": "XXXXXX-XX-9259",
+  "material": "Aluminium",
+  "weightKg": 64,
+  "pricePerKgRM": 5.04,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0144",
+  "dealerId": "D01",
+  "date": "2026-09-12T17:24:00+08:00",
+  "sellerId": "S-1071",
+  "sellerIcMasked": "XXXXXX-XX-3979",
+  "material": "Iron/steel",
+  "weightKg": 82.8,
+  "pricePerKgRM": 1.09,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0145",
+  "dealerId": "D03",
+  "date": "2026-09-13T09:27:00+08:00",
+  "sellerId": "S-1036",
+  "sellerIcMasked": "XXXXXX-XX-2116",
+  "material": "Copper (other)",
+  "weightKg": 25.9,
+  "pricePerKgRM": 31.31,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0146",
+  "dealerId": "D10",
+  "date": "2026-09-15T08:04:00+08:00",
+  "sellerId": "S-1042",
+  "sellerIcMasked": "XXXXXX-XX-7052",
+  "material": "Iron/steel",
+  "weightKg": 63.5,
+  "pricePerKgRM": 1.13,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0147",
+  "dealerId": "D04",
+  "date": "2026-09-17T09:11:00+08:00",
+  "sellerId": "S-1064",
+  "sellerIcMasked": "XXXXXX-XX-4802",
+  "material": "Iron/steel",
+  "weightKg": 51.2,
+  "pricePerKgRM": 1.15,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0148",
+  "dealerId": "D04",
+  "date": "2026-09-17T14:56:00+08:00",
+  "sellerId": "S-1018",
+  "sellerIcMasked": "XXXXXX-XX-4035",
+  "material": "Copper cable",
+  "weightKg": 13.4,
+  "pricePerKgRM": 30.14,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0149",
+  "dealerId": "D04",
+  "date": "2026-09-18T09:36:00+08:00",
+  "sellerId": "S-1016",
+  "sellerIcMasked": "XXXXXX-XX-9244",
+  "material": "Copper cable",
+  "weightKg": 10.1,
+  "pricePerKgRM": 31.77,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0150",
+  "dealerId": "D06",
+  "date": "2026-09-18T11:33:00+08:00",
+  "sellerId": "S-1043",
+  "sellerIcMasked": "XXXXXX-XX-3203",
+  "material": "Iron/steel",
+  "weightKg": 36.2,
+  "pricePerKgRM": 1.08,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0151",
+  "dealerId": "D03",
+  "date": "2026-09-19T10:32:00+08:00",
+  "sellerId": "S-1074",
+  "sellerIcMasked": "XXXXXX-XX-5299",
+  "material": "Aluminium",
+  "weightKg": 46.8,
+  "pricePerKgRM": 5.21,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0152",
+  "dealerId": "D08",
+  "date": "2026-09-19T12:45:00+08:00",
+  "sellerId": "S-1069",
+  "sellerIcMasked": "XXXXXX-XX-7707",
+  "material": "Mixed metal",
+  "weightKg": 107.1,
+  "pricePerKgRM": 2.28,
+  "photo": {
+   "label": "mixed / other",
+   "description": "Mixed scrap: tin sheets, small motor housing, assorted fittings.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0153",
+  "dealerId": "D03",
+  "date": "2026-09-20T12:39:00+08:00",
+  "sellerId": "S-1004",
+  "sellerIcMasked": "XXXXXX-XX-6914",
+  "material": "Aluminium",
+  "weightKg": 78.9,
+  "pricePerKgRM": 4.97,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0154",
+  "dealerId": "D02",
+  "date": "2026-09-20T17:22:00+08:00",
+  "sellerId": "S-1032",
+  "sellerIcMasked": "XXXXXX-XX-6547",
+  "material": "Aluminium",
+  "weightKg": 59.5,
+  "pricePerKgRM": 5.38,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0155",
+  "dealerId": "D04",
+  "date": "2026-09-21T10:00:00+08:00",
+  "sellerId": "S-1999",
+  "sellerIcMasked": "XXXXXX-XX-4417",
+  "material": "Copper (other)",
+  "weightKg": 11.5,
+  "pricePerKgRM": 28,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Part of repeat-seller pattern (not flagged on its own)"
+ },
+ {
+  "id": "TX-0156",
+  "dealerId": "D05",
+  "date": "2026-09-21T12:32:00+08:00",
+  "sellerId": "S-1995",
+  "sellerIcMasked": "XXXXXX-XX-5532",
+  "material": "Copper cable",
+  "weightKg": 74,
+  "pricePerKgRM": 33.59,
+  "photo": {
+   "label": "cable/electrical part",
+   "description": "Thick black armoured power cable, cut ends visible, multi-core copper conductors.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Copper cable > 50 kg; photo shows streetlight cable; day after SEM hatch incident"
+ },
+ {
+  "id": "TX-0157",
+  "dealerId": "D06",
+  "date": "2026-09-21T15:23:00+08:00",
+  "sellerId": "S-1007",
+  "sellerIcMasked": "XXXXXX-XX-5729",
+  "material": "Aluminium",
+  "weightKg": 48.8,
+  "pricePerKgRM": 4.94,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0158",
+  "dealerId": "D01",
+  "date": "2026-09-22T11:00:00+08:00",
+  "sellerId": "S-1999",
+  "sellerIcMasked": "XXXXXX-XX-4417",
+  "material": "Copper (other)",
+  "weightKg": 9,
+  "pricePerKgRM": 30.23,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Part of repeat-seller pattern (not flagged on its own)"
+ },
+ {
+  "id": "TX-0159",
+  "dealerId": "D03",
+  "date": "2026-09-22T11:07:00+08:00",
+  "sellerId": "S-1047",
+  "sellerIcMasked": "XXXXXX-XX-6083",
+  "material": "Iron/steel",
+  "weightKg": 98.9,
+  "pricePerKgRM": 1.11,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0160",
+  "dealerId": "D01",
+  "date": "2026-09-22T13:20:00+08:00",
+  "sellerId": "S-1994",
+  "sellerIcMasked": "XXXXXX-XX-7754",
+  "material": "Mixed metal",
+  "weightKg": 31.5,
+  "pricePerKgRM": 2.53,
+  "photo": {
+   "label": "cable/electrical part",
+   "description": "Thick black armoured power cable, cut ends visible, multi-core copper conductors.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Declared mixed metal; photo shows streetlight cable"
+ },
+ {
+  "id": "TX-0161",
+  "dealerId": "D02",
+  "date": "2026-09-22T14:52:00+08:00",
+  "sellerId": "S-1006",
+  "sellerIcMasked": "XXXXXX-XX-8181",
+  "material": "E-waste",
+  "weightKg": 25.7,
+  "pricePerKgRM": 1.66,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0162",
+  "dealerId": "D07",
+  "date": "2026-09-22T14:59:00+08:00",
+  "sellerId": "S-1019",
+  "sellerIcMasked": "XXXXXX-XX-9741",
+  "material": "Iron/steel",
+  "weightKg": 121.2,
+  "pricePerKgRM": 1.14,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0163",
+  "dealerId": "D01",
+  "date": "2026-09-23T08:24:00+08:00",
+  "sellerId": "S-1031",
+  "sellerIcMasked": "XXXXXX-XX-4334",
+  "material": "Iron/steel",
+  "weightKg": 60.6,
+  "pricePerKgRM": 1.15,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0164",
+  "dealerId": "D06",
+  "date": "2026-09-23T09:28:00+08:00",
+  "sellerId": "S-1033",
+  "sellerIcMasked": "XXXXXX-XX-5044",
+  "material": "Copper (other)",
+  "weightKg": 17.1,
+  "pricePerKgRM": 32.33,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0165",
+  "dealerId": "D04",
+  "date": "2026-09-23T12:00:00+08:00",
+  "sellerId": "S-1999",
+  "sellerIcMasked": "XXXXXX-XX-4417",
+  "material": "Copper (other)",
+  "weightKg": 13.5,
+  "pricePerKgRM": 31.17,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Part of repeat-seller pattern (not flagged on its own)"
+ },
+ {
+  "id": "TX-0166",
+  "dealerId": "D07",
+  "date": "2026-09-23T13:35:00+08:00",
+  "sellerId": "S-1013",
+  "sellerIcMasked": "XXXXXX-XX-9679",
+  "material": "Copper cable",
+  "weightKg": 28,
+  "pricePerKgRM": 32.95,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0167",
+  "dealerId": "D05",
+  "date": "2026-09-24T16:06:00+08:00",
+  "sellerId": "S-1051",
+  "sellerIcMasked": "XXXXXX-XX-2066",
+  "material": "Aluminium",
+  "weightKg": 123.2,
+  "pricePerKgRM": 5.45,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0168",
+  "dealerId": "D10",
+  "date": "2026-09-25T11:05:00+08:00",
+  "sellerId": "S-1070",
+  "sellerIcMasked": "XXXXXX-XX-1247",
+  "material": "Aluminium",
+  "weightKg": 93.9,
+  "pricePerKgRM": 5.33,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0169",
+  "dealerId": "D02",
+  "date": "2026-09-25T13:00:00+08:00",
+  "sellerId": "S-1999",
+  "sellerIcMasked": "XXXXXX-XX-4417",
+  "material": "Copper (other)",
+  "weightKg": 12,
+  "pricePerKgRM": 29.85,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Same seller > 3 sales in 7 days"
+ },
+ {
+  "id": "TX-0170",
+  "dealerId": "D01",
+  "date": "2026-09-26T14:00:00+08:00",
+  "sellerId": "S-1999",
+  "sellerIcMasked": "XXXXXX-XX-4417",
+  "material": "Copper (other)",
+  "weightKg": 10.5,
+  "pricePerKgRM": 27.79,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Same seller > 3 sales in 7 days"
+ },
+ {
+  "id": "TX-0171",
+  "dealerId": "D02",
+  "date": "2026-09-26T17:35:00+08:00",
+  "sellerId": "S-1991",
+  "sellerIcMasked": "XXXXXX-XX-3051",
+  "material": "Copper cable",
+  "weightKg": 112,
+  "pricePerKgRM": 32.26,
+  "photo": {
+   "label": "cable/electrical part",
+   "description": "Thick black armoured power cable, cut ends visible, multi-core copper conductors.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Copper cable > 50 kg and > 3σ for dealer; day after KUL break-in"
+ },
+ {
+  "id": "TX-0172",
+  "dealerId": "D03",
+  "date": "2026-09-27T12:09:00+08:00",
+  "sellerId": "S-1054",
+  "sellerIcMasked": "XXXXXX-XX-2960",
+  "material": "Aluminium",
+  "weightKg": 59.4,
+  "pricePerKgRM": 4.94,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0173",
+  "dealerId": "D01",
+  "date": "2026-09-27T16:55:00+08:00",
+  "sellerId": "S-1041",
+  "sellerIcMasked": "XXXXXX-XX-6902",
+  "material": "Copper (other)",
+  "weightKg": 26.3,
+  "pricePerKgRM": 31.41,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0174",
+  "dealerId": "D03",
+  "date": "2026-09-28T16:35:00+08:00",
+  "sellerId": "S-1037",
+  "sellerIcMasked": "XXXXXX-XX-5714",
+  "material": "Aluminium",
+  "weightKg": 36.6,
+  "pricePerKgRM": 4.82,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0175",
+  "dealerId": "D06",
+  "date": "2026-09-29T17:40:00+08:00",
+  "sellerId": "S-1024",
+  "sellerIcMasked": "XXXXXX-XX-8614",
+  "material": "E-waste",
+  "weightKg": 40.3,
+  "pricePerKgRM": 1.53,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0176",
+  "dealerId": "D02",
+  "date": "2026-09-30T17:38:00+08:00",
+  "sellerId": "S-1044",
+  "sellerIcMasked": "XXXXXX-XX-2283",
+  "material": "Copper (other)",
+  "weightKg": 19.7,
+  "pricePerKgRM": 28.98,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0177",
+  "dealerId": "D03",
+  "date": "2026-10-01T11:15:00+08:00",
+  "sellerId": "S-1029",
+  "sellerIcMasked": "XXXXXX-XX-4992",
+  "material": "Aluminium",
+  "weightKg": 40.2,
+  "pricePerKgRM": 4.87,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0178",
+  "dealerId": "D02",
+  "date": "2026-10-01T13:03:00+08:00",
+  "sellerId": "S-1065",
+  "sellerIcMasked": "XXXXXX-XX-3600",
+  "material": "E-waste",
+  "weightKg": 44.6,
+  "pricePerKgRM": 1.47,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0179",
+  "dealerId": "D06",
+  "date": "2026-10-01T14:12:00+08:00",
+  "sellerId": "S-1010",
+  "sellerIcMasked": "XXXXXX-XX-9838",
+  "material": "Aluminium",
+  "weightKg": 57.7,
+  "pricePerKgRM": 5.16,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0180",
+  "dealerId": "D02",
+  "date": "2026-10-01T17:33:00+08:00",
+  "sellerId": "S-1055",
+  "sellerIcMasked": "XXXXXX-XX-3184",
+  "material": "Brass",
+  "weightKg": 11.9,
+  "pricePerKgRM": 19.17,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0181",
+  "dealerId": "D07",
+  "date": "2026-10-02T17:24:00+08:00",
+  "sellerId": "S-1013",
+  "sellerIcMasked": "XXXXXX-XX-9679",
+  "material": "E-waste",
+  "weightKg": 71.6,
+  "pricePerKgRM": 1.56,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0182",
+  "dealerId": "D08",
+  "date": "2026-10-03T13:39:00+08:00",
+  "sellerId": "S-1062",
+  "sellerIcMasked": "XXXXXX-XX-6396",
+  "material": "Aluminium",
+  "weightKg": 126.1,
+  "pricePerKgRM": 5.02,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0183",
+  "dealerId": "D06",
+  "date": "2026-10-03T15:28:00+08:00",
+  "sellerId": "S-1073",
+  "sellerIcMasked": "XXXXXX-XX-6495",
+  "material": "Copper (other)",
+  "weightKg": 11.1,
+  "pricePerKgRM": 30.53,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0184",
+  "dealerId": "D04",
+  "date": "2026-10-04T12:19:00+08:00",
+  "sellerId": "S-1022",
+  "sellerIcMasked": "XXXXXX-XX-9224",
+  "material": "Copper cable",
+  "weightKg": 17.8,
+  "pricePerKgRM": 34.34,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0185",
+  "dealerId": "D03",
+  "date": "2026-10-04T12:24:00+08:00",
+  "sellerId": "S-1056",
+  "sellerIcMasked": "XXXXXX-XX-5195",
+  "material": "Aluminium",
+  "weightKg": 87.3,
+  "pricePerKgRM": 5.29,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0186",
+  "dealerId": "D02",
+  "date": "2026-10-04T12:50:00+08:00",
+  "sellerId": "S-1018",
+  "sellerIcMasked": "XXXXXX-XX-4035",
+  "material": "Copper (other)",
+  "weightKg": 12.7,
+  "pricePerKgRM": 28.8,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0187",
+  "dealerId": "D08",
+  "date": "2026-10-04T16:22:00+08:00",
+  "sellerId": "S-1003",
+  "sellerIcMasked": "XXXXXX-XX-1363",
+  "material": "Copper cable",
+  "weightKg": 28,
+  "pricePerKgRM": 33.79,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0188",
+  "dealerId": "D04",
+  "date": "2026-10-05T10:26:00+08:00",
+  "sellerId": "S-1990",
+  "sellerIcMasked": "XXXXXX-XX-8826",
+  "material": "Copper cable",
+  "weightKg": 68.5,
+  "pricePerKgRM": 30.64,
+  "photo": {
+   "label": "cable/electrical part",
+   "description": "Thick black armoured power cable, cut ends visible, multi-core copper conductors.",
+   "source": "mock (pre-classified)"
+  },
+  "_plantedReason": "Copper cable > 50 kg; photo shows armoured cable; 1 day after SEM cable theft"
+ },
+ {
+  "id": "TX-0189",
+  "dealerId": "D01",
+  "date": "2026-10-06T11:11:00+08:00",
+  "sellerId": "S-1026",
+  "sellerIcMasked": "XXXXXX-XX-8085",
+  "material": "Iron/steel",
+  "weightKg": 71.1,
+  "pricePerKgRM": 1.04,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0190",
+  "dealerId": "D10",
+  "date": "2026-10-06T15:10:00+08:00",
+  "sellerId": "S-1011",
+  "sellerIcMasked": "XXXXXX-XX-7686",
+  "material": "Copper (other)",
+  "weightKg": 19.8,
+  "pricePerKgRM": 28.36,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0191",
+  "dealerId": "D01",
+  "date": "2026-10-09T08:14:00+08:00",
+  "sellerId": "S-1057",
+  "sellerIcMasked": "XXXXXX-XX-5065",
+  "material": "Iron/steel",
+  "weightKg": 58.9,
+  "pricePerKgRM": 1.02,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0192",
+  "dealerId": "D07",
+  "date": "2026-10-09T10:41:00+08:00",
+  "sellerId": "S-1004",
+  "sellerIcMasked": "XXXXXX-XX-6914",
+  "material": "Aluminium",
+  "weightKg": 124.5,
+  "pricePerKgRM": 5.49,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0193",
+  "dealerId": "D08",
+  "date": "2026-10-11T12:33:00+08:00",
+  "sellerId": "S-1043",
+  "sellerIcMasked": "XXXXXX-XX-3203",
+  "material": "Brass",
+  "weightKg": 41.5,
+  "pricePerKgRM": 17.45,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0194",
+  "dealerId": "D07",
+  "date": "2026-10-12T11:20:00+08:00",
+  "sellerId": "S-1060",
+  "sellerIcMasked": "XXXXXX-XX-7214",
+  "material": "Brass",
+  "weightKg": 28.7,
+  "pricePerKgRM": 17.44,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0195",
+  "dealerId": "D03",
+  "date": "2026-10-13T09:19:00+08:00",
+  "sellerId": "S-1063",
+  "sellerIcMasked": "XXXXXX-XX-9611",
+  "material": "Copper (other)",
+  "weightKg": 12.8,
+  "pricePerKgRM": 28.53,
+  "photo": {
+   "label": "copper scrap (pipe/fittings/household wire)",
+   "description": "Short lengths of household copper pipe and thin stripped wire.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0196",
+  "dealerId": "D09",
+  "date": "2026-10-13T09:45:00+08:00",
+  "sellerId": "S-1036",
+  "sellerIcMasked": "XXXXXX-XX-2116",
+  "material": "Iron/steel",
+  "weightKg": 114.8,
+  "pricePerKgRM": 1.12,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0197",
+  "dealerId": "D09",
+  "date": "2026-10-13T14:12:00+08:00",
+  "sellerId": "S-1048",
+  "sellerIcMasked": "XXXXXX-XX-3830",
+  "material": "Brass",
+  "weightKg": 13.4,
+  "pricePerKgRM": 18.59,
+  "photo": {
+   "label": "brass",
+   "description": "Brass taps and valve bodies.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0198",
+  "dealerId": "D01",
+  "date": "2026-10-14T10:33:00+08:00",
+  "sellerId": "S-1052",
+  "sellerIcMasked": "XXXXXX-XX-7368",
+  "material": "Iron/steel",
+  "weightKg": 63,
+  "pricePerKgRM": 1.05,
+  "photo": {
+   "label": "iron/steel",
+   "description": "Rusty steel sections, rebar and a bicycle frame.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0199",
+  "dealerId": "D10",
+  "date": "2026-10-14T11:45:00+08:00",
+  "sellerId": "S-1005",
+  "sellerIcMasked": "XXXXXX-XX-7697",
+  "material": "Aluminium",
+  "weightKg": 46.2,
+  "pricePerKgRM": 5.36,
+  "photo": {
+   "label": "aluminium",
+   "description": "Crushed drink cans and window-frame offcuts in a sack.",
+   "source": "mock (pre-classified)"
+  }
+ },
+ {
+  "id": "TX-0200",
+  "dealerId": "D03",
+  "date": "2026-10-14T14:33:00+08:00",
+  "sellerId": "S-1053",
+  "sellerIcMasked": "XXXXXX-XX-5147",
+  "material": "E-waste",
+  "weightKg": 39.2,
+  "pricePerKgRM": 1.53,
+  "photo": {
+   "label": "household appliance / e-waste",
+   "description": "Old rice cooker, fan motor and a printer.",
+   "source": "mock (pre-classified)"
+  }
+ }
+]

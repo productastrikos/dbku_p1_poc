@@ -1,0 +1,191 @@
+[
+ {
+  "id": "AL-P001",
+  "source": "sensor",
+  "level": "HIGH",
+  "type": "panel_opened",
+  "title": "Panel opened · DB-SEM-02",
+  "message": "Door contact opened at night",
+  "assetId": "DB-SEM-02",
+  "zone": "SEM",
+  "lat": 1.57827,
+  "lng": 110.33561,
+  "createdAt": "2026-09-05T02:12:00+08:00",
+  "status": "intercepted",
+  "note": "Patrol arrived 02:29. Two men left on a motorcycle; panel intact.",
+  "score": null,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P002",
+  "source": "cctv",
+  "level": "HIGH",
+  "type": "intrusion",
+  "title": "Intrusion near asset · SL-KUL-02",
+  "message": "Person and parked van beside bridge lighting cable",
+  "assetId": "SL-KUL-02",
+  "zone": "KUL",
+  "lat": 1.55503,
+  "lng": 110.32533,
+  "createdAt": "2026-09-12T23:48:00+08:00",
+  "status": "intercepted",
+  "note": "Patrol and PDRM MPV attended 00:05. Cable intact; vehicle details passed to PDRM.",
+  "score": 100,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P003",
+  "source": "sensor",
+  "level": "HIGH",
+  "type": "cable_cut",
+  "title": "Cable cut · SL-SEM-10",
+  "message": "Current dropped to 0 A on streetlight circuit",
+  "assetId": "SL-SEM-10",
+  "zone": "SEM",
+  "lat": 1.57918,
+  "lng": 110.33224,
+  "createdAt": "2026-09-20T02:20:00+08:00",
+  "status": "confirmed_theft",
+  "note": "Theft confirmed at 02:50. Linked to the Jalan Semariang hatch incident.",
+  "score": null,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P004",
+  "source": "sensor",
+  "level": "HIGH",
+  "type": "panel_opened",
+  "title": "Panel opened · DB-KUL-03",
+  "message": "Door contact opened at night",
+  "assetId": "DB-KUL-03",
+  "zone": "KUL",
+  "lat": 1.55432,
+  "lng": 110.32989,
+  "createdAt": "2026-09-26T02:35:00+08:00",
+  "status": "confirmed_theft",
+  "note": "Patrol arrived after the cables were cut.",
+  "score": null,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P005",
+  "source": "cctv",
+  "level": "MEDIUM",
+  "type": "intrusion",
+  "title": "Intrusion near asset · SL-BIN-02",
+  "message": "Person near bridge lighting for 2 min",
+  "assetId": "SL-BIN-02",
+  "zone": "BIN",
+  "lat": 1.55787,
+  "lng": 110.33669,
+  "createdAt": "2026-10-01T01:30:00+08:00",
+  "status": "false_alarm",
+  "note": "Angler on the bridge; no tampering.",
+  "score": 60,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P006",
+  "source": "sensor",
+  "level": "HIGH",
+  "type": "cable_cut",
+  "title": "Cable cut · CB-SEM-01",
+  "message": "Current dropped to 0 A on feeder",
+  "assetId": "CB-SEM-01",
+  "zone": "SEM",
+  "lat": 1.57743,
+  "lng": 110.32975,
+  "createdAt": "2026-10-04T01:50:00+08:00",
+  "status": "confirmed_theft",
+  "note": "About 240 m of cable stolen before patrol arrival.",
+  "score": null,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P007",
+  "source": "cctv",
+  "level": "HIGH",
+  "type": "intrusion",
+  "title": "Intrusion near asset · MSB-SEM-01",
+  "message": "Two people beside the main switchboard for 4 min",
+  "assetId": "MSB-SEM-01",
+  "zone": "SEM",
+  "lat": 1.57778,
+  "lng": 110.33244,
+  "createdAt": "2026-10-09T03:05:00+08:00",
+  "status": "intercepted",
+  "note": "Patrol arrived 03:16; suspects fled on foot. Switchboard secured.",
+  "score": 85,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P008",
+  "source": "sensor",
+  "level": "HIGH",
+  "type": "pole_struck",
+  "title": "Pole struck · SL-BIN-05",
+  "message": "Tilt sensor read 17° after impact",
+  "assetId": "SL-BIN-05",
+  "zone": "BIN",
+  "lat": 1.55413,
+  "lng": 110.33335,
+  "createdAt": "2026-10-12T00:40:00+08:00",
+  "status": "resolved",
+  "note": "Vehicle collision (accident). Referred to JKR for pole replacement.",
+  "score": null,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ },
+ {
+  "id": "AL-P009",
+  "source": "cctv",
+  "level": "MEDIUM",
+  "type": "intrusion",
+  "title": "Intrusion near asset · DB-KUL-02",
+  "message": "Person beside feeder pillar at night",
+  "assetId": "DB-KUL-02",
+  "zone": "KUL",
+  "lat": 1.55427,
+  "lng": 110.32749,
+  "createdAt": "2026-10-15T01:14:00+08:00",
+  "status": "acknowledged",
+  "note": "Monitoring. Patrol passing at 02:00.",
+  "score": 60,
+  "evidence": {
+   "snapshot": null,
+   "mock": true
+  },
+  "pilot": true
+ }
+]

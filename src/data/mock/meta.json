@@ -1,0 +1,17 @@
+{
+ "asOf": "2026-10-15",
+ "timeZone": "Asia/Kuching",
+ "programme": {
+  "incidents": 22,
+  "since": 2020,
+  "years": 7,
+  "totalCostRM": 2120000,
+  "residentsAffected": 179693
+ },
+ "patrolBase": {
+  "name": "DBKU, Bukit Siol (approx.)",
+  "lat": 1.5762,
+  "lng": 110.3488
+ },
+ "notes": "Mock data for the GuardGrid prototype. Road geometry © OpenStreetMap contributors (ODbL). Dealers, sellers, incidents and costs are fictional."
+}

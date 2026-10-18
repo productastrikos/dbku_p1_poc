@@ -1,0 +1,371 @@
+[
+ {
+  "id": "INC-2020-01",
+  "occurredAt": "2020-03-14T02:10:00+08:00",
+  "zone": "SEM",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Feeder cable stolen from JTARY median",
+  "detail": "About 280 m of underground feeder cut at two pits and pulled out; 8 streetlights dark.",
+  "assetIds": [
+   "CB-SEM-01",
+   "SL-SEM-02",
+   "SL-SEM-03"
+  ],
+  "costRM": 90280,
+  "lightsCut": 8,
+  "lightsDarkBefore": 0,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2020-02",
+  "occurredAt": "2020-07-25T02:00:00+08:00",
+  "zone": "KUL",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Cable tray under bridge approach cut",
+  "detail": "About 180 m removed from the cable tray beneath the Jambatan Tun Abdul Rahman Ya'kub approach.",
+  "assetIds": [
+   "CB-KUL-01"
+  ],
+  "costRM": 78420,
+  "lightsCut": 3,
+  "lightsDarkBefore": 1,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2020-03",
+  "occurredAt": "2020-12-12T02:25:00+08:00",
+  "zone": "BIN",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Riverside cable removed at Sungai Bintangor",
+  "detail": "About 260 m of riverside cable along Sungai Bintangor removed overnight.",
+  "assetIds": [
+   "CB-BIN-01"
+  ],
+  "costRM": 100330,
+  "lightsCut": 4,
+  "lightsDarkBefore": 1,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2021-04",
+  "occurredAt": "2021-03-24T00:45:00+08:00",
+  "zone": "KUL",
+  "type": "distribution_box_break_in",
+  "typeLabel": "Distribution box break-in",
+  "title": "Feeder pillar broken into on Jalan Kulas",
+  "detail": "Door lever cut; outgoing cables and fuse links removed.",
+  "assetIds": [
+   "DB-KUL-02"
+  ],
+  "costRM": 50710,
+  "lightsCut": 3,
+  "lightsDarkBefore": 0,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2021-05",
+  "occurredAt": "2021-12-18T03:10:00+08:00",
+  "zone": "KUL",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "About 300 m stolen along Jalan Kulas",
+  "detail": "Feeder cable cut at both ends and dragged out through the pits.",
+  "assetIds": [
+   "CB-KUL-02"
+  ],
+  "costRM": 116790,
+  "lightsCut": 6,
+  "lightsDarkBefore": 2,
+  "reportedBy": "Sarawak Energy fault report"
+ },
+ {
+  "id": "INC-2022-06",
+  "occurredAt": "2022-01-27T01:55:00+08:00",
+  "zone": "BIN",
+  "type": "streetlight_wiring_theft",
+  "typeLabel": "Streetlight wiring theft",
+  "title": "Bridge deck lights stripped",
+  "detail": "Wiring stripped from 6 poles on Jambatan Datuk Amar Juma'ani.",
+  "assetIds": [
+   "SL-BIN-01",
+   "SL-BIN-02",
+   "SL-BIN-03"
+  ],
+  "costRM": 40790,
+  "lightsCut": 6,
+  "lightsDarkBefore": 1,
+  "reportedBy": "Sarawak Energy fault report"
+ },
+ {
+  "id": "INC-2022-07",
+  "occurredAt": "2022-02-19T03:30:00+08:00",
+  "zone": "BIN",
+  "type": "switchboard_vandalism",
+  "typeLabel": "Main switchboard vandalism",
+  "title": "Main switchboard broken into near the bridge",
+  "detail": "Busbars and incoming cable removed from the Jalan Kulas east switchboard.",
+  "assetIds": [
+   "MSB-BIN-01"
+  ],
+  "costRM": 143540,
+  "lightsCut": 10,
+  "lightsDarkBefore": 2,
+  "reportedBy": "DBKU night inspection"
+ },
+ {
+  "id": "INC-2022-08",
+  "occurredAt": "2022-04-16T02:30:00+08:00",
+  "zone": "SEM",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Roundabout ring circuit cable stolen",
+  "detail": "About 410 m of 4-core cable taken from the roundabout ring circuit.",
+  "assetIds": [
+   "DB-SEM-04",
+   "SL-SEM-06"
+  ],
+  "costRM": 136030,
+  "lightsCut": 9,
+  "lightsDarkBefore": 4,
+  "reportedBy": "DBKU night inspection"
+ },
+ {
+  "id": "INC-2022-09",
+  "occurredAt": "2022-05-06T01:05:00+08:00",
+  "zone": "SEM",
+  "type": "distribution_box_break_in",
+  "typeLabel": "Distribution box break-in",
+  "title": "Feeder pillar forced, JTARY eastbound",
+  "detail": "Pillar forced open; outgoing cables cut.",
+  "assetIds": [
+   "DB-SEM-02"
+  ],
+  "costRM": 55910,
+  "lightsCut": 6,
+  "lightsDarkBefore": 3,
+  "reportedBy": "DBKU night inspection"
+ },
+ {
+  "id": "INC-2022-10",
+  "occurredAt": "2022-10-07T23:55:00+08:00",
+  "zone": "KUL",
+  "type": "streetlight_wiring_theft",
+  "typeLabel": "Streetlight wiring theft",
+  "title": "Interchange lights stripped",
+  "detail": "Hatches forced on 4 poles at the Satok–Kulas interchange.",
+  "assetIds": [
+   "SL-KUL-10",
+   "SL-KUL-11"
+  ],
+  "costRM": 33400,
+  "lightsCut": 4,
+  "lightsDarkBefore": 2,
+  "reportedBy": "DBKU night inspection"
+ },
+ {
+  "id": "INC-2023-11",
+  "occurredAt": "2023-08-26T02:40:00+08:00",
+  "zone": "KUL",
+  "type": "switchboard_vandalism",
+  "typeLabel": "Main switchboard vandalism",
+  "title": "Interchange switchboard stripped",
+  "detail": "Main switchboard at the Satok–Kulas interchange stripped of copper.",
+  "assetIds": [
+   "MSB-KUL-01"
+  ],
+  "costRM": 195090,
+  "lightsCut": 11,
+  "lightsDarkBefore": 3,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2023-12",
+  "occurredAt": "2023-09-16T01:20:00+08:00",
+  "zone": "KUL",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Bridge approach cable stolen again",
+  "detail": "About 260 m removed from the rebuilt cable tray.",
+  "assetIds": [
+   "CB-KUL-01"
+  ],
+  "costRM": 106870,
+  "lightsCut": 5,
+  "lightsDarkBefore": 2,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2023-13",
+  "occurredAt": "2023-12-02T02:50:00+08:00",
+  "zone": "SEM",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Feeder removed between poles 03–09",
+  "detail": "About 350 m feeder cable removed between streetlights 03 and 09.",
+  "assetIds": [
+   "CB-SEM-01",
+   "SL-SEM-03"
+  ],
+  "costRM": 119450,
+  "lightsCut": 7,
+  "lightsDarkBefore": 5,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2023-14",
+  "occurredAt": "2023-12-27T03:15:00+08:00",
+  "zone": "SEM",
+  "type": "switchboard_vandalism",
+  "typeLabel": "Main switchboard vandalism",
+  "title": "Main switchboard stripped at Bulatan Semariang",
+  "detail": "Enclosure forced; incoming copper cable and busbars removed. Whole roundabout dark.",
+  "assetIds": [
+   "MSB-SEM-01"
+  ],
+  "costRM": 204430,
+  "lightsCut": 13,
+  "lightsDarkBefore": 3,
+  "reportedBy": "Sarawak Energy fault report"
+ },
+ {
+  "id": "INC-2024-15",
+  "occurredAt": "2024-06-19T01:40:00+08:00",
+  "zone": "SEM",
+  "type": "streetlight_wiring_theft",
+  "typeLabel": "Streetlight wiring theft",
+  "title": "Pole hatches forced along Jalan Semariang",
+  "detail": "Base hatches forced on 5 poles; internal wiring stripped.",
+  "assetIds": [
+   "SL-SEM-10",
+   "SL-SEM-11",
+   "SL-SEM-12"
+  ],
+  "costRM": 26990,
+  "lightsCut": 5,
+  "lightsDarkBefore": 2,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2024-16",
+  "occurredAt": "2024-11-24T02:05:00+08:00",
+  "zone": "BIN",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Bridge deck cable stolen",
+  "detail": "About 280 m of bridge deck lighting cable removed.",
+  "assetIds": [
+   "CB-BIN-02"
+  ],
+  "costRM": 110380,
+  "lightsCut": 4,
+  "lightsDarkBefore": 2,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2025-17",
+  "occurredAt": "2025-01-18T03:35:00+08:00",
+  "zone": "SEM",
+  "type": "switchboard_vandalism",
+  "typeLabel": "Main switchboard vandalism",
+  "title": "Second break-in at Semariang switchboard",
+  "detail": "Replacement copper busbars taken.",
+  "assetIds": [
+   "MSB-SEM-01"
+  ],
+  "costRM": 186740,
+  "lightsCut": 13,
+  "lightsDarkBefore": 4,
+  "reportedBy": "DBKU night inspection"
+ },
+ {
+  "id": "INC-2025-18",
+  "occurredAt": "2025-03-22T03:00:00+08:00",
+  "zone": "KUL",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Bridge lighting cable cut",
+  "detail": "About 220 m of bridge lighting cable cut and removed.",
+  "assetIds": [
+   "CB-KUL-01",
+   "SL-KUL-02"
+  ],
+  "costRM": 96090,
+  "lightsCut": 3,
+  "lightsDarkBefore": 1,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2025-19",
+  "occurredAt": "2025-08-30T22:40:00+08:00",
+  "zone": "BIN",
+  "type": "distribution_box_break_in",
+  "typeLabel": "Distribution box break-in",
+  "title": "Distribution box vandalised on Jalan Kulas Utara",
+  "detail": "Box door torn off; cables cut.",
+  "assetIds": [
+   "DB-BIN-04"
+  ],
+  "costRM": 53610,
+  "lightsCut": 2,
+  "lightsDarkBefore": 0,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2026-20",
+  "occurredAt": "2026-09-20T02:20:00+08:00",
+  "zone": "SEM",
+  "type": "streetlight_wiring_theft",
+  "typeLabel": "Streetlight wiring theft",
+  "title": "Hatches forced on 4 poles, Jalan Semariang",
+  "detail": "Pole hatches forced; wiring stripped from streetlights 10–13.",
+  "assetIds": [
+   "SL-SEM-10",
+   "SL-SEM-11",
+   "SL-SEM-12",
+   "SL-SEM-13"
+  ],
+  "costRM": 23960,
+  "lightsCut": 4,
+  "lightsDarkBefore": 2,
+  "reportedBy": "Sarawak Energy fault report"
+ },
+ {
+  "id": "INC-2026-21",
+  "occurredAt": "2026-09-26T02:35:00+08:00",
+  "zone": "KUL",
+  "type": "distribution_box_break_in",
+  "typeLabel": "Distribution box break-in",
+  "title": "Feeder pillar broken into, Jalan Kulas",
+  "detail": "Pillar forced; outgoing cables cut. Two streetlights dark.",
+  "assetIds": [
+   "DB-KUL-03"
+  ],
+  "costRM": 63660,
+  "lightsCut": 2,
+  "lightsDarkBefore": 0,
+  "reportedBy": "Public complaint"
+ },
+ {
+  "id": "INC-2026-22",
+  "occurredAt": "2026-10-04T01:50:00+08:00",
+  "zone": "SEM",
+  "type": "cable_theft",
+  "typeLabel": "Cable theft",
+  "title": "Cable cut at roundabout approach",
+  "detail": "About 240 m of cable cut at the roundabout approach; streetlights 01–04 dark.",
+  "assetIds": [
+   "CB-SEM-01",
+   "SL-SEM-01",
+   "SL-SEM-02",
+   "SL-SEM-03",
+   "SL-SEM-04"
+  ],
+  "costRM": 86530,
+  "lightsCut": 4,
+  "lightsDarkBefore": 4,
+  "reportedBy": "Public complaint"
+ }
+]

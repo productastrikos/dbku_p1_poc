@@ -1,0 +1,1055 @@
+[
+ {
+  "id": "SL-SEM-01",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 01",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57548,
+  "lng": 110.32752,
+  "installed": 2018,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "out",
+  "sensor": "offline"
+ },
+ {
+  "id": "SL-SEM-02",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 02",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.5764,
+  "lng": 110.32837,
+  "installed": 2020,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-SEM-1",
+  "lighting": "out",
+  "sensor": "offline"
+ },
+ {
+  "id": "SL-SEM-03",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 03",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.5771,
+  "lng": 110.32941,
+  "installed": 2014,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-SEM-1",
+  "lighting": "out",
+  "sensor": "offline"
+ },
+ {
+  "id": "SL-SEM-04",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 04",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57784,
+  "lng": 110.3304,
+  "installed": 2013,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-SEM-1",
+  "lighting": "out",
+  "sensor": "offline"
+ },
+ {
+  "id": "SL-SEM-05",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 05",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57819,
+  "lng": 110.33162,
+  "installed": 2012,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-SEM-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-06",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 06",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57833,
+  "lng": 110.33808,
+  "installed": 2013,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-SEM-2",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-07",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 07",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.5783,
+  "lng": 110.33661,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-SEM-2",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-08",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 08",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57803,
+  "lng": 110.33517,
+  "installed": 2017,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-09",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 09",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57796,
+  "lng": 110.3337,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "out",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-10",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 10",
+  "road": "Jalan Semariang",
+  "lat": 1.57918,
+  "lng": 110.33224,
+  "installed": 2018,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-SEM-2",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-11",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 11",
+  "road": "Jalan Semariang",
+  "lat": 1.58049,
+  "lng": 110.33234,
+  "installed": 2020,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-12",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 12",
+  "road": "Jalan Semariang",
+  "lat": 1.58176,
+  "lng": 110.3323,
+  "installed": 2015,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-SEM-13",
+  "type": "streetlight",
+  "zone": "SEM",
+  "name": "Streetlight 13",
+  "road": "Jalan Semariang",
+  "lat": 1.58307,
+  "lng": 110.33217,
+  "installed": 2017,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "MSB-SEM-01",
+  "type": "switchboard",
+  "zone": "SEM",
+  "name": "Main switchboard, Bulatan Semariang",
+  "road": "Bulatan Semariang",
+  "lat": 1.57778,
+  "lng": 110.33244,
+  "installed": 2010,
+  "replacementCostRM": 146000,
+  "cameraId": "CAM-SEM-2",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-SEM-01",
+  "type": "distribution_box",
+  "zone": "SEM",
+  "name": "Feeder pillar, JTARY westbound",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57744,
+  "lng": 110.33002,
+  "installed": 2013,
+  "replacementCostRM": 28500,
+  "cameraId": "CAM-SEM-1",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-SEM-02",
+  "type": "distribution_box",
+  "zone": "SEM",
+  "name": "Feeder pillar, JTARY eastbound",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57827,
+  "lng": 110.33561,
+  "installed": 2012,
+  "replacementCostRM": 28500,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "DB-SEM-03",
+  "type": "distribution_box",
+  "zone": "SEM",
+  "name": "Feeder pillar, Jalan Semariang",
+  "road": "Jalan Semariang",
+  "lat": 1.5803,
+  "lng": 110.33239,
+  "installed": 2012,
+  "replacementCostRM": 28500,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "DB-SEM-04",
+  "type": "distribution_box",
+  "zone": "SEM",
+  "name": "Distribution box, roundabout south",
+  "road": "Bulatan Semariang",
+  "lat": 1.57858,
+  "lng": 110.33253,
+  "installed": 2014,
+  "replacementCostRM": 28500,
+  "cameraId": "CAM-SEM-2",
+  "sensor": "online"
+ },
+ {
+  "id": "CB-SEM-01",
+  "type": "cable",
+  "zone": "SEM",
+  "name": "Underground feeder, JTARY west approach",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.57743,
+  "lng": 110.32975,
+  "path": [
+   [
+    1.57607,
+    110.32811
+   ],
+   [
+    1.57643,
+    110.3285
+   ],
+   [
+    1.57678,
+    110.3289
+   ],
+   [
+    1.57711,
+    110.32932
+   ],
+   [
+    1.57743,
+    110.32975
+   ],
+   [
+    1.57769,
+    110.33021
+   ],
+   [
+    1.5779,
+    110.3307
+   ],
+   [
+    1.57806,
+    110.33121
+   ],
+   [
+    1.57832,
+    110.33167
+   ]
+  ],
+  "lengthM": 473,
+  "installed": 2011,
+  "replacementCostRM": 87500,
+  "cameraId": "CAM-SEM-1",
+  "sensor": "offline"
+ },
+ {
+  "id": "CB-SEM-02",
+  "type": "cable",
+  "zone": "SEM",
+  "name": "Underground feeder, Jalan Semariang",
+  "road": "Jalan Semariang",
+  "lat": 1.58086,
+  "lng": 110.33232,
+  "path": [
+   [
+    1.57891,
+    110.33223
+   ],
+   [
+    1.57939,
+    110.3323
+   ],
+   [
+    1.57988,
+    110.33228
+   ],
+   [
+    1.58037,
+    110.33228
+   ],
+   [
+    1.58086,
+    110.33232
+   ],
+   [
+    1.58134,
+    110.33242
+   ],
+   [
+    1.58182,
+    110.33235
+   ],
+   [
+    1.5823,
+    110.33225
+   ],
+   [
+    1.58278,
+    110.33215
+   ]
+  ],
+  "lengthM": 435,
+  "installed": 2012,
+  "replacementCostRM": 80500,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-01",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 01",
+  "road": "Jambatan Tun Abdul Rahman Ya'kub",
+  "lat": 1.55552,
+  "lng": 110.32437,
+  "installed": 2018,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-KUL-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-02",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 02",
+  "road": "Jambatan Tun Abdul Rahman Ya'kub",
+  "lat": 1.55503,
+  "lng": 110.32533,
+  "installed": 2015,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-KUL-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-03",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 03",
+  "road": "Jambatan Tun Abdul Rahman Ya'kub",
+  "lat": 1.55433,
+  "lng": 110.32615,
+  "installed": 2017,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-KUL-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-04",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 04",
+  "road": "Jalan Kulas",
+  "lat": 1.55431,
+  "lng": 110.3266,
+  "installed": 2016,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-05",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 05",
+  "road": "Jalan Kulas",
+  "lat": 1.55426,
+  "lng": 110.3273,
+  "installed": 2017,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-06",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 06",
+  "road": "Jalan Kulas",
+  "lat": 1.55458,
+  "lng": 110.32797,
+  "installed": 2018,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-07",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 07",
+  "road": "Jalan Kulas",
+  "lat": 1.55448,
+  "lng": 110.3284,
+  "installed": 2015,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-08",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 08",
+  "road": "Jalan Kulas",
+  "lat": 1.55453,
+  "lng": 110.3294,
+  "installed": 2015,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-09",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 09",
+  "road": "Jalan Kulas",
+  "lat": 1.55434,
+  "lng": 110.33039,
+  "installed": 2012,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-10",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 10",
+  "road": "Jalan Satok-Kulas Interchange",
+  "lat": 1.55437,
+  "lng": 110.32595,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-KUL-2",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-11",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 11",
+  "road": "Jalan Satok-Kulas Interchange",
+  "lat": 1.55453,
+  "lng": 110.32666,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-KUL-2",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-KUL-12",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 12",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.55573,
+  "lng": 110.32391,
+  "installed": 2015,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "out",
+  "sensor": "offline"
+ },
+ {
+  "id": "SL-KUL-13",
+  "type": "streetlight",
+  "zone": "KUL",
+  "name": "Streetlight 13",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.55676,
+  "lng": 110.323,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "out",
+  "sensor": "offline"
+ },
+ {
+  "id": "MSB-KUL-01",
+  "type": "switchboard",
+  "zone": "KUL",
+  "name": "Main switchboard, Satok–Kulas interchange",
+  "road": "Jalan Satok-Kulas Interchange",
+  "lat": 1.55436,
+  "lng": 110.32638,
+  "installed": 2015,
+  "replacementCostRM": 146000,
+  "cameraId": "CAM-KUL-2",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-KUL-01",
+  "type": "distribution_box",
+  "zone": "KUL",
+  "name": "Feeder pillar, bridge south abutment",
+  "road": "Jambatan Tun Abdul Rahman Ya'kub",
+  "lat": 1.55422,
+  "lng": 110.32624,
+  "installed": 2013,
+  "replacementCostRM": 28500,
+  "cameraId": "CAM-KUL-1",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-KUL-02",
+  "type": "distribution_box",
+  "zone": "KUL",
+  "name": "Feeder pillar, Jalan Kulas west",
+  "road": "Jalan Kulas",
+  "lat": 1.55427,
+  "lng": 110.32749,
+  "installed": 2019,
+  "replacementCostRM": 28500,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "DB-KUL-03",
+  "type": "distribution_box",
+  "zone": "KUL",
+  "name": "Distribution box, Jalan Kulas",
+  "road": "Jalan Kulas",
+  "lat": 1.55432,
+  "lng": 110.32989,
+  "installed": 2016,
+  "replacementCostRM": 28500,
+  "cameraId": "CAM-KUL-2",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-KUL-04",
+  "type": "distribution_box",
+  "zone": "KUL",
+  "name": "Feeder pillar, bridge north abutment",
+  "road": "Jalan Tun Abdul Rahman Ya'kub",
+  "lat": 1.5561,
+  "lng": 110.32376,
+  "installed": 2018,
+  "replacementCostRM": 28500,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "CB-KUL-01",
+  "type": "cable",
+  "zone": "KUL",
+  "name": "Bridge lighting cable tray",
+  "road": "Jambatan Tun Abdul Rahman Ya'kub",
+  "lat": 1.55498,
+  "lng": 110.32529,
+  "path": [
+   [
+    1.55572,
+    110.32418
+   ],
+   [
+    1.55554,
+    110.32446
+   ],
+   [
+    1.55535,
+    110.32474
+   ],
+   [
+    1.55517,
+    110.32501
+   ],
+   [
+    1.55498,
+    110.32529
+   ],
+   [
+    1.55479,
+    110.32557
+   ],
+   [
+    1.55461,
+    110.32585
+   ],
+   [
+    1.55442,
+    110.32612
+   ],
+   [
+    1.55427,
+    110.32642
+   ]
+  ],
+  "lengthM": 297,
+  "installed": 2020,
+  "replacementCostRM": 54900,
+  "cameraId": "CAM-KUL-1",
+  "sensor": "online"
+ },
+ {
+  "id": "CB-KUL-02",
+  "type": "cable",
+  "zone": "KUL",
+  "name": "Underground feeder, Jalan Kulas",
+  "road": "Jalan Kulas",
+  "lat": 1.55447,
+  "lng": 110.3294,
+  "path": [
+   [
+    1.55454,
+    110.32815
+   ],
+   [
+    1.55454,
+    110.32846
+   ],
+   [
+    1.55452,
+    110.32877
+   ],
+   [
+    1.55449,
+    110.32909
+   ],
+   [
+    1.55447,
+    110.3294
+   ],
+   [
+    1.55445,
+    110.32971
+   ],
+   [
+    1.55442,
+    110.33002
+   ],
+   [
+    1.5544,
+    110.33033
+   ],
+   [
+    1.55435,
+    110.33064
+   ]
+  ],
+  "lengthM": 278,
+  "installed": 2019,
+  "replacementCostRM": 51400,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-01",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 01",
+  "road": "Jambatan Datuk Amar Juma'ani",
+  "lat": 1.55785,
+  "lng": 110.33627,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-BIN-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-02",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 02",
+  "road": "Jambatan Datuk Amar Juma'ani",
+  "lat": 1.55787,
+  "lng": 110.33669,
+  "installed": 2015,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-BIN-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-03",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 03",
+  "road": "Jambatan Datuk Amar Juma'ani",
+  "lat": 1.55753,
+  "lng": 110.33695,
+  "installed": 2012,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-BIN-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-04",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 04",
+  "road": "Jambatan Datuk Amar Juma'ani",
+  "lat": 1.55756,
+  "lng": 110.3374,
+  "installed": 2013,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-BIN-1",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-05",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 05",
+  "road": "Jalan Kulas",
+  "lat": 1.55413,
+  "lng": 110.33335,
+  "installed": 2019,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-06",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 06",
+  "road": "Jalan Kulas",
+  "lat": 1.55421,
+  "lng": 110.33422,
+  "installed": 2015,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-07",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 07",
+  "road": "Jalan Kulas",
+  "lat": 1.55403,
+  "lng": 110.33508,
+  "installed": 2016,
+  "replacementCostRM": 6800,
+  "cameraId": "CAM-BIN-2",
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-08",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 08",
+  "road": "Jalan Kulas",
+  "lat": 1.55417,
+  "lng": 110.33554,
+  "installed": 2020,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "out",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-09",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 09",
+  "road": "Jalan Kulas",
+  "lat": 1.55401,
+  "lng": 110.33665,
+  "installed": 2012,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-10",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 10",
+  "road": "Jalan Kulas",
+  "lat": 1.55389,
+  "lng": 110.33772,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-11",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 11",
+  "road": "Jalan Kulas Utara 1",
+  "lat": 1.5559,
+  "lng": 110.33502,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-12",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 12",
+  "road": "Jalan Kulas Utara 1",
+  "lat": 1.55477,
+  "lng": 110.33509,
+  "installed": 2016,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "SL-BIN-13",
+  "type": "streetlight",
+  "zone": "BIN",
+  "name": "Streetlight 13",
+  "road": "Jalan Kulas Utara 2",
+  "lat": 1.55511,
+  "lng": 110.33606,
+  "installed": 2021,
+  "replacementCostRM": 6800,
+  "cameraId": null,
+  "lighting": "on",
+  "sensor": "online"
+ },
+ {
+  "id": "MSB-BIN-01",
+  "type": "switchboard",
+  "zone": "BIN",
+  "name": "Main switchboard, Jalan Kulas east",
+  "road": "Jalan Kulas",
+  "lat": 1.55391,
+  "lng": 110.3348,
+  "installed": 2017,
+  "replacementCostRM": 146000,
+  "cameraId": "CAM-BIN-2",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-BIN-01",
+  "type": "distribution_box",
+  "zone": "BIN",
+  "name": "Feeder pillar, bridge west abutment",
+  "road": "Jambatan Datuk Amar Juma'ani",
+  "lat": 1.5578,
+  "lng": 110.33618,
+  "installed": 2018,
+  "replacementCostRM": 28500,
+  "cameraId": "CAM-BIN-1",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-BIN-02",
+  "type": "distribution_box",
+  "zone": "BIN",
+  "name": "Feeder pillar, bridge east abutment",
+  "road": "Jambatan Datuk Amar Juma'ani",
+  "lat": 1.55736,
+  "lng": 110.33767,
+  "installed": 2016,
+  "replacementCostRM": 28500,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "DB-BIN-03",
+  "type": "distribution_box",
+  "zone": "BIN",
+  "name": "Distribution box, Jalan Kulas east",
+  "road": "Jalan Kulas",
+  "lat": 1.55396,
+  "lng": 110.33665,
+  "installed": 2014,
+  "replacementCostRM": 28500,
+  "cameraId": "CAM-BIN-2",
+  "sensor": "online"
+ },
+ {
+  "id": "DB-BIN-04",
+  "type": "distribution_box",
+  "zone": "BIN",
+  "name": "Distribution box, Jalan Kulas Utara 1",
+  "road": "Jalan Kulas Utara 1",
+  "lat": 1.55545,
+  "lng": 110.33498,
+  "installed": 2013,
+  "replacementCostRM": 28500,
+  "cameraId": null,
+  "sensor": "online"
+ },
+ {
+  "id": "CB-BIN-01",
+  "type": "cable",
+  "zone": "BIN",
+  "name": "Riverside cable, Sungai Bintangor",
+  "road": "Sungai Bintangor",
+  "lat": 1.5577,
+  "lng": 110.33667,
+  "path": [
+   [
+    1.55637,
+    110.33698
+   ],
+   [
+    1.55667,
+    110.33679
+   ],
+   [
+    1.55698,
+    110.3366
+   ],
+   [
+    1.55735,
+    110.33662
+   ],
+   [
+    1.55771,
+    110.33667
+   ],
+   [
+    1.55807,
+    110.33665
+   ],
+   [
+    1.55839,
+    110.33648
+   ],
+   [
+    1.55872,
+    110.33658
+   ],
+   [
+    1.55891,
+    110.33689
+   ]
+  ],
+  "lengthM": 321,
+  "installed": 2015,
+  "replacementCostRM": 59400,
+  "cameraId": "CAM-BIN-2",
+  "sensor": "online"
+ },
+ {
+  "id": "CB-BIN-02",
+  "type": "cable",
+  "zone": "BIN",
+  "name": "Bridge deck lighting cable",
+  "road": "Jambatan Datuk Amar Juma'ani",
+  "lat": 1.55781,
+  "lng": 110.33667,
+  "path": [
+   [
+    1.55793,
+    110.33619
+   ],
+   [
+    1.5579,
+    110.33631
+   ],
+   [
+    1.55788,
+    110.33643
+   ],
+   [
+    1.55786,
+    110.33655
+   ],
+   [
+    1.55781,
+    110.33667
+   ],
+   [
+    1.55774,
+    110.33677
+   ],
+   [
+    1.55767,
+    110.33687
+   ],
+   [
+    1.5576,
+    110.33697
+   ],
+   [
+    1.55753,
+    110.33707
+   ]
+  ],
+  "lengthM": 110,
+  "installed": 2015,
+  "replacementCostRM": 20400,
+  "cameraId": "CAM-BIN-1",
+  "sensor": "online"
+ }
+]

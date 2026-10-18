@@ -1,0 +1,35 @@
+[
+ {
+  "id": "SEM",
+  "name": "Jalan Tun Abdul Rahman Yaakub / Bulatan Semariang",
+  "short": "Bulatan Semariang",
+  "description": "Dual carriageway approaches and the Semariang roundabout on Jalan Tun Abdul Rahman Ya'kub, plus the start of Jalan Semariang.",
+  "center": [
+   1.57864,
+   110.33225
+  ],
+  "radiusM": 709
+ },
+ {
+  "id": "KUL",
+  "name": "Sarawak Crest / Jalan Kulas Bridge",
+  "short": "Jalan Kulas Bridge",
+  "description": "Jambatan Tun Abdul Rahman Ya'kub approach, Jalan Kulas and the Satok–Kulas interchange.",
+  "center": [
+   1.55477,
+   110.32669
+  ],
+  "radiusM": 526
+ },
+ {
+  "id": "BIN",
+  "name": "Sungai Bintangor / Jambatan Amar Juma'ani",
+  "short": "Jambatan Amar Juma'ani",
+  "description": "Jambatan Datuk Amar Juma'ani over Sungai Bintangor, the riverside cable route and Jalan Kulas east.",
+  "center": [
+   1.55575,
+   110.33598
+  ],
+  "radiusM": 404
+ }
+]
