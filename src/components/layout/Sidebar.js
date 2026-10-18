@@ -35,12 +35,7 @@ export default function Sidebar({ collapsed }) {
                 title={collapsed ? item.label : undefined}
               >
                 <Icon name={item.icon} size={18} />
-                {!collapsed && (
-                  <span className="min-w-0 flex flex-col leading-tight">
-                    <span className="truncate">{item.label}</span>
-                    {item.labelMs && <span className="truncate text-[10px] font-normal opacity-70">{item.labelMs}</span>}
-                  </span>
-                )}
+                {!collapsed && <span className="truncate">{item.label}</span>}
               </button>
             ))}
           </div>

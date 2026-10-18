@@ -6,7 +6,7 @@
 export const APP = {
   name: 'GuardGrid',
   subtitle: 'DBKU Command Centre',   // small line under the name in the header
-  logo: '/guardgrid.svg',            // in /public; null shows the initials mark
+  logo: null,                        // e.g. '/logo.svg' in /public; null shows the initials mark
   logoInitials: 'GG',
   locale: 'en-MY',
   timeZone: 'Asia/Kuching',          // header clock and all times shown in the app

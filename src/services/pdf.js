@@ -1,7 +1,7 @@
 /* Renders an incident brief as an A4 PDF (jsPDF, loaded on demand). */
 import { formatRM } from '../data/reference';
 
-const TEAL = [15, 118, 110];
+const BRAND = [47, 111, 219]; // template primary (#2f6fdb)
 const INK = [15, 31, 29];
 const MUTED = [91, 118, 114];
 const LINE = [205, 222, 219];
@@ -51,10 +51,10 @@ export async function buildReportPdf({ brief, caseFile, images = [] }) {
   const heading = (text) => {
     ensure(12);
     y += 2;
-    font(11, 'bold', TEAL);
+    font(11, 'bold', BRAND);
     doc.text(pdfSafe(text).toUpperCase(), M, y);
     y += 1.6;
-    doc.setDrawColor(...TEAL);
+    doc.setDrawColor(...BRAND);
     doc.setLineWidth(0.4);
     doc.line(M, y, M + CW, y);
     y += 5;
@@ -85,13 +85,13 @@ export async function buildReportPdf({ brief, caseFile, images = [] }) {
   };
 
   /* Header band */
-  doc.setFillColor(...TEAL);
+  doc.setFillColor(...BRAND);
   doc.rect(0, 0, W, 30, 'F');
-  font(8, 'bold', [200, 240, 234]);
+  font(8, 'bold', [214, 228, 250]);
   doc.text('DEWAN BANDARAYA KUCHING UTARA  ·  GUARDGRID', M, 10);
   font(15, 'bold', [255, 255, 255]);
   doc.text('Incident Brief for PDRM', M, 18);
-  font(8.5, 'normal', [220, 245, 240]);
+  font(8.5, 'normal', [228, 237, 252]);
   doc.text(pdfSafe(`Laporan ringkas insiden untuk PDRM  ·  Ref ${caseFile.reference}`), M, 24.5);
   y = 38;
 

@@ -60,11 +60,11 @@ export default function Sensors() {
       />
 
       <StatGrid>
-        <StatCard label="Sensors online" sublabel="Sensor dalam talian" value={s.online.length} unit={`/ ${assets.length}`} icon="signal"
+        <StatCard label="Sensors online" value={s.online.length} unit={`/ ${assets.length}`} icon="signal"
           subValues={[{ label: 'Offline (cut circuits)', value: offline }]} status={offline ? 'warning' : 'normal'} />
-        <StatCard label="Active tamper alerts" sublabel="Amaran gangguan aktif" value={sensorAlerts.length} icon="alert" status={sensorAlerts.some((a) => a.level === 'HIGH') ? 'critical' : 'normal'} />
-        <StatCard label="Injected faults" sublabel="Gangguan disimulasi" value={Object.keys(s.faults).length} icon="wrench" status={Object.keys(s.faults).length ? 'warning' : 'normal'} />
-        <StatCard label="Detection rule" sublabel="Peraturan pengesanan" value={`|z| > ${TAMPER_RULES.z}`} icon="gauge"
+        <StatCard label="Active tamper alerts" value={sensorAlerts.length} icon="alert" status={sensorAlerts.some((a) => a.level === 'HIGH') ? 'critical' : 'normal'} />
+        <StatCard label="Injected faults" value={Object.keys(s.faults).length} icon="wrench" status={Object.keys(s.faults).length ? 'warning' : 'normal'} />
+        <StatCard label="Detection rule" value={`|z| > ${TAMPER_RULES.z}`} icon="gauge"
           subValues={[{ label: 'Window', value: `${TAMPER_RULES.window} readings` }, { label: 'Tilt', value: `> ${TAMPER_RULES.tiltDeg}°` }]} />
       </StatGrid>
 

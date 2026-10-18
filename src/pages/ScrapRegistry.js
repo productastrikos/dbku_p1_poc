@@ -320,11 +320,11 @@ export default function ScrapRegistry() {
         actions={<Tabs tabs={TABS} value={tab} onChange={setTab} />}
       />
       <StatGrid>
-        <StatCard label="Sales recorded" sublabel="Jualan direkodkan" value={transactions.length} icon="clipboard" subValues={[{ label: 'Dealers', value: 10 }]} />
-        <StatCard label="Flagged" sublabel="Disyaki" value={kpis.flagged} icon="alert" status={kpis.flagged ? 'warning' : 'normal'}
+        <StatCard label="Sales recorded" value={transactions.length} icon="clipboard" subValues={[{ label: 'Dealers', value: 10 }]} />
+        <StatCard label="Flagged" value={kpis.flagged} icon="alert" status={kpis.flagged ? 'warning' : 'normal'}
           subValues={[{ label: 'Rate', value: `${((kpis.flagged / transactions.length) * 100).toFixed(1)}%` }]} />
-        <StatCard label="Pending review" sublabel="Menunggu semakan" value={kpis.flaggedPending} icon="hourglass" status={kpis.flaggedPending ? 'warning' : 'normal'} onDetails={() => setTab('queue')} />
-        <StatCard label="Referred to PDRM" sublabel="Dirujuk ke PDRM" value={referred} icon="siren" subValues={[{ label: 'Copper cable limit', value: `${SCRAP_RULES.copperCableKg} kg` }]} />
+        <StatCard label="Pending review" value={kpis.flaggedPending} icon="hourglass" status={kpis.flaggedPending ? 'warning' : 'normal'} onDetails={() => setTab('queue')} />
+        <StatCard label="Referred to PDRM" value={referred} icon="siren" subValues={[{ label: 'Copper cable limit', value: `${SCRAP_RULES.copperCableKg} kg` }]} />
       </StatGrid>
       {tab === 'submit' && <SubmitSale />}
       {tab === 'queue' && <ReviewQueue />}

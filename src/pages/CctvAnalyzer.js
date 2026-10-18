@@ -8,6 +8,7 @@ import { scoreThreat, videoMetrics, nearZone, THREAT_RULES, LEVELS } from '../ai
 import { estimateLoss } from '../ai/linking';
 import { isNight, toMytInput, fromMytInput, formatMyt } from '../ai/time';
 import { ASSET_TYPES } from '../data/reference';
+import { resolveColor } from '../components/charts/chartTheme';
 
 const DEFAULT_ZONE = { x: 0.4, y: 0.05, w: 0.2, h: 0.9 };
 const pct = (v) => `${(v * 100).toFixed(2)}%`;
@@ -36,13 +37,13 @@ function composeSnapshot(canvas, { detections, zone, margin, caption }) {
   ctx.fillStyle = '#fff';
   ctx.fillText(caption, 8, 17);
   ctx.setLineDash([8, 6]);
-  ctx.strokeStyle = '#2dd4bf';
+  ctx.strokeStyle = resolveColor('primary');
   ctx.lineWidth = 2;
   ctx.strokeRect(zone.x * w, strip + zone.y * h, zone.w * w, zone.h * h);
   ctx.setLineDash([]);
   const near = new Set(nearZone(detections, zone, margin));
   detections.forEach((d) => {
-    const c = near.has(d) ? '#ef4444' : '#38bdf8';
+    const c = resolveColor(near.has(d) ? 'danger' : 'info');
     const x = d.box.x * w;
     const y = strip + d.box.y * h;
     ctx.strokeStyle = c;

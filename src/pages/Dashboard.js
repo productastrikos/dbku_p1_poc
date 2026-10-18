@@ -62,15 +62,15 @@ export default function Dashboard() {
       />
 
       <StatGrid>
-        <StatCard label="Alerts today" sublabel="Amaran hari ini" value={kpis.alertsToday} icon="bell"
+        <StatCard label="Alerts today" value={kpis.alertsToday} icon="bell"
           status={kpis.highToday ? 'critical' : kpis.alertsToday ? 'warning' : 'normal'}
           subValues={[{ label: 'High', value: kpis.highToday }, { label: 'Active now', value: kpis.activeAlerts }]} />
-        <StatCard label="Assets at risk" sublabel="Aset berisiko" value={kpis.assetsAtRisk} unit={`/ ${assets.length}`} icon="alert"
+        <StatCard label="Assets at risk" value={kpis.assetsAtRisk} unit={`/ ${assets.length}`} icon="alert"
           status={assets.some((a) => a.status === 'alert') ? 'critical' : 'warning'}
           subValues={[{ label: 'Active alert', value: assets.filter((a) => a.status === 'alert').length }, { label: 'Dark lights', value: darkLights }, { label: 'Sensor offline', value: offline }]} />
-        <StatCard label="RM loss avoided" sublabel="Kerugian dielakkan" value={formatRMShort(kpis.lossAvoidedRM)} icon="shield"
+        <StatCard label="RM loss avoided" value={formatRMShort(kpis.lossAvoidedRM)} icon="shield"
           subValues={[{ label: 'Intercepted', value: kpis.intercepted }, { label: 'Pilot since', value: '1 Sep' }]} />
-        <StatCard label="Suspicious scrap sales" sublabel="Jualan besi buruk disyaki" value={kpis.flagged} icon="recycle"
+        <StatCard label="Suspicious scrap sales" value={kpis.flagged} icon="recycle"
           status={kpis.flaggedPending ? 'warning' : 'normal'} onDetails={() => navigate('/scrap')}
           subValues={[{ label: 'Pending PDRM review', value: kpis.flaggedPending }]} />
       </StatGrid>

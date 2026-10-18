@@ -77,7 +77,7 @@ src/
   services/        llm client, case file + offline brief, PDF, browser storage
   components/      ui/ and charts/ (design system), layout/ (shell), guard/ (map, alert feed, drawer…)
   pages/           Dashboard, CctvAnalyzer, Sensors, RiskForecast, ScrapRegistry, Reports
-  theme/           theme.css (DBKU teal tokens, light + dark), components.css
+  theme/           theme.css (template colour tokens, light + dark), components.css
 ```
 
 ## Limits of the prototype

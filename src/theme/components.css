@@ -75,7 +75,6 @@ body {
   font-size: 12px; font-weight: 600; color: var(--color-text-muted);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.stat-card-sublabel { font-size: 10px; font-style: italic; color: var(--color-text-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .stat-card-value { margin-top: 14px; display: flex; align-items: baseline; gap: 4px; }
 .stat-card-number { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: var(--color-text); }
 .stat-card-unit  { font-size: 0.85rem; font-weight: 500; color: var(--color-text-faint); }
@@ -421,11 +420,7 @@ button.avatar:hover { box-shadow: 0 0 0 3px var(--color-primary-soft); }
 .animate-fade-in { animation: fade-in 0.2s ease-out; }
 
 /* ═══ GuardGrid ═══════════════════════════════════════════════ */
-/* Map: dark mode darkens the OpenStreetMap tiles */
-.leaflet-tile-pane { filter: var(--map-tile-filter); }
-.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-lg); }
-.leaflet-popup-content { margin: 10px 12px; font-size: 12px; line-height: 1.45; }
-.leaflet-container a.leaflet-popup-close-button { color: var(--color-text-faint); }
+/* Map legend and markers */
 .map-legend { position: absolute; z-index: 500; left: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 4px 10px; padding: 6px 10px; max-width: calc(100% - 20px); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; box-shadow: var(--shadow-lg); font-size: 10px; color: var(--color-text-muted); }
 .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 4px; vertical-align: -1px; border: 1.5px solid #fff; }
 

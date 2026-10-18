@@ -14,7 +14,6 @@
      6. Cards         background, border, radius, padding, shadow
      7. Charts        series palette + chart chrome
      8. Layout        sizes, radii, font
-     9. Map           tile filter (dark mode darkens OpenStreetMap tiles)
    Chart colours must be hex values (they are read by canvas code).
    ═══════════════════════════════════════════════════════════════════════ */
 
@@ -23,11 +22,11 @@
   color-scheme: dark;
 
   /* 1. Brand ─────────────────────────────────────────────── */
-  --color-primary:          #1fa595;                   /* DBKU teal */
-  --color-primary-hover:    #26b8a7;
-  --color-primary-soft:     rgba(31, 165, 149, 0.14);  /* active nav, selected chip */
-  --color-primary-border:   rgba(31, 165, 149, 0.42);
-  --color-on-primary:       #04211d;                   /* text on primary bg */
+  --color-primary:          #3b7de8;
+  --color-primary-hover:    #2d6ad4;
+  --color-primary-soft:     rgba(59, 125, 232, 0.14);  /* active nav, selected chip */
+  --color-primary-border:   rgba(59, 125, 232, 0.40);
+  --color-on-primary:       #ffffff;                   /* text on primary bg */
 
   --color-accent:           #8b5cf6;                   /* AI / insight features */
   --color-accent-hover:     #7c3aed;
@@ -36,21 +35,21 @@
   --color-on-accent:        #ffffff;
 
   /* 2. Surfaces ──────────────────────────────────────────── */
-  --color-bg:               #0b1211;   /* page background */
-  --color-sidebar:          #0f1917;
-  --color-header:           #0f1917;
-  --color-surface:          #13201d;   /* cards, panels, menus */
-  --color-surface-raised:   #1b2a27;   /* tiles inside cards, hover rows */
-  --color-input:            #0e1816;
+  --color-bg:               #0e0e10;   /* page background */
+  --color-sidebar:          #17171a;
+  --color-header:           #17171a;
+  --color-surface:          #1c1c20;   /* cards, panels, menus */
+  --color-surface-raised:   #26262b;   /* tiles inside cards, hover rows */
+  --color-input:            #141417;
   --color-overlay:          rgba(0, 0, 0, 0.55);   /* modal backdrop */
   --color-border:           rgba(255, 255, 255, 0.08);
   --color-border-strong:    rgba(255, 255, 255, 0.16);
 
   /* 3. Text ──────────────────────────────────────────────── */
-  --color-text:             #e6f0ee;
-  --color-text-muted:       #a9c4bf;
-  --color-text-faint:       #7f9a95;
-  --color-sidebar-text:     #cbdcd8;
+  --color-text:             #e8eef5;
+  --color-text-muted:       #afc3d8;
+  --color-text-faint:       #8196ad;
+  --color-sidebar-text:     #cfd8e3;
 
   /* 4. Status ────────────────────────────────────────────── */
   --color-success:          #22c55e;
@@ -76,10 +75,10 @@
   --btn-primary-bg:         var(--color-primary);
   --btn-primary-bg-hover:   var(--color-primary-hover);
   --btn-primary-text:       var(--color-on-primary);
-  --btn-primary-shadow:     0 2px 10px rgba(31, 165, 149, 0.25);
+  --btn-primary-shadow:     0 2px 10px rgba(59, 125, 232, 0.25);
 
   --btn-secondary-bg:       var(--color-surface-raised);
-  --btn-secondary-bg-hover: #233532;
+  --btn-secondary-bg-hover: #303036;
   --btn-secondary-text:     var(--color-text);
   --btn-secondary-border:   var(--color-border-strong);
 
@@ -106,18 +105,18 @@
   --tile-radius:            10px;
 
   /* 7. Charts ────────────────────────────────────────────── */
-  --chart-1:                #1fa595;
+  --chart-1:                #3b7de8;
   --chart-2:                #ec4899;
-  --chart-3:                #3b82f6;
+  --chart-3:                #14b8a6;
   --chart-4:                #f59e0b;
   --chart-5:                #8b5cf6;
   --chart-6:                #0ea5e9;
   --chart-7:                #a3e635;
   --chart-8:                #94a3b8;
   --chart-grid:             rgba(255, 255, 255, 0.05);
-  --chart-tick:             #7f9a95;
-  --chart-tooltip-bg:       #13201d;
-  --chart-tooltip-border:   #2a3d39;
+  --chart-tick:             #8196ad;
+  --chart-tooltip-bg:       #1c1c20;
+  --chart-tooltip-border:   #33333a;
 
   /* 8. Layout ────────────────────────────────────────────── */
   --font-sans:              'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -128,41 +127,37 @@
   --radius-md:              10px;
   --radius-lg:              14px;
   --shadow-lg:              0 8px 30px rgba(0, 0, 0, 0.40);
-
-  /* 9. Map ───────────────────────────────────────────────── */
-  --map-tile-filter:        invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.88) saturate(0.6);
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
 
   /* 1. Brand */
-  --color-primary:          #0f766e;
-  --color-primary-hover:    #0c5f59;
-  --color-primary-soft:     rgba(15, 118, 110, 0.10);
-  --color-primary-border:   rgba(15, 118, 110, 0.35);
-  --color-on-primary:       #ffffff;
+  --color-primary:          #2f6fdb;
+  --color-primary-hover:    #245bc0;
+  --color-primary-soft:     rgba(47, 111, 219, 0.10);
+  --color-primary-border:   rgba(47, 111, 219, 0.35);
   --color-accent:           #7c3aed;
   --color-accent-hover:     #6d28d9;
   --color-accent-soft:      rgba(124, 58, 237, 0.09);
   --color-accent-border:    rgba(124, 58, 237, 0.32);
 
   /* 2. Surfaces */
-  --color-bg:               #eef4f3;
+  --color-bg:               #f1f5fa;
   --color-sidebar:          #ffffff;
   --color-header:           #ffffff;
   --color-surface:          #ffffff;
-  --color-surface-raised:   #f2f7f6;
+  --color-surface-raised:   #f3f6fb;
   --color-input:            #ffffff;
-  --color-overlay:          rgba(12, 40, 36, 0.40);
-  --color-border:           rgba(10, 60, 55, 0.11);
-  --color-border-strong:    rgba(10, 60, 55, 0.22);
+  --color-overlay:          rgba(20, 35, 55, 0.40);
+  --color-border:           rgba(15, 35, 75, 0.10);
+  --color-border-strong:    rgba(15, 35, 75, 0.20);
 
   /* 3. Text */
-  --color-text:             #0f1f1d;
-  --color-text-muted:       #2f4a46;
-  --color-text-faint:       #5b7672;
-  --color-sidebar-text:     #2f4a46;
+  --color-text:             #0f172a;
+  --color-text-muted:       #334155;
+  --color-text-faint:       #64748b;
+  --color-sidebar-text:     #334155;
 
   /* 4. Status: darker shades for contrast on white */
   --color-success:          #15803d;
@@ -182,9 +177,9 @@
   --color-neutral-border:   rgba(100, 116, 139, 0.28);
 
   /* 5. Buttons */
-  --btn-primary-shadow:     0 2px 8px rgba(15, 118, 110, 0.22);
+  --btn-primary-shadow:     0 2px 8px rgba(47, 111, 219, 0.22);
   --btn-secondary-bg:       #ffffff;
-  --btn-secondary-bg-hover: #f2f7f6;
+  --btn-secondary-bg-hover: #f3f6fb;
   --btn-danger-bg-hover:    #991b1b;
 
   /* 6. Cards */
@@ -192,15 +187,12 @@
   --card-hover-shadow:      0 6px 20px rgba(15, 35, 75, 0.10);
 
   /* 7. Charts */
-  --chart-1:                #0f766e;
-  --chart-grid:             rgba(10, 60, 55, 0.07);
-  --chart-tick:             #5b7672;
+  --chart-1:                #2f6fdb;
+  --chart-grid:             rgba(15, 35, 75, 0.07);
+  --chart-tick:             #64748b;
   --chart-tooltip-bg:       #ffffff;
-  --chart-tooltip-border:   #b9dcd7;
+  --chart-tooltip-border:   #c5d9f5;
 
   /* 8. Layout */
-  --shadow-lg:              0 8px 30px rgba(10, 60, 55, 0.14);
-
-  /* 9. Map */
-  --map-tile-filter:        none;
+  --shadow-lg:              0 8px 30px rgba(15, 35, 75, 0.14);
 }

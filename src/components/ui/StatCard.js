@@ -6,7 +6,6 @@ import { STATUS } from '../../utils';
 /**
  * StatCard: KPI tile.
  *   label, value, unit
- *   sublabel   optional second line under the label (e.g. a translation)
  *   icon       icon name (see Icon.js)
  *   trend      % change; ▲ for up, ▼ for down
  *   inverted   lower is better: a falling trend shows green
@@ -14,7 +13,7 @@ import { STATUS } from '../../utils';
  *   subValues  [{ label, value }] secondary metrics
  *   onDetails  shows a "View details" link when provided
  */
-export default function StatCard({ label, sublabel, value, unit, icon = 'barChart', trend, inverted = false, status = 'normal', subValues, onDetails }) {
+export default function StatCard({ label, value, unit, icon = 'barChart', trend, inverted = false, status = 'normal', subValues, onDetails }) {
   const hasTrend = trend !== null && trend !== undefined;
   const s = STATUS[status] || STATUS.normal;
   const trendGood = inverted ? trend <= 0 : trend >= 0;
@@ -23,10 +22,7 @@ export default function StatCard({ label, sublabel, value, unit, icon = 'barChar
     <div className="card card-hoverable stat-card">
       <div className="stat-card-head">
         <div className="stat-card-icon"><Icon name={icon} size={20} /></div>
-        <div className="flex-1 min-w-0">
-          <p className="stat-card-label">{label}</p>
-          {sublabel && <p className="stat-card-sublabel">{sublabel}</p>}
-        </div>
+        <p className="stat-card-label">{label}</p>
         {hasTrend && (
           <span className={`trend ${trendGood ? 'trend-up' : 'trend-down'}`}>
             <span style={{ fontSize: 8 }}>{trend >= 0 ? '▲' : '▼'}</span>
