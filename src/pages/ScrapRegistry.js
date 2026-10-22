@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { PageHeader, Tabs, StatGrid, StatCard, Card, Button, Badge, DataTable, Modal, DetailGrid, FilterChips, Icon } from '../components/ui';
 import ChartCard from '../components/charts/ChartCard';
 import { Title, Ms, LlmBadge, readAsDataUrl, downscale } from '../components/guard/common';
@@ -23,6 +23,7 @@ function FlagBadges({ flags }) {
 
 /* ─── Submit form ─────────────────────────────────────────── */
 function SubmitSale() {
+  const navigate = useNavigate();
   const { dealers, transactions, submitTransaction, llm } = useData();
   const [form, setForm] = useState(EMPTY);
   const [busy, setBusy] = useState(false);
@@ -142,6 +143,7 @@ function SubmitSale() {
             <div className={`tile tone-${result.screened.suspicious ? 'danger' : 'success'}`}>
               <p className="text-sm font-bold">{result.screened.suspicious ? 'Flagged: sent to the PDRM review queue' : 'Recorded: no rules triggered'}</p>
               <p className="text-[11px] text-fg-muted">{result.tx.id} · {result.tx.material} {result.tx.weightKg} kg · seller {result.tx.sellerIcMasked} (ref {result.tx.sellerId})</p>
+              {result.screened.suspicious && <button type="button" className="link-btn mt-1" onClick={() => navigate(`/scrap?review=${result.tx.id}`)}>REVIEW IT NOW</button>}
             </div>
             {result.screened.flags.map((f) => (
               <div key={f.rule} className="tile text-xs"><b className="text-fg">{RULE_INFO[f.rule].label}</b><p className="text-fg-muted">{f.detail}</p></div>
@@ -176,12 +178,13 @@ function linkedEvents(tx, dealer, incidents, alerts, assets) {
     .sort((a, b) => a.days - b.days);
 }
 
-function ReviewQueue() {
+function ReviewQueue({ status, setStatus, initialOpen }) {
   const navigate = useNavigate();
   const { transactions, screening, dealers, reviewOf, setReview, incidents, alerts, assets } = useData();
-  const [status, setStatus] = useState('pending');
-  const [open, setOpen] = useState(null);
-  const [note, setNote] = useState('');
+  const [open, setOpen] = useState(initialOpen || null);
+  const [note, setNote] = useState(initialOpen ? reviewOf(initialOpen).note || '' : '');
+  const [saved, setSaved] = useState(null);
+  const decide = (id, decision) => { setReview(id, decision, note); setSaved(`${id}: ${REVIEW_STATUS[decision].label}`); setOpen(null); };
   const dealerById = Object.fromEntries(dealers.map((d) => [d.id, d]));
   const flagged = transactions.filter((t) => screening[t.id]?.suspicious).reverse();
   const rows = flagged.filter((t) => status === 'all' || reviewOf(t.id).status === status);
@@ -190,8 +193,9 @@ function ReviewQueue() {
 
   return (
     <>
+      {saved && <p className="tile tone-success text-xs font-semibold mb-3">✓ {saved}. The decision is in the command log.</p>}
       <Card padded={false} title={<span>PDRM review queue <Ms>Senarai semakan PDRM</Ms></span>} subtitle="Click a sale to review it"
-        actions={<FilterChips value={status} onChange={setStatus} options={[...Object.entries(REVIEW_STATUS).map(([value, s]) => ({ value, label: s.label })), { value: 'all', label: 'All' }]} />}>
+        actions={<FilterChips value={status} onChange={setStatus} options={[...Object.entries(REVIEW_STATUS).map(([value, s]) => ({ value, label: `${s.label} (${flagged.filter((t) => reviewOf(t.id).status === value).length})` })), { value: 'all', label: `All (${flagged.length})` }]} />}>
         <DataTable
           rows={rows}
           onRowClick={(r) => { setOpen(r.id); setNote(reviewOf(r.id).note || ''); }}
@@ -213,8 +217,10 @@ function ReviewQueue() {
           onClose={() => setOpen(null)}
           footer={
             <>
-              <Button variant="ghost" onClick={() => { setReview(tx.id, 'cleared', note); setOpen(null); }}>Clear · Bersihkan</Button>
-              <Button variant="danger" icon="siren" onClick={() => { setReview(tx.id, 'referred', note); setOpen(null); }}>Refer to PDRM · Rujuk</Button>
+              <span className="mr-auto"><Badge tone={REVIEW_STATUS[reviewOf(tx.id).status].tone} plain>{REVIEW_STATUS[reviewOf(tx.id).status].label.toUpperCase()}</Badge></span>
+              {reviewOf(tx.id).status !== 'pending' && <Button variant="ghost" onClick={() => decide(tx.id, 'pending')}>Back to queue</Button>}
+              <Button variant="ghost" disabled={reviewOf(tx.id).status === 'cleared'} onClick={() => decide(tx.id, 'cleared')}>Clear · Bersihkan</Button>
+              <Button variant="danger" icon="siren" disabled={reviewOf(tx.id).status === 'referred'} onClick={() => decide(tx.id, 'referred')}>Refer to PDRM · Rujuk</Button>
             </>
           }>
           <div className="space-y-4">
@@ -263,10 +269,12 @@ function ReviewQueue() {
 }
 
 /* ─── All sales ───────────────────────────────────────────── */
-function AllSales() {
+function AllSales({ initialQuery = '', onReview }) {
   const { transactions, screening, dealers } = useData();
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState(initialQuery);
   const [onlyFlagged, setOnlyFlagged] = useState(false);
+  const [open, setOpen] = useState(null);
+  const first = transactions[0] && formatMyt(transactions[0].date, 'date');
   const dealerById = Object.fromEntries(dealers.map((d) => [d.id, d]));
   const rows = transactions
     .filter((t) => (!onlyFlagged || screening[t.id]?.suspicious) && (!q || `${t.id} ${t.material} ${t.sellerIcMasked} ${dealerById[t.dealerId].name}`.toLowerCase().includes(q.toLowerCase())))
@@ -281,11 +289,12 @@ function AllSales() {
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-      <ChartCard title="Sales per dealer" subtitle="Last 120 days" type="bar" stacked legend height={300} data={chart} />
-      <Card className="xl:col-span-2" padded={false} title={`All sales (${rows.length})`} bodyClassName="max-h-[520px] overflow-y-auto"
+      <ChartCard title="Sales per dealer" subtitle={`${transactions.length} sales recorded since ${first}`} type="bar" stacked legend height={300} data={chart} />
+      <Card className="xl:col-span-2" padded={false} title={`All sales (${rows.length})`} subtitle="Click a sale for its record" bodyClassName="max-h-[520px] overflow-y-auto"
         actions={<><input className="input" style={{ width: 170 }} placeholder="Search…" value={q} onChange={(e) => setQ(e.target.value)} /><button type="button" className={`chip ${onlyFlagged ? 'is-active' : ''}`} onClick={() => setOnlyFlagged((v) => !v)}>Flagged only</button></>}>
         <DataTable
           rows={rows}
+          onRowClick={(r) => (screening[r.id]?.suspicious ? onReview(r.id) : setOpen(r.id))}
           columns={[
             { key: 'id', header: 'Sale', mono: true, className: 'whitespace-nowrap' },
             { key: 'date', header: 'Date', render: (r) => formatMyt(r.date, 'short') },
@@ -297,6 +306,25 @@ function AllSales() {
           ]}
         />
       </Card>
+      {open && (() => {
+        const tx = transactions.find((t) => t.id === open);
+        const d = dealerById[tx.dealerId];
+        return (
+          <Modal width={520} eyebrow={`${tx.id} · ${d.licenceNo}`} title={`${tx.material}, ${tx.weightKg} kg`} subtitle={`${formatMyt(tx.date)} MYT · ${d.name}`} onClose={() => setOpen(null)}
+            footer={<Button variant="secondary" onClick={() => setOpen(null)}>Close</Button>}>
+            <div className="space-y-3">
+              <p className="tile tone-success text-xs font-semibold">No screening rule fired for this sale.</p>
+              <DetailGrid columns={3} items={[
+                { label: 'Seller', value: <span className="font-mono">{tx.sellerIcMasked}</span> },
+                { label: 'Price', value: tx.pricePerKgRM ? `RM ${tx.pricePerKgRM.toFixed(2)}/kg` : '—' },
+                { label: 'Value', value: tx.pricePerKgRM ? formatRM(tx.pricePerKgRM * tx.weightKg) : '—' },
+              ]} />
+              <p className="tile text-xs"><span className="label-caps mr-2">Photo · {tx.photo?.label || 'not classified'}</span>{tx.photo?.description}</p>
+              <p className="text-[11px] text-fg-faint">Dealer area: {d.area}. Licensed since {formatMyt(`${d.licensedSince}T00:00:00+08:00`, 'date')}.</p>
+            </div>
+          </Modal>
+        );
+      })()}
     </div>
   );
 }
@@ -308,9 +336,21 @@ const TABS = [
 ];
 
 export default function ScrapRegistry() {
-  const { transactions, kpis, reviews } = useData();
-  const [tab, setTab] = useState('queue');
-  const referred = Object.values(reviews).filter((r) => r.status === 'referred').length;
+  const { transactions, kpis, screening, reviewOf, dealers } = useData();
+  const [params, setParams] = useSearchParams();
+  const view = params.get('view');
+  const [tab, setTabState] = useState(TABS.some((t) => t.value === view) ? view : params.get('review') ? 'queue' : params.get('q') ? 'all' : 'queue');
+  const [status, setStatus] = useState(params.get('review') ? 'all' : 'pending');
+  const [review, setReviewOpen] = useState(params.get('review'));
+  useEffect(() => {
+    if (TABS.some((t) => t.value === view)) setTabState(view);
+    if (params.get('review')) { setTabState('queue'); setStatus('all'); setReviewOpen(params.get('review')); }
+  }, [params, view]);
+  const setTab = (t) => { setTabState(t); setParams({ view: t }); };
+  const flagged = transactions.filter((t) => screening[t.id]?.suspicious);
+  const referred = flagged.filter((t) => reviewOf(t.id).status === 'referred').length;
+  const cleared = flagged.filter((t) => reviewOf(t.id).status === 'cleared').length;
+  const showQueue = (s) => { setStatus(s); setTab('queue'); };
 
   return (
     <div className="space-y-4">
@@ -320,15 +360,17 @@ export default function ScrapRegistry() {
         actions={<Tabs tabs={TABS} value={tab} onChange={setTab} />}
       />
       <StatGrid>
-        <StatCard label="Sales recorded" value={transactions.length} icon="clipboard" subValues={[{ label: 'Dealers', value: 10 }]} />
-        <StatCard label="Flagged" value={kpis.flagged} icon="alert" status={kpis.flagged ? 'warning' : 'normal'}
-          subValues={[{ label: 'Rate', value: `${((kpis.flagged / transactions.length) * 100).toFixed(1)}%` }]} />
-        <StatCard label="Pending review" value={kpis.flaggedPending} icon="hourglass" status={kpis.flaggedPending ? 'warning' : 'normal'} onDetails={() => setTab('queue')} />
-        <StatCard label="Referred to PDRM" value={referred} icon="siren" subValues={[{ label: 'Copper cable limit', value: `${SCRAP_RULES.copperCableKg} kg` }]} />
+        <StatCard label="Sales recorded" value={transactions.length} icon="clipboard" onDetails={() => setTab('all')}
+          subValues={[{ label: 'Dealers', value: dealers.length }, { label: 'Since', value: formatMyt(transactions[0].date, 'date').replace(/ \d{4}$/, '') }]} />
+        <StatCard label="Flagged" value={kpis.flagged} icon="alert" status={kpis.flagged ? 'warning' : 'normal'} onDetails={() => showQueue('all')}
+          subValues={[{ label: 'Rate', value: `${((kpis.flagged / transactions.length) * 100).toFixed(1)}%` }, { label: 'Cleared', value: cleared }]} />
+        <StatCard label="Pending review" value={kpis.flaggedPending} icon="hourglass" status={kpis.flaggedPending ? 'warning' : 'normal'} onDetails={() => showQueue('pending')} />
+        <StatCard label="Referred to PDRM" value={referred} icon="siren" onDetails={() => showQueue('referred')}
+          subValues={[{ label: 'Copper cable limit', value: `${SCRAP_RULES.copperCableKg} kg` }]} />
       </StatGrid>
       {tab === 'submit' && <SubmitSale />}
-      {tab === 'queue' && <ReviewQueue />}
-      {tab === 'all' && <AllSales />}
+      {tab === 'queue' && <ReviewQueue key={review || 'queue'} status={status} setStatus={setStatus} initialOpen={review} />}
+      {tab === 'all' && <AllSales key={params.get('q') || 'all'} initialQuery={params.get('q') || ''} onReview={(id) => { setStatus('all'); setReviewOpen(id); setTabState('queue'); setParams({ view: 'queue', review: id }); }} />}
     </div>
   );
 }

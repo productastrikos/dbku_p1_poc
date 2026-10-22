@@ -47,6 +47,9 @@ export function toMytInput(value) {
 /** Parse a datetime-local value as MYT. */
 export const fromMytInput = (str) => new Date(`${str}:00+08:00`);
 
+/** ISO 8601 with the +08:00 offset, e.g. '2026-10-15T01:14:00+08:00'. */
+export const toMytIso = (value) => `${new Date(new Date(value).getTime() + OFFSET_MS).toISOString().slice(0, 19)}+08:00`;
+
 /** Formats in MYT. kind: 'datetime' | 'date' | 'time' | 'short' */
 export function formatMyt(value, kind = 'datetime') {
   if (value == null) return '—';

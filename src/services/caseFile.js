@@ -2,6 +2,7 @@
    to use. Also provides the offline template brief used when no LLM is
    configured, with the same shape as the LLM output. */
 import { linkSales, estimateLoss } from '../ai/linking';
+import { CAUSES } from '../ai/anomaly';
 import { formatMyt, mytParts } from '../ai/time';
 import { ASSET_TYPES, SOURCES, ALERT_STATUS, formatRM } from '../data/reference';
 
@@ -55,13 +56,18 @@ export function buildCaseFile(event, { assets, zones, dealers, transactions, scr
   const evidence = [];
   const ev = event.alert?.evidence || {};
   if (event.alert?.source === 'cctv') {
-    const det = (ev.detections || []).map((d) => `${d.class} ${Math.round(d.score * 100)}%${d.near ? ' (near asset)' : ''}`).join(', ');
+    const det = ev.detections?.length
+      ? ev.detections.map((d) => `${d.class} ${Math.round(d.score * 100)}%${d.near ? ' (near asset)' : ''}`).join(', ')
+      : ev.observed?.objects?.length ? `${ev.observed.objects.join(', ')} (logged by the operator)` : '';
     const nightNote = ev.nightBasis === 'low light'
       ? ' Night-time was inferred from low light in the image, not from the capture time; confirm the time from the camera log.'
       : '';
+    const sampleNote = ev.sample
+      ? ` DEMONSTRATION ONLY: the footage is a sample clip from the public MEVA dataset (camera ${ev.sample.camera.replace('MEVA ', '')}, ${ev.sample.site}, recorded ${ev.sample.recorded}, ${ev.sample.license}), replayed at the same time of day; it was not recorded by a DBKU camera and is not evidence of this event.`
+      : '';
     evidence.push({
-      ref: 'E1', kind: 'AI CCTV snapshot', hasImage: Boolean(ev.snapshot),
-      summary: `Threat score ${event.alert.score}/100 (${event.level}). Camera ${ev.cameraId || 'not recorded'}, captured ${ev.capturedAt ? `${formatMyt(ev.capturedAt)} MYT` : 'not recorded'}. Detections: ${det || 'not recorded'}.${nightNote}`,
+      ref: 'E1', kind: ev.snapshot ? 'AI CCTV snapshot' : 'AI CCTV detection', hasImage: Boolean(ev.snapshot),
+      summary: `Threat score ${event.alert.score}/100 (${event.level}). Camera ${ev.sample ? 'none (sample footage)' : ev.cameraId || 'not recorded'}, captured ${ev.capturedAt ? `${formatMyt(ev.capturedAt)} MYT` : 'not recorded'}. Detections: ${det || 'not recorded'}.${nightNote}${sampleNote}`,
       factors: (ev.factors || []).filter((f) => f.met).map((f) => `${f.label} (+${f.points})`),
     });
   }
@@ -69,7 +75,7 @@ export function buildCaseFile(event, { assets, zones, dealers, transactions, scr
     const s = ev.sensor;
     evidence.push({
       ref: 'S1', kind: 'Tamper sensor reading',
-      summary: `At sensor time ${formatMyt(s.simTime)}: current ${s.current} A (expected ${s.expected} A, z = ${s.z}), door ${s.door === 1 ? 'OPEN' : s.door === 0 ? 'closed' : 'n/a'}, tilt ${s.tilt ?? 'n/a'}°. Cause: ${(ev.causes || []).join(', ')}.`,
+      summary: `At ${ev.simulated ? 'simulated ' : ''}sensor time ${formatMyt(s.simTime)}: current ${s.current} A (expected ${s.expected} A, z = ${s.z}), door ${s.door === 1 ? 'OPEN' : s.door === 0 ? 'closed' : 'n/a'}, tilt ${s.tilt == null ? 'n/a' : `${s.tilt}°`}. Cause: ${(ev.causes || []).map((c) => CAUSES[c]?.label || c).join(', ')}.`,
     });
   }
   if (event.alert?.evidence?.mock) {

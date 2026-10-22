@@ -2,7 +2,8 @@
      current  amps on the asset's supply
      door     0 closed / 1 open (pole hatch, pillar or switchboard door); null for cables
      tilt     degrees from vertical; null for cables
-   Streetlights switch on 19:00–07:00 MYT; pillars, switchboards and feeders
+   Streetlights switch on 19:00–07:00 MYT (a lamp logged as dark draws standby
+   current only); pillars, switchboards and feeders
    carry a load all day with a gentle daily curve. Noise is bounded, so a
    healthy asset never crosses the 3σ line on its own. */
 import { mulberry32, gaussian, hashString } from './random';
@@ -31,6 +32,9 @@ export const FAULTS = {
 /** Whether the asset is expected to draw its working current at time t. */
 export function expectedState(asset, t) {
   if (asset.type !== 'streetlight') return 'on';
+  // A lamp logged as dark (failure awaiting repair) only draws standby
+  // current, so its sensor does not re-alert every evening.
+  if (asset.lighting === 'out' && asset.lightingSince) return 'off';
   const h = mytParts(t).hour;
   return h >= 19 || h < 7 ? 'on' : 'off';
 }
@@ -55,7 +59,8 @@ export function noiseLevel(asset, state) {
   return p.noise;
 }
 
-const baseTilt = (asset) => (asset.type === 'cable' ? null : 0.3 + (hashString(`${asset.id}:tilt`) % 200) / 100);
+/** Resting tilt of a pole or cabinet (degrees); null for cables. */
+export const baseTilt = (asset) => (asset.type === 'cable' ? null : 0.3 + (hashString(`${asset.id}:tilt`) % 200) / 100);
 
 /** One reading for an asset at time t, with any injected fault applied. */
 export function simulateReading(asset, t, rand, fault) {

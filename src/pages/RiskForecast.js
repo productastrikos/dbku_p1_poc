@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { PageHeader, Card, Badge, ProgressBar, Tabs, Icon, DataTable } from '../components/ui';
+import { PageHeader, Card, Badge, ProgressBar, Tabs, Icon, DataTable, Button } from '../components/ui';
 import ChartCard from '../components/charts/ChartCard';
 import AssetMap from '../components/guard/AssetMap';
+import EntityDrawer from '../components/guard/EntityDrawer';
 import { Title, Ms } from '../components/guard/common';
 import { useData } from '../data/DataProvider';
 import { BAND, RISK_BANDS, FEATURE_NAMES, GROUPS, bandFor } from '../ai/riskModel';
@@ -37,8 +38,9 @@ function HeatGrid({ heat, start }) {
 }
 
 export default function RiskForecast() {
-  const { zones, assets, dealers, risk, meta, incidents } = useData();
+  const { zones, assets, dealers, risk, meta, incidents, tasks, createTask } = useData();
   const [zoneTab, setZoneTab] = useState(null);
+  const [panel, setPanel] = useState(null);
 
   if (!risk.ready) {
     return (
@@ -52,16 +54,26 @@ export default function RiskForecast() {
   const { forecast, route, model } = risk;
   const active = zoneTab || forecast[0].zone;
   const sel = forecast.find((f) => f.zone === active);
-  const start = mytDayStart(Date.now());
+  const start = risk.start;
   const zoneOf = (id) => zones.find((z) => z.id === id);
   const bands = Object.fromEntries(forecast.map((f) => [f.zone, f.band]));
+  // Tonight's route, once dispatched, is tracked as a patrol task.
+  const dispatched = tasks.find((t) => t.source === 'Risk Forecast route' && ['open', 'in_progress'].includes(t.status) && Date.parse(t.createdAt) >= mytDayStart(Date.now()));
+  const dispatchRoute = () => {
+    const id = createTask({
+      kind: 'patrol', title: `Night patrol route, ${route.stops.length} stops`, team: 'DBKU Enforcement Unit A', priority: 'Tonight',
+      details: `Depart ${meta.patrolBase.name} 22:30, about ${route.km} km. ${route.stops.map((s, i) => `${i + 1}. ${s.asset.id} ${s.eta}`).join(', ')}.${route.revisit ? ` Second pass at ${zoneOf(route.revisit.zone).short} around ${hh(route.revisit.hour)}.` : ''}`,
+      assetIds: route.stops.map((s) => s.asset.id), zone: forecast[0].zone, source: 'Risk Forecast route',
+    });
+    setPanel({ kind: 'task', id });
+  };
 
   return (
     <div className="space-y-4">
       <PageHeader
         title={<Title en="Risk Forecast" ms="Ramalan Risiko" />}
         subtitle={`7-day hotspot risk from a logistic regression trained in your browser on ${model.positives} incidents and ${model.negatives.toLocaleString()} sampled normal hours (2020–${mytParts(Date.now()).year}).`}
-        actions={<><Badge tone="accent" dot>Training AUC {model.auc}</Badge><Badge tone="neutral">Updated {formatMyt(Date.now(), 'time')} MYT</Badge></>}
+        actions={<><Badge tone="accent" dot>Training AUC {model.auc}</Badge><Badge tone="neutral">Updated {formatMyt(risk.computedAt, 'time')} MYT</Badge></>}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -108,25 +120,31 @@ export default function RiskForecast() {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <div className="xl:col-span-2">
-          <AssetMap assets={assets} zones={zones} zoneBands={bands} dealers={dealers} route={{ ...route, base: meta.patrolBase }} heat height={520} />
+          <AssetMap assets={assets} zones={zones} zoneBands={bands} dealers={dealers} route={{ ...route, base: meta.patrolBase }} heat height={520}
+            onSelectAsset={(a) => setPanel({ kind: 'asset', id: a.id })} />
         </div>
         <Card padded={false} title={<span>Night patrol route <Ms>Laluan rondaan malam</Ms></span>}
-          subtitle={`Ordered by risk · depart 22:30 · ≈ ${route.km} km (straight-line × 1.35)`} bodyClassName="max-h-[460px] overflow-y-auto">
+          subtitle={`Ordered by risk · depart 22:30 · ≈ ${route.km} km (straight-line × 1.35)`} bodyClassName="max-h-[460px] overflow-y-auto"
+          actions={dispatched
+            ? <Button size="sm" variant="soft" icon="check" onClick={() => setPanel({ kind: 'task', id: dispatched.id })}>{dispatched.id}</Button>
+            : <Button size="sm" icon="truck" onClick={dispatchRoute}>Dispatch</Button>}>
           <ol>
             <li className="px-4 py-2.5 border-b text-xs flex items-center gap-2 text-fg-faint"><Icon name="home" size={14} />Start: {meta.patrolBase.name} · 22:30</li>
             {route.stops.map((s, i) => (
-              <li key={s.asset.id} className="px-4 py-2.5 border-b flex gap-3">
-                <span className="route-stop shrink-0" style={{ position: 'static' }}>{i + 1}</span>
-                <span className="min-w-0 flex-1">
-                  <span className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-bold text-fg">{s.asset.id} <span className="font-normal text-fg-faint">{ASSET_TYPES[s.asset.type].label}</span></span>
-                    <span className="font-mono text-[11px] text-fg">{s.eta}</span>
+              <li key={s.asset.id}>
+                <button type="button" onClick={() => setPanel({ kind: 'asset', id: s.asset.id })} className="w-full text-left px-4 py-2.5 border-b flex gap-3 hover:bg-surface-raised transition-colors">
+                  <span className="route-stop shrink-0" style={{ position: 'static' }}>{i + 1}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-bold text-fg">{s.asset.id} <span className="font-normal text-fg-faint">{ASSET_TYPES[s.asset.type].label}</span></span>
+                      <span className="font-mono text-[11px] text-fg">{s.eta}</span>
+                    </span>
+                    <span className="flex items-center gap-1.5 mt-0.5 flex-wrap">
+                      <Badge tone={ZONE_TONE[s.band]}>{zoneOf(s.zone).short}</Badge>
+                      {s.why.map((w) => <span key={w} className="text-[10px] text-fg-faint">{w}</span>)}
+                    </span>
                   </span>
-                  <span className="flex items-center gap-1.5 mt-0.5 flex-wrap">
-                    <Badge tone={ZONE_TONE[s.band]}>{zoneOf(s.zone).short}</Badge>
-                    {s.why.map((w) => <span key={w} className="text-[10px] text-fg-faint">{w}</span>)}
-                  </span>
-                </span>
+                </button>
               </li>
             ))}
             {route.revisit && (
@@ -186,6 +204,7 @@ export default function RiskForecast() {
           />
         </div>
       </Card>
+      <EntityDrawer panel={panel} onChange={setPanel} />
     </div>
   );
 }

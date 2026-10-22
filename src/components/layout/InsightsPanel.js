@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Badge, Button, Icon, IconButton } from '../ui';
+import { TaskStatusBadge } from '../guard/common';
 import { useData } from '../../data/DataProvider';
 import { ACTION_FORMS } from '../../data/reference';
 
@@ -44,6 +46,7 @@ function ActionForm({ form, onChange, onSubmit, onCancel, busy }) {
 }
 
 export default function InsightsPanel({ onClose }) {
+  const navigate = useNavigate();
   const { insights, runAction } = useData();
   const [expanded, setExpanded] = useState(insights[0]?.id);
   const [form, setForm] = useState(null);
@@ -53,18 +56,21 @@ export default function InsightsPanel({ onClose }) {
   const openForm = (action, insight) => {
     const values = {};
     ACTION_FORMS[action].fields.forEach((f) => { values[f.key] = f.options?.[0] ?? ''; });
-    setForm({ action, insightId: insight.id, insightTitle: insight.title, values });
+    setForm({ action, insightId: insight.id, insightTitle: insight.title, values: { ...values, ...insight.defaults?.[action] } });
   };
 
   const submit = async () => {
     setBusy(true);
-    try { await runAction(form.insightId, form.action, form.values); } finally {
+    let id = null;
+    try { id = await runAction(form.insightId, form.action, form.values); } finally {
       setBusy(false);
-      setToast(`${ACTION_FORMS[form.action].title} submitted`);
+      setToast({ text: `${ACTION_FORMS[form.action].title} submitted${id ? `: ${id}` : ''}`, id });
       setForm(null);
-      setTimeout(() => setToast(null), 3000);
+      setTimeout(() => setToast(null), 6000);
     }
   };
+
+  const openTask = (id) => { onClose(); navigate(`/operations?task=${id}`); };
 
   return (
     <aside className="side-panel w-96 max-w-full" style={{ borderLeft: '2px solid var(--color-accent-border)' }}>
@@ -76,7 +82,14 @@ export default function InsightsPanel({ onClose }) {
         <IconButton icon="close" label="Close" plain onClick={onClose} />
       </div>
 
-      {toast && <div className="absolute top-16 left-3 right-3 z-20 tile tone-success text-xs font-semibold">✓ {toast}</div>}
+      {toast && (
+        <div className="absolute top-16 left-3 right-3 z-20 rounded-lg bg-surface shadow-lg">
+          <div className="tile tone-success text-xs font-semibold flex items-center justify-between gap-2">
+            <span>✓ {toast.text}</span>
+            {toast.id && <button type="button" className="link-btn shrink-0" onClick={() => openTask(toast.id)}>VIEW</button>}
+          </div>
+        </div>
+      )}
 
       {form && (
         <ActionForm
@@ -89,6 +102,7 @@ export default function InsightsPanel({ onClose }) {
       )}
 
       <div className="flex-1 overflow-y-auto p-3 space-y-3">
+        {insights.length === 0 && <p className="text-center text-xs text-fg-faint py-8">No recommendations right now. The risk model may still be training.</p>}
         {insights.map((ins) => {
           const open = expanded === ins.id;
           return (
@@ -98,6 +112,7 @@ export default function InsightsPanel({ onClose }) {
                   <div className="flex items-center gap-2">
                     <Badge tone={PRIORITY_TONE[ins.priority] || 'neutral'}>{ins.priority.toUpperCase()}</Badge>
                     <span className="text-[10px] text-fg-faint">{ins.category}</span>
+                    {ins.actioned?.length > 0 && <Badge tone="success" plain>✓ ACTIONED</Badge>}
                   </div>
                   <Icon name="chevronDown" size={14} className={`text-fg-faint transition-transform ${open ? 'rotate-180' : ''}`} />
                 </div>
@@ -129,6 +144,17 @@ export default function InsightsPanel({ onClose }) {
                     </Section>
                   )}
                   <Section title="Actions">
+                    {ins.actioned?.length > 0 && (
+                      <ul className="space-y-1 mb-2">
+                        {ins.actioned.map((t) => (
+                          <li key={t.id}>
+                            <button type="button" className="w-full text-left text-[11px] flex items-center justify-between gap-2 hover:text-primary" onClick={() => openTask(t.id)}>
+                              <span><b className="font-mono">{t.id}</b> {t.title}</span><TaskStatusBadge status={t.status} />
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <div className="space-y-1.5">
                       {ins.actions.map((a) => (
                         <Button key={a} variant="soft" block className="justify-between" onClick={() => openForm(a, ins)}>

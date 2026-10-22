@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Icon, IconButton, Button } from '../ui';
+import { Icon, IconButton, Button, Modal, DetailGrid } from '../ui';
 import { useTheme } from '../../theme/ThemeProvider';
-import { useData } from '../../data/DataProvider';
+import { useData, zoneName } from '../../data/DataProvider';
+import { ASSET_TYPES, ALERT_STATUS, TASK_KINDS } from '../../data/reference';
+import { formatMyt, sameMytDay } from '../../ai/time';
 import { NAV_SECTIONS, ROUTES } from '../../routes';
 import { APP, USER } from '../../config';
 import { initials } from '../../utils';
@@ -22,12 +25,33 @@ function useDismiss(ref, open, onClose) {
   }, [ref, open, onClose]);
 }
 
-// The search index is built from routes.js.
-const SEARCH_INDEX = NAV_SECTIONS.flatMap((s) =>
-  s.items.map((i) => ({ ...i, section: s.label, haystack: `${i.label} ${s.label} ${i.keywords || ''}`.toLowerCase() })));
+// Pages come from routes.js; records (assets, alerts, incidents, sales,
+// dealers, cameras, tasks) from the data store.
+const PAGE_INDEX = NAV_SECTIONS.flatMap((s) =>
+  s.items.map((i) => ({ key: i.path, label: i.label, sub: s.label, icon: i.icon, path: i.path, page: true, haystack: `${i.label} ${i.labelMs || ''} ${s.label} ${i.keywords || ''}`.toLowerCase() })));
+
+function useSearchIndex() {
+  const { assets, alerts, incidents, transactions, screening, dealers, cameras, tasks } = useData();
+  return useMemo(() => {
+    const dealerName = Object.fromEntries(dealers.map((d) => [d.id, d.name]));
+    const rec = (key, label, sub, icon, path, text) => ({ key, label, sub, icon, path, haystack: `${label} ${sub} ${text || ''}`.toLowerCase() });
+    return [
+      ...PAGE_INDEX,
+      ...assets.map((a) => rec(a.id, `${a.id} · ${a.name}`, `Asset · ${ASSET_TYPES[a.type].label} · ${zoneName(a.zone)}`, ASSET_TYPES[a.type].icon, `/twin?asset=${a.id}`, `${a.road} ${a.status}`)),
+      ...alerts.map((a) => rec(a.id, `${a.id} · ${a.title}`, `Alert · ${a.level} · ${ALERT_STATUS[a.status]?.label}`, 'bell', `/?alert=${a.id}`, a.message)),
+      ...incidents.map((i) => rec(i.id, `${i.id} · ${i.title}`, `Incident · ${formatMyt(i.occurredAt, 'date')}`, 'fileText', `/reports?event=${i.id}`, `${i.typeLabel} ${i.assetIds.join(' ')}`)),
+      ...transactions.map((t) => rec(t.id, `${t.id} · ${t.material}, ${t.weightKg} kg`, `Scrap sale · ${dealerName[t.dealerId]}${screening[t.id]?.suspicious ? ' · flagged' : ''}`, 'recycle',
+        screening[t.id]?.suspicious ? `/scrap?review=${t.id}` : `/scrap?view=all&q=${t.id}`, t.sellerIcMasked)),
+      ...dealers.map((d) => rec(d.id, d.name, `Scrap dealer · ${d.licenceNo}`, 'recycle', `/scrap?view=all&q=${encodeURIComponent(d.name)}`, d.area)),
+      ...cameras.map((c) => rec(c.id, `${c.id} · CCTV`, `Camera on ${c.mountedOn} · ${zoneName(c.zone)}`, 'camera', `/twin?camera=${c.id}`, c.model)),
+      ...tasks.map((t) => rec(t.id, `${t.id} · ${t.title}`, `${TASK_KINDS[t.kind]?.label} · ${t.team}`, TASK_KINDS[t.kind]?.icon || 'clipboard', `/operations?task=${t.id}`, t.details)),
+    ];
+  }, [assets, alerts, incidents, transactions, screening, dealers, cameras, tasks]);
+}
 
 function Search() {
   const navigate = useNavigate();
+  const index = useSearchIndex();
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -42,16 +66,18 @@ function Search() {
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
+  // Every word must match; pages first, then exact id matches, then the rest in index order.
   const results = useMemo(() => {
     const words = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
     if (!words.length) return [];
-    return SEARCH_INDEX
-      .map((item) => ({ item, score: words.filter((w) => item.haystack.includes(w)).length }))
-      .filter((r) => r.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 8)
+    const q = query.trim().toLowerCase();
+    return index
+      .filter((item) => words.every((w) => item.haystack.includes(w)))
+      .map((item, i) => ({ item, rank: (item.page ? 0 : 2) - (item.key.toLowerCase() === q ? 2 : 0) + i / 1e5 }))
+      .sort((a, b) => a.rank - b.rank)
+      .slice(0, 10)
       .map((r) => r.item);
-  }, [query]);
+  }, [query, index]);
 
   const go = (path) => { navigate(path); setOpen(false); setQuery(''); inputRef.current?.blur(); };
 
@@ -61,7 +87,7 @@ function Search() {
       <input
         ref={inputRef}
         value={query}
-        placeholder="Search… (Ctrl+K)"
+        placeholder="Search assets, alerts, sales… (Ctrl+K)"
         aria-label="Search"
         onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
         onFocus={() => setOpen(true)}
@@ -72,11 +98,11 @@ function Search() {
           <div className="menu-section">
             {results.length === 0 && <p className="text-xs text-fg-faint text-center py-3">No results for “{query}”</p>}
             {results.map((r) => (
-              <button key={r.path} type="button" className="menu-item" onMouseDown={(e) => { e.preventDefault(); go(r.path); }}>
+              <button key={`${r.key}-${r.path}`} type="button" className="menu-item" onMouseDown={(e) => { e.preventDefault(); go(r.path); }}>
                 <Icon name={r.icon} size={15} />
-                <span className="flex-1">
-                  <span className="block font-semibold text-fg">{r.label}</span>
-                  <span className="block text-[10px] text-fg-faint">{r.section}</span>
+                <span className="flex-1 min-w-0">
+                  <span className="block font-semibold text-fg truncate">{r.label}</span>
+                  <span className="block text-[10px] text-fg-faint truncate">{r.sub}</span>
                 </span>
               </button>
             ))}
@@ -100,8 +126,34 @@ function Clock() {
   );
 }
 
-function ProfileMenu({ onOpenNotifications }) {
+function ProfileModal({ onClose }) {
+  const navigate = useNavigate();
+  const { actionLog, tasks, rebasedDays, meta } = useData();
+  const { theme } = useTheme();
+  const today = actionLog.filter((e) => sameMytDay(e.at, Date.now()));
+  return (
+    <Modal title={USER.name} eyebrow="Profile" subtitle={USER.role} onClose={onClose}
+      footer={<><Button variant="secondary" onClick={() => { onClose(); navigate('/operations'); }}>Command log</Button><Button onClick={onClose}>Close</Button></>}>
+      <div className="space-y-3">
+        <DetailGrid items={[
+          { label: 'Unit', value: 'DBKU Enforcement' },
+          { label: 'Station', value: 'GuardGrid command centre' },
+          { label: 'Decisions today', value: today.length },
+          { label: 'Open tasks', value: tasks.filter((t) => ['open', 'in_progress'].includes(t.status)).length },
+          { label: 'Theme', value: theme === 'dark' ? 'Dark' : 'Light' },
+          { label: 'Time zone', value: 'Malaysia Time (UTC+8)' },
+        ]} />
+        <p className="text-[11px] text-fg-faint leading-relaxed">
+          Prototype: there is no sign-in service. Your decisions are kept in this browser only. Mock data dated {meta.asOf}{rebasedDays ? ` is shown moved forward ${rebasedDays} day${rebasedDays === 1 ? '' : 's'} so recent events stay recent` : ''}.
+        </p>
+      </div>
+    </Modal>
+  );
+}
+
+function ProfileMenu({ onOpenNotifications, onSignOut }) {
   const [open, setOpen] = useState(false);
+  const [profile, setProfile] = useState(false);
   const ref = useRef(null);
   const { toggleTheme } = useTheme();
   useDismiss(ref, open, () => setOpen(false));
@@ -127,20 +179,21 @@ function ProfileMenu({ onOpenNotifications }) {
             </div>
           </div>
           <div className="menu-section">
-            {item('user', 'Profile')}
+            {item('user', 'Profile', () => setProfile(true))}
             {item('bell', 'Notifications', onOpenNotifications)}
             {item('settings', 'Toggle theme', toggleTheme)}
           </div>
           <div className="menu-section">
-            {item('logout', 'Sign out')}
+            {item('logout', 'Sign out', onSignOut)}
           </div>
         </div>
       )}
+      {profile && createPortal(<ProfileModal onClose={() => setProfile(false)} />, document.body)}
     </div>
   );
 }
 
-export default function Header({ onToggleSidebar, activePanel, onTogglePanel }) {
+export default function Header({ onToggleSidebar, activePanel, onTogglePanel, onSignOut }) {
   const { pathname } = useLocation();
   const { theme, toggleTheme } = useTheme();
   const { notifications } = useData();
@@ -181,7 +234,7 @@ export default function Header({ onToggleSidebar, activePanel, onTogglePanel }) 
         </IconButton>
       )}
 
-      <ProfileMenu onOpenNotifications={() => activePanel !== 'notifications' && onTogglePanel('notifications')} />
+      <ProfileMenu onOpenNotifications={() => activePanel !== 'notifications' && onTogglePanel('notifications')} onSignOut={onSignOut} />
     </header>
   );
 }

@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { PageHeader, Card, Button, Badge, Tabs, DataTable, DetailGrid, Icon } from '../components/ui';
 import { Title, Ms, LlmBadge, LevelBadge, StatusBadge, SourceIcon } from '../components/guard/common';
+import EntityDrawer from '../components/guard/EntityDrawer';
 import { useData, zoneName } from '../data/DataProvider';
 import { eventFromAlert, eventFromIncident, buildCaseFile, offlineBrief } from '../services/caseFile';
 import { generateBrief } from '../services/llm';
@@ -63,6 +64,7 @@ export default function Reports() {
   const [tab, setTab] = useState(params.get('event')?.startsWith('INC') ? 'incidents' : 'alerts');
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState(null);
+  const [panel, setPanel] = useState(null);
 
   // HIGH alerts first; the sort is stable, so each group stays newest-first.
   const alertEvents = useMemo(() => [...alerts].sort((a, b) => (b.level === 'HIGH') - (a.level === 'HIGH')), [alerts]);
@@ -73,6 +75,8 @@ export default function Reports() {
     || alertEvents.find((a) => a.status === 'confirmed_theft')?.id
     || incidentList[0]?.id;
   const select = (id) => setParams({ event: id });
+  const eventParam = params.get('event');
+  useEffect(() => { if (eventParam) setTab(eventParam.startsWith('INC') ? 'incidents' : 'alerts'); }, [eventParam]);
 
   const event = useMemo(() => {
     const a = alerts.find((x) => x.id === selectedId);
@@ -83,9 +87,12 @@ export default function Reports() {
 
   const caseFile = useMemo(() => (event ? buildCaseFile(event, { ...data, forecast: risk.forecast }) : null), [event, data, risk.forecast]);
   const images = event?.alert?.evidence?.snapshot
-    ? [{ dataUrl: event.alert.evidence.snapshot, caption: `CCTV snapshot, ${event.alert.evidence.cameraId || 'uploaded footage'}, ${formatMyt(event.alert.evidence.capturedAt || event.time)} MYT, threat score ${event.alert.score}` }]
+    ? [{ dataUrl: event.alert.evidence.snapshot, caption: `CCTV snapshot, ${event.alert.evidence.sample ? `sample footage (${event.alert.evidence.sample.camera}, not a DBKU camera)` : event.alert.evidence.cameraId || 'uploaded footage'}, ${formatMyt(event.alert.evidence.capturedAt || event.time)} MYT, threat score ${event.alert.score}` }]
     : [];
   const saved = event && briefs[event.id];
+  // A false alarm has nothing to report; an accident or other non-theft closure usually goes to JKR or the insurer, not PDRM.
+  const blocked = event?.status === 'false_alarm';
+  const nonTheft = event?.status === 'resolved';
 
   const generate = async () => {
     setBusy(true);
@@ -155,12 +162,18 @@ export default function Reports() {
                 title={<span className="flex items-center gap-2 flex-wrap">{caseFile.event.title} {event.kind === 'alert' && <StatusBadge status={event.status} />}</span>}
                 subtitle={`Case file ${caseFile.reference}`}
                 actions={
-                  <Button variant="accent" icon="sparkles" disabled={busy} onClick={generate}>
-                    {busy ? 'Drafting…' : saved ? 'Regenerate' : 'Generate Police Report'}
-                  </Button>
+                  <>
+                    {event.asset && <Button variant="ghost" icon="pin" onClick={() => setPanel({ kind: 'asset', id: event.asset.id })}>Asset twin</Button>}
+                    {event.kind === 'alert' && <Button variant="ghost" icon="bell" onClick={() => setPanel({ kind: 'alert', id: event.id })}>Alert</Button>}
+                    <Button variant="accent" icon="sparkles" disabled={busy || blocked} onClick={generate} title={blocked ? 'Closed as a false alarm' : undefined}>
+                      {busy ? 'Drafting…' : saved ? 'Regenerate' : 'Generate Police Report'}
+                    </Button>
+                  </>
                 }
               >
                 <div className="space-y-4">
+                  {blocked && <p className="tile tone-neutral text-xs">This alert was closed as a <b>false alarm</b>{event.note ? ` (${event.note})` : ''}. There is nothing to report to PDRM.</p>}
+                  {nonTheft && <p className="tile tone-info text-xs">This alert was closed as <b>resolved, not theft</b>{event.note ? ` (${event.note})` : ''}. A police report is only needed if the damage was deliberate.</p>}
                   <DetailGrid columns={3} items={[
                     { label: 'What', value: caseFile.event.type },
                     { label: 'When (MYT)', value: caseFile.event.occurredAt.replace(' MYT', '') },
@@ -210,6 +223,7 @@ export default function Reports() {
           )}
         </div>
       </div>
+      <EntityDrawer panel={panel} onChange={setPanel} />
     </div>
   );
 }

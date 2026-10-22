@@ -11,7 +11,27 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "out",
-  "sensor": "offline"
+  "lightingSince": "2026-10-04T01:50:00+08:00",
+  "lightingCause": "Circuit cut in INC-2026-22",
+  "sensor": "offline",
+  "sensorSince": "2026-10-04T01:50:00+08:00",
+  "sensorCause": "No feed since the circuit was cut in INC-2026-22",
+  "upstream": "CB-SEM-01",
+  "circuit": "SEM-C1",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-001",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -100,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-02",
@@ -23,9 +43,29 @@
   "lng": 110.32837,
   "installed": 2020,
   "replacementCostRM": 6800,
-  "cameraId": "CAM-SEM-1",
+  "cameraId": null,
   "lighting": "out",
-  "sensor": "offline"
+  "lightingSince": "2026-10-04T01:50:00+08:00",
+  "lightingCause": "Circuit cut in INC-2026-22",
+  "sensor": "offline",
+  "sensorSince": "2026-10-04T01:50:00+08:00",
+  "sensorCause": "No feed since the circuit was cut in INC-2026-22",
+  "upstream": "CB-SEM-01",
+  "circuit": "SEM-C1",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-002",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -90,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-03",
@@ -39,7 +79,27 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-SEM-1",
   "lighting": "out",
-  "sensor": "offline"
+  "lightingSince": "2026-10-04T01:50:00+08:00",
+  "lightingCause": "Circuit cut in INC-2026-22",
+  "sensor": "offline",
+  "sensorSince": "2026-10-04T01:50:00+08:00",
+  "sensorCause": "No feed since the circuit was cut in INC-2026-22",
+  "upstream": "CB-SEM-01",
+  "circuit": "SEM-C1",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-003",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -100,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-04",
@@ -53,7 +113,27 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-SEM-1",
   "lighting": "out",
-  "sensor": "offline"
+  "lightingSince": "2026-10-04T01:50:00+08:00",
+  "lightingCause": "Circuit cut in INC-2026-22",
+  "sensor": "offline",
+  "sensorSince": "2026-10-04T01:50:00+08:00",
+  "sensorCause": "No feed since the circuit was cut in INC-2026-22",
+  "upstream": "CB-SEM-01",
+  "circuit": "SEM-C1",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-004",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -94,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-05",
@@ -65,9 +145,25 @@
   "lng": 110.33162,
   "installed": 2012,
   "replacementCostRM": 6800,
-  "cameraId": "CAM-SEM-1",
+  "cameraId": "CAM-SEM-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-SEM-04",
+  "circuit": "SEM-C2",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-005",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -87,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-06",
@@ -79,9 +175,25 @@
   "lng": 110.33808,
   "installed": 2013,
   "replacementCostRM": 6800,
-  "cameraId": "CAM-SEM-2",
+  "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-SEM-02",
+  "circuit": "SEM-C3",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-006",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -94,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-07",
@@ -93,9 +205,25 @@
   "lng": 110.33661,
   "installed": 2021,
   "replacementCostRM": 6800,
-  "cameraId": "CAM-SEM-2",
+  "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-SEM-02",
+  "circuit": "SEM-C3",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-007",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -91,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-08",
@@ -109,7 +237,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-SEM-02",
+  "circuit": "SEM-C3",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-008",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -105,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-09",
@@ -123,7 +267,25 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "out",
-  "sensor": "online"
+  "lightingSince": "2026-10-09T20:00:00+08:00",
+  "lightingCause": "Lamp/driver failure",
+  "sensor": "online",
+  "upstream": "DB-SEM-04",
+  "circuit": "SEM-C2",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-009",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -94,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-10",
@@ -135,9 +297,25 @@
   "lng": 110.33224,
   "installed": 2018,
   "replacementCostRM": 6800,
-  "cameraId": "CAM-SEM-2",
+  "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-SEM-02",
+  "circuit": "SEM-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-010",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -94,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-11",
@@ -151,7 +329,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-SEM-02",
+  "circuit": "SEM-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-011",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -105,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-12",
@@ -165,7 +359,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-SEM-02",
+  "circuit": "SEM-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-012",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -97,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-SEM-13",
@@ -179,7 +389,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-SEM-02",
+  "circuit": "SEM-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-SEM-013",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -100,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "MSB-SEM-01",
@@ -192,7 +418,23 @@
   "installed": 2010,
   "replacementCostRM": 146000,
   "cameraId": "CAM-SEM-2",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": null,
+  "spec": {
+   "supply": "Sarawak Energy, 415 V three-phase",
+   "ratingA": 400,
+   "outgoing": 4,
+   "metering": "Sarawak Energy kWh meter",
+   "enclosure": "Steel kiosk, double door"
+  },
+  "node": {
+   "id": "GGN-SEM-014",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -95,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-SEM-01",
@@ -205,7 +447,24 @@
   "installed": 2013,
   "replacementCostRM": 28500,
   "cameraId": "CAM-SEM-1",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-SEM-01",
+  "feeder": "SEM-F1",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-SEM-015",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -90,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-SEM-02",
@@ -218,7 +477,24 @@
   "installed": 2012,
   "replacementCostRM": 28500,
   "cameraId": null,
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-SEM-01",
+  "feeder": "SEM-F2",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-SEM-016",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -87,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-SEM-03",
@@ -231,7 +507,24 @@
   "installed": 2012,
   "replacementCostRM": 28500,
   "cameraId": null,
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-SEM-01",
+  "feeder": "SEM-F3",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-SEM-017",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -101,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-SEM-04",
@@ -244,7 +537,24 @@
   "installed": 2014,
   "replacementCostRM": 28500,
   "cameraId": "CAM-SEM-2",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-SEM-01",
+  "feeder": "SEM-F4",
+  "spec": {
+   "enclosure": "Distribution box, GRP",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-SEM-018",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -85,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "CB-SEM-01",
@@ -296,7 +606,27 @@
   "installed": 2011,
   "replacementCostRM": 87500,
   "cameraId": "CAM-SEM-1",
-  "sensor": "offline"
+  "sensor": "offline",
+  "sensorSince": "2026-10-04T01:50:00+08:00",
+  "sensorCause": "No feed since the circuit was cut in INC-2026-22",
+  "upstream": "DB-SEM-01",
+  "circuit": "SEM-C1",
+  "spec": {
+   "role": "circuit",
+   "conductor": "4-core 16 mm² copper, XLPE/SWA/PVC",
+   "cores": 4,
+   "mm2": 16,
+   "laid": "Underground ducts, 0.6 m deep",
+   "copperKg": 271
+  },
+  "node": {
+   "id": "GGN-SEM-019",
+   "kind": "Current clamp at the feed end",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -90,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "CB-SEM-02",
@@ -347,8 +677,26 @@
   "lengthM": 435,
   "installed": 2012,
   "replacementCostRM": 80500,
-  "cameraId": null,
-  "sensor": "online"
+  "cameraId": "CAM-SEM-2",
+  "sensor": "online",
+  "upstream": "DB-SEM-03",
+  "circuit": "SEM-C4",
+  "spec": {
+   "role": "circuit",
+   "conductor": "4-core 16 mm² copper, XLPE/SWA/PVC",
+   "cores": 4,
+   "mm2": 16,
+   "laid": "Underground ducts, 0.6 m deep",
+   "copperKg": 249
+  },
+  "node": {
+   "id": "GGN-SEM-020",
+   "kind": "Current clamp at the feed end",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -110,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-01",
@@ -362,7 +710,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-KUL-1",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-KUL-01",
+  "circuit": "KUL-C1",
+  "spec": {
+   "poleHeightM": 10,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-001",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -106,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-02",
@@ -376,7 +740,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-KUL-1",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-KUL-01",
+  "circuit": "KUL-C1",
+  "spec": {
+   "poleHeightM": 10,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-002",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -106,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-03",
@@ -388,9 +768,25 @@
   "lng": 110.32615,
   "installed": 2017,
   "replacementCostRM": 6800,
-  "cameraId": "CAM-KUL-1",
+  "cameraId": "CAM-KUL-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-KUL-01",
+  "circuit": "KUL-C1",
+  "spec": {
+   "poleHeightM": 10,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-003",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -93,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-04",
@@ -402,9 +798,25 @@
   "lng": 110.3266,
   "installed": 2016,
   "replacementCostRM": 6800,
-  "cameraId": null,
+  "cameraId": "CAM-KUL-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-KUL-01",
+  "circuit": "KUL-C2",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-004",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -104,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-05",
@@ -416,9 +828,25 @@
   "lng": 110.3273,
   "installed": 2017,
   "replacementCostRM": 6800,
-  "cameraId": null,
+  "cameraId": "CAM-KUL-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-KUL-02",
+  "circuit": "KUL-C3",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-005",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -109,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-06",
@@ -432,7 +860,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-KUL-02",
+  "circuit": "KUL-C3",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-006",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -104,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-07",
@@ -446,7 +890,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-KUL-02",
+  "circuit": "KUL-C3",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-007",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -104,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-08",
@@ -459,8 +919,28 @@
   "installed": 2015,
   "replacementCostRM": 6800,
   "cameraId": null,
-  "lighting": "on",
-  "sensor": "online"
+  "lighting": "out",
+  "lightingSince": "2026-09-26T02:35:00+08:00",
+  "lightingCause": "Circuit cut in INC-2026-21",
+  "sensor": "offline",
+  "sensorSince": "2026-09-26T02:35:00+08:00",
+  "sensorCause": "No feed since the circuit was cut in INC-2026-21",
+  "upstream": "DB-KUL-03",
+  "circuit": "KUL-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-008",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -89,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-09",
@@ -473,8 +953,28 @@
   "installed": 2012,
   "replacementCostRM": 6800,
   "cameraId": null,
-  "lighting": "on",
-  "sensor": "online"
+  "lighting": "out",
+  "lightingSince": "2026-09-26T02:35:00+08:00",
+  "lightingCause": "Circuit cut in INC-2026-21",
+  "sensor": "offline",
+  "sensorSince": "2026-09-26T02:35:00+08:00",
+  "sensorCause": "No feed since the circuit was cut in INC-2026-21",
+  "upstream": "DB-KUL-03",
+  "circuit": "KUL-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-009",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -93,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-10",
@@ -488,7 +988,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-KUL-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-KUL-01",
+  "circuit": "KUL-C2",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-010",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -100,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-11",
@@ -502,7 +1018,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-KUL-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-KUL-01",
+  "circuit": "KUL-C2",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-011",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -109,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-12",
@@ -515,8 +1047,24 @@
   "installed": 2015,
   "replacementCostRM": 6800,
   "cameraId": null,
-  "lighting": "out",
-  "sensor": "offline"
+  "lighting": "on",
+  "sensor": "online",
+  "upstream": "DB-KUL-04",
+  "circuit": "KUL-C5",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-012",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -91,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-KUL-13",
@@ -529,8 +1077,24 @@
   "installed": 2021,
   "replacementCostRM": 6800,
   "cameraId": null,
-  "lighting": "out",
-  "sensor": "offline"
+  "lighting": "on",
+  "sensor": "online",
+  "upstream": "DB-KUL-04",
+  "circuit": "KUL-C5",
+  "spec": {
+   "poleHeightM": 12,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-KUL-013",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -101,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "MSB-KUL-01",
@@ -543,7 +1107,23 @@
   "installed": 2015,
   "replacementCostRM": 146000,
   "cameraId": "CAM-KUL-2",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": null,
+  "spec": {
+   "supply": "Sarawak Energy, 415 V three-phase",
+   "ratingA": 400,
+   "outgoing": 4,
+   "metering": "Sarawak Energy kWh meter",
+   "enclosure": "Steel kiosk, double door"
+  },
+  "node": {
+   "id": "GGN-KUL-014",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -108,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-KUL-01",
@@ -555,8 +1135,25 @@
   "lng": 110.32624,
   "installed": 2013,
   "replacementCostRM": 28500,
-  "cameraId": "CAM-KUL-1",
-  "sensor": "online"
+  "cameraId": "CAM-KUL-2",
+  "sensor": "online",
+  "upstream": "MSB-KUL-01",
+  "feeder": "KUL-F1",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 2,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-KUL-015",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -94,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-KUL-02",
@@ -568,8 +1165,25 @@
   "lng": 110.32749,
   "installed": 2019,
   "replacementCostRM": 28500,
-  "cameraId": null,
-  "sensor": "online"
+  "cameraId": "CAM-KUL-2",
+  "sensor": "online",
+  "upstream": "MSB-KUL-01",
+  "feeder": "KUL-F2",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-KUL-016",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -89,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-KUL-03",
@@ -581,8 +1195,25 @@
   "lng": 110.32989,
   "installed": 2016,
   "replacementCostRM": 28500,
-  "cameraId": "CAM-KUL-2",
-  "sensor": "online"
+  "cameraId": null,
+  "sensor": "online",
+  "upstream": "CB-KUL-02",
+  "feeder": "KUL-F3",
+  "spec": {
+   "enclosure": "Distribution box, GRP",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-KUL-017",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -109,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-KUL-04",
@@ -595,7 +1226,24 @@
   "installed": 2018,
   "replacementCostRM": 28500,
   "cameraId": null,
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-KUL-01",
+  "feeder": "KUL-F4",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-KUL-018",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -94,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "CB-KUL-01",
@@ -647,7 +1295,25 @@
   "installed": 2020,
   "replacementCostRM": 54900,
   "cameraId": "CAM-KUL-1",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-KUL-01",
+  "circuit": "KUL-C1",
+  "spec": {
+   "role": "circuit",
+   "conductor": "4-core 16 mm² copper, XLPE/SWA/PVC",
+   "cores": 4,
+   "mm2": 16,
+   "laid": "Cable tray on the bridge",
+   "copperKg": 170
+  },
+  "node": {
+   "id": "GGN-KUL-019",
+   "kind": "Current clamp at the feed end",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -94,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "CB-KUL-02",
@@ -699,7 +1365,25 @@
   "installed": 2019,
   "replacementCostRM": 51400,
   "cameraId": null,
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-KUL-01",
+  "feeder": "KUL-F3",
+  "spec": {
+   "role": "feeder",
+   "conductor": "4-core 35 mm² copper, XLPE/SWA/PVC",
+   "cores": 4,
+   "mm2": 35,
+   "laid": "Underground ducts, 0.6 m deep",
+   "copperKg": 349
+  },
+  "node": {
+   "id": "GGN-KUL-020",
+   "kind": "Current clamp at the feed end",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -100,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-01",
@@ -713,7 +1397,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-BIN-1",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-BIN-02",
+  "circuit": "BIN-C1",
+  "spec": {
+   "poleHeightM": 10,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-001",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -84,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-02",
@@ -727,7 +1427,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-BIN-1",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-BIN-02",
+  "circuit": "BIN-C1",
+  "spec": {
+   "poleHeightM": 10,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-002",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -99,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-03",
@@ -741,7 +1457,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-BIN-1",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-BIN-02",
+  "circuit": "BIN-C1",
+  "spec": {
+   "poleHeightM": 10,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-003",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -102,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-04",
@@ -755,7 +1487,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-BIN-1",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-BIN-02",
+  "circuit": "BIN-C2",
+  "spec": {
+   "poleHeightM": 10,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-004",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -105,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-05",
@@ -769,7 +1517,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-BIN-01",
+  "circuit": "BIN-C3",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-005",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -86,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-06",
@@ -781,9 +1545,25 @@
   "lng": 110.33422,
   "installed": 2015,
   "replacementCostRM": 6800,
-  "cameraId": null,
+  "cameraId": "CAM-BIN-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-BIN-01",
+  "circuit": "BIN-C3",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-006",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -87,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-07",
@@ -797,7 +1577,23 @@
   "replacementCostRM": 6800,
   "cameraId": "CAM-BIN-2",
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-BIN-01",
+  "circuit": "BIN-C3",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-007",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -111,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-08",
@@ -809,9 +1605,27 @@
   "lng": 110.33554,
   "installed": 2020,
   "replacementCostRM": 6800,
-  "cameraId": null,
+  "cameraId": "CAM-BIN-2",
   "lighting": "out",
-  "sensor": "online"
+  "lightingSince": "2026-10-06T20:00:00+08:00",
+  "lightingCause": "Lamp/driver failure",
+  "sensor": "online",
+  "upstream": "MSB-BIN-01",
+  "circuit": "BIN-C3",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-008",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -101,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-09",
@@ -825,7 +1639,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-BIN-03",
+  "circuit": "BIN-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-009",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -111,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-10",
@@ -839,7 +1669,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-BIN-03",
+  "circuit": "BIN-C4",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-010",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -104,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-11",
@@ -853,7 +1699,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-BIN-04",
+  "circuit": "BIN-C5",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-011",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -96,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-12",
@@ -867,7 +1729,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-BIN-04",
+  "circuit": "BIN-C5",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-012",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -108,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "SL-BIN-13",
@@ -881,7 +1759,23 @@
   "replacementCostRM": 6800,
   "cameraId": null,
   "lighting": "on",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-BIN-04",
+  "circuit": "BIN-C5",
+  "spec": {
+   "poleHeightM": 9,
+   "lamp": "HPS 250 W (SON-T)",
+   "luminaire": "Full cut-off road lantern",
+   "pole": "Galvanised steel, bolted base hatch"
+  },
+  "node": {
+   "id": "GGN-BIN-013",
+   "kind": "Pole node: supply current, base-hatch contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -88,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "MSB-BIN-01",
@@ -894,7 +1788,23 @@
   "installed": 2017,
   "replacementCostRM": 146000,
   "cameraId": "CAM-BIN-2",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": null,
+  "spec": {
+   "supply": "Sarawak Energy, 415 V three-phase",
+   "ratingA": 400,
+   "outgoing": 4,
+   "metering": "Sarawak Energy kWh meter",
+   "enclosure": "Steel kiosk, double door"
+  },
+  "node": {
+   "id": "GGN-BIN-014",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -87,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-BIN-01",
@@ -907,7 +1817,24 @@
   "installed": 2018,
   "replacementCostRM": 28500,
   "cameraId": "CAM-BIN-1",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "CB-BIN-01",
+  "feeder": "BIN-F1",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-BIN-015",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -90,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-BIN-02",
@@ -919,8 +1846,25 @@
   "lng": 110.33767,
   "installed": 2016,
   "replacementCostRM": 28500,
-  "cameraId": null,
-  "sensor": "online"
+  "cameraId": "CAM-BIN-1",
+  "sensor": "online",
+  "upstream": "CB-BIN-01",
+  "feeder": "BIN-F1",
+  "spec": {
+   "enclosure": "Feeder pillar, stainless steel",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-BIN-016",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -93,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-BIN-03",
@@ -932,8 +1876,25 @@
   "lng": 110.33665,
   "installed": 2014,
   "replacementCostRM": 28500,
-  "cameraId": "CAM-BIN-2",
-  "sensor": "online"
+  "cameraId": null,
+  "sensor": "online",
+  "upstream": "MSB-BIN-01",
+  "feeder": "BIN-F2",
+  "spec": {
+   "enclosure": "Distribution box, GRP",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-BIN-017",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -93,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "DB-BIN-04",
@@ -946,7 +1907,24 @@
   "installed": 2013,
   "replacementCostRM": 28500,
   "cameraId": null,
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "MSB-BIN-01",
+  "feeder": "BIN-F3",
+  "spec": {
+   "enclosure": "Distribution box, GRP",
+   "ratingA": 100,
+   "ways": 4,
+   "waysUsed": 1,
+   "lock": "Padlock and numbered seal"
+  },
+  "node": {
+   "id": "GGN-BIN-018",
+   "kind": "Cabinet node: incoming current, door contact, tilt",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -98,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "CB-BIN-01",
@@ -997,8 +1975,26 @@
   "lengthM": 321,
   "installed": 2015,
   "replacementCostRM": 59400,
-  "cameraId": "CAM-BIN-2",
-  "sensor": "online"
+  "cameraId": "CAM-BIN-1",
+  "sensor": "online",
+  "upstream": "MSB-BIN-01",
+  "feeder": "BIN-F1",
+  "spec": {
+   "role": "feeder",
+   "conductor": "4-core 35 mm² copper, XLPE/SWA/PVC",
+   "cores": 4,
+   "mm2": 35,
+   "laid": "Buried along the riverbank",
+   "copperKg": 403
+  },
+  "node": {
+   "id": "GGN-BIN-019",
+   "kind": "Current clamp at the feed end",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -97,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  },
  {
   "id": "CB-BIN-02",
@@ -1050,6 +2046,24 @@
   "installed": 2015,
   "replacementCostRM": 20400,
   "cameraId": "CAM-BIN-1",
-  "sensor": "online"
+  "sensor": "online",
+  "upstream": "DB-BIN-01",
+  "circuit": "BIN-C1",
+  "spec": {
+   "role": "circuit",
+   "conductor": "4-core 16 mm² copper, XLPE/SWA/PVC",
+   "cores": 4,
+   "mm2": 16,
+   "laid": "Cable tray on the bridge",
+   "copperKg": 63
+  },
+  "node": {
+   "id": "GGN-BIN-020",
+   "kind": "Current clamp at the feed end",
+   "link": "LoRaWAN, AS923",
+   "rssiDbm": -98,
+   "firmware": "2.3.1",
+   "intervalMin": 5
+  }
  }
 ]

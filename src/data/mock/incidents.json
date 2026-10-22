@@ -125,7 +125,7 @@
   "detail": "About 410 m of 4-core cable taken from the roundabout ring circuit.",
   "assetIds": [
    "DB-SEM-04",
-   "SL-SEM-06"
+   "SL-SEM-05"
   ],
   "costRM": 136030,
   "lightsCut": 9,
@@ -203,8 +203,8 @@
   "zone": "SEM",
   "type": "cable_theft",
   "typeLabel": "Cable theft",
-  "title": "Feeder removed between poles 03–09",
-  "detail": "About 350 m feeder cable removed between streetlights 03 and 09.",
+  "title": "Feeder removed between poles 01–04",
+  "detail": "About 350 m of feeder cable removed between streetlights 01 and 04.",
   "assetIds": [
    "CB-SEM-01",
    "SL-SEM-03"
@@ -330,7 +330,8 @@
   "costRM": 23960,
   "lightsCut": 4,
   "lightsDarkBefore": 2,
-  "reportedBy": "Sarawak Energy fault report"
+  "reportedBy": "GuardGrid tamper sensor (AL-P003)",
+  "alertId": "AL-P003"
  },
  {
   "id": "INC-2026-21",
@@ -346,7 +347,8 @@
   "costRM": 63660,
   "lightsCut": 2,
   "lightsDarkBefore": 0,
-  "reportedBy": "Public complaint"
+  "reportedBy": "GuardGrid tamper sensor (AL-P004)",
+  "alertId": "AL-P004"
  },
  {
   "id": "INC-2026-22",
@@ -366,6 +368,7 @@
   "costRM": 86530,
   "lightsCut": 4,
   "lightsDarkBefore": 4,
-  "reportedBy": "Public complaint"
+  "reportedBy": "GuardGrid tamper sensor (AL-P006)",
+  "alertId": "AL-P006"
  }
 ]

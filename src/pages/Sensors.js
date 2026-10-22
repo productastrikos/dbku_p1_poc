@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { PageHeader, StatGrid, StatCard, Card, Button, Badge, DataTable, Icon } from '../components/ui';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { PageHeader, StatGrid, StatCard, Card, Button, Badge, DataTable, Icon, Drawer, Tabs } from '../components/ui';
 import ChartCard from '../components/charts/ChartCard';
+import AlertFeed from '../components/guard/AlertFeed';
+import EntityDrawer from '../components/guard/EntityDrawer';
 import { Title, Ms, Toggle } from '../components/guard/common';
-import { useData } from '../data/DataProvider';
+import { useData, zoneName } from '../data/DataProvider';
 import { useSensors, SPEEDS } from '../data/SensorProvider';
 import { FAULTS, expectedCurrent, noiseLevel } from '../ai/sensorSim';
 import { CAUSES, TAMPER_RULES } from '../ai/anomaly';
@@ -19,10 +22,17 @@ function CauseBadges({ causes }) {
 
 export default function Sensors() {
   const { zones, alerts, assets } = useData();
-  const offline = assets.filter((a) => a.sensor === 'offline').length;
+  const offlineAssets = assets.filter((a) => a.sensor === 'offline');
+  const offline = offlineAssets.length;
   const s = useSensors();
-  const [assetId, setAssetId] = useState('SL-SEM-06');
+  const [params] = useSearchParams();
+  const requested = params.get('asset');
+  const [assetId, setAssetId] = useState(requested || 'SL-SEM-06');
+  const [detail, setDetail] = useState(null);
+  const [panel, setPanel] = useState(null);
+  useEffect(() => { if (requested) setAssetId(requested); }, [requested]);
   const asset = s.online.find((a) => a.id === assetId) || s.online[0];
+  const requestedOffline = requested && requested === assetId && !s.online.some((a) => a.id === requested);
   const hist = (s.history[asset.id] || []).slice(-WINDOW);
   const ev = s.evals[asset.id];
   const fault = s.faults[asset.id];
@@ -41,35 +51,53 @@ export default function Sensors() {
     <div className="space-y-4">
       <PageHeader
         title={<Title en="Asset Sensors" ms="Sensor Aset" />}
-        subtitle="Simulated tamper sensors report current, door contact and tilt every 5 minutes. A rolling z-score flags tampering."
+        subtitle="Tamper sensors (simulated) report current, door contact and tilt every 5 minutes, and at once when a sensor changes state. A rolling z-score flags tampering."
         actions={
           <>
+            <Tabs size="sm" value={s.mode} onChange={(m) => (m === 'live' ? s.goLive() : s.startSimulation())}
+              tabs={[{ value: 'live', label: 'Live' }, { value: 'sim', label: 'Simulation' }]} />
             <span className="tile !py-1.5 text-xs flex items-center gap-2">
               <Icon name="clock" size={14} />
               <span className="font-mono font-semibold text-fg">{formatMyt(s.time, 'short')}</span>
-              <span className="text-fg-faint">sensor time</span>
+              <span className="text-fg-faint">{s.live ? 'last reading' : 'simulated clock'}</span>
               {isNight(s.time) && <Badge tone="info">NIGHT</Badge>}
             </span>
-            <Button variant={s.running ? 'secondary' : 'primary'} icon={s.running ? 'pause' : 'play'} onClick={() => s.setRunning(!s.running)}>{s.running ? 'Pause' : 'Run'}</Button>
-            <select className="select select-sm" value={s.speedMs} onChange={(e) => s.setSpeedMs(+e.target.value)} aria-label="Simulation speed">
-              {SPEEDS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
-            </select>
-            <Button variant="ghost" icon="moon" onClick={() => s.jumpTo(23)}>Jump to 23:00</Button>
+            {!s.live && (
+              <>
+                <Button variant={s.running ? 'secondary' : 'primary'} icon={s.running ? 'pause' : 'play'} onClick={() => s.setRunning(!s.running)}>{s.running ? 'Pause' : 'Run'}</Button>
+                <select className="select select-sm" value={s.speedMs} onChange={(e) => s.setSpeedMs(+e.target.value)} aria-label="Simulation speed">
+                  {SPEEDS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+                </select>
+              </>
+            )}
+            <Button variant="ghost" icon="moon" onClick={() => s.jumpTo(23)} title="Switches to simulation and fast-forwards the sensor clock">Jump to 23:00</Button>
           </>
         }
       />
 
+      {!s.live && (
+        <div className="tile tone-warning text-xs flex items-center justify-between gap-3 flex-wrap">
+          <span><b>Simulation mode.</b> The sensor clock reads {formatMyt(s.time, 'short')} and {s.running ? `advances 5 minutes every ${s.speedMs / 1000} s` : 'is paused'}. Alerts raised now are marked as simulated.</span>
+          <Button size="sm" icon="refresh" onClick={s.goLive}>Return to live</Button>
+        </div>
+      )}
+      {requestedOffline && (
+        <p className="tile tone-neutral text-xs">{requested} has no sensor feed ({assets.find((a) => a.id === requested)?.sensorCause || 'offline'}). Showing {asset.id} instead.</p>
+      )}
+
       <StatGrid>
-        <StatCard label="Sensors online" value={s.online.length} unit={`/ ${assets.length}`} icon="signal"
+        <StatCard label="Sensors online" value={s.online.length} unit={`/ ${assets.length}`} icon="signal" onDetails={() => setDetail('offline')}
           subValues={[{ label: 'Offline (cut circuits)', value: offline }]} status={offline ? 'warning' : 'normal'} />
-        <StatCard label="Active tamper alerts" value={sensorAlerts.length} icon="alert" status={sensorAlerts.some((a) => a.level === 'HIGH') ? 'critical' : 'normal'} />
-        <StatCard label="Injected faults" value={Object.keys(s.faults).length} icon="wrench" status={Object.keys(s.faults).length ? 'warning' : 'normal'} />
-        <StatCard label="Detection rule" value={`|z| > ${TAMPER_RULES.z}`} icon="gauge"
+        <StatCard label="Active tamper alerts" value={sensorAlerts.length} icon="alert" onDetails={() => setDetail('alerts')}
+          status={sensorAlerts.some((a) => a.level === 'HIGH') ? 'critical' : sensorAlerts.length ? 'warning' : 'normal'}
+          subValues={[{ label: 'High', value: sensorAlerts.filter((a) => a.level === 'HIGH').length }]} />
+        <StatCard label="Injected faults" value={Object.keys(s.faults).length} icon="wrench" status={Object.keys(s.faults).length ? 'warning' : 'normal'} onDetails={() => setDetail('faults')} />
+        <StatCard label="Detection rule" value={`|z| > ${TAMPER_RULES.z}`} icon="gauge" onDetails={() => setDetail('rules')}
           subValues={[{ label: 'Window', value: `${TAMPER_RULES.window} readings` }, { label: 'Tilt', value: `> ${TAMPER_RULES.tiltDeg}°` }]} />
       </StatGrid>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-        <Card title={<span>Simulate tampering <Ms>Simulasi gangguan</Ms></span>} subtitle="The next reading carries the fault" bodyClassName="space-y-3">
+        <Card title={<span>Simulate tampering <Ms>Simulasi gangguan</Ms></span>} subtitle={s.live ? 'The sensor reports the change at once' : 'The next simulated reading carries the fault'} bodyClassName="space-y-3">
           <label className="block">
             <span className="label-caps field-label">Asset</span>
             <select className="select" value={asset.id} onChange={(e) => setAssetId(e.target.value)}>
@@ -116,7 +144,7 @@ export default function Sensors() {
             subtitle={`${ASSET_TYPES[asset.type].label} · ${asset.road}. Shaded band: expected load ± ${TAMPER_RULES.z}σ`}
             legend
             height={230}
-            actions={ev && <span className="flex gap-1 flex-wrap justify-end"><CauseBadges causes={ev.causes} /></span>}
+            actions={<span className="flex gap-1 flex-wrap justify-end items-center">{ev && <CauseBadges causes={ev.causes} />}<Button size="sm" variant="ghost" icon="pin" onClick={() => setPanel({ kind: 'asset', id: asset.id })}>Twin</Button></span>}
             data={{
               labels,
               datasets: [
@@ -179,20 +207,66 @@ export default function Sensors() {
           {s.events.length === 0 && <p className="text-xs text-fg-faint text-center py-8">No tamper readings yet. Inject a fault to see the detector work.</p>}
           <ul>
             {s.events.map((e, i) => (
-              <li key={`${e.t}-${e.assetId}-${i}`} className="px-4 py-2.5 border-b text-xs">
-                <div className="flex items-center justify-between gap-2">
-                  <b className="text-fg">{e.assetId}</b>
-                  <span className="text-[10px] text-fg-faint font-mono">{formatMyt(e.t, 'short')}</span>
-                </div>
-                <div className="flex gap-1 flex-wrap mt-1">
-                  {e.causes.map((c) => <Badge key={c} tone={c === 'door_open_daytime' ? 'info' : CAUSES[c]?.level === 'HIGH' ? 'danger' : 'warning'}>{CAUSE_LABEL[c]?.label || c}</Badge>)}
-                  <span className="text-fg-faint">z = {e.z}</span>
-                </div>
+              <li key={`${e.t}-${e.assetId}-${i}`}>
+                <button type="button" onClick={() => setAssetId(e.assetId)} className={`w-full text-left px-4 py-2.5 border-b text-xs transition-colors ${e.assetId === asset.id ? 'bg-primary-soft' : 'hover:bg-surface-raised'}`}>
+                  <span className="flex items-center justify-between gap-2">
+                    <b className="text-fg">{e.assetId}</b>
+                    <span className="text-[10px] text-fg-faint font-mono">{formatMyt(e.t, 'short')}{e.simulated ? ' · sim' : ''}</span>
+                  </span>
+                  <span className="flex gap-1 flex-wrap mt-1">
+                    {e.causes.map((c) => <Badge key={c} tone={c === 'door_open_daytime' ? 'info' : CAUSES[c]?.level === 'HIGH' ? 'danger' : 'warning'}>{CAUSE_LABEL[c]?.label || c}</Badge>)}
+                    <span className="text-fg-faint">z = {e.z}</span>
+                  </span>
+                </button>
               </li>
             ))}
           </ul>
         </Card>
       </div>
+
+      {detail === 'offline' && (
+        <Drawer width={560} eyebrow="Sensors" title={`${offline} sensor${offline === 1 ? '' : 's'} offline`} subtitle="Assets on circuits cut by recent thefts send no readings until repaired" onClose={() => setDetail(null)} bodyClassName="overflow-y-auto">
+          <DataTable rows={offlineAssets} onRowClick={(a) => { setDetail(null); setPanel({ kind: 'asset', id: a.id }); }} emptyText="All sensors are online."
+            columns={[
+              { key: 'id', header: 'Asset', strong: true, render: (a) => <>{a.id}<span className="block text-[10px] text-fg-faint font-normal">{ASSET_TYPES[a.type].label} · {zoneName(a.zone)}</span></> },
+              { key: 'cause', header: 'Why', render: (a) => <span className="text-[11px]">{a.sensorCause}</span> },
+              { key: 'since', header: 'Since', className: 'whitespace-nowrap', render: (a) => (a.sensorSince ? formatMyt(a.sensorSince, 'short') : '—') },
+            ]} />
+        </Drawer>
+      )}
+      {detail === 'alerts' && (
+        <Drawer width={520} eyebrow="Tamper sensors" title={`${sensorAlerts.length} active tamper alert${sensorAlerts.length === 1 ? '' : 's'}`} subtitle="Open, acknowledged or patrol dispatched" onClose={() => setDetail(null)} bodyClassName="overflow-y-auto">
+          <AlertFeed alerts={sensorAlerts} onSelect={(a) => { setDetail(null); setPanel({ kind: 'alert', id: a.id }); }} emptyText="No active tamper alerts. Inject a fault to see the detector work." />
+        </Drawer>
+      )}
+      {detail === 'faults' && (
+        <Drawer width={460} eyebrow="Simulation" title="Injected faults" subtitle="Faults stay in place until you restore the asset" onClose={() => setDetail(null)}>
+          {Object.keys(s.faults).length === 0 && <p className="text-xs text-fg-faint">No faults injected. Pick an asset and use the buttons under “Simulate tampering”.</p>}
+          <ul className="space-y-2">
+            {Object.entries(s.faults).map(([id, f]) => (
+              <li key={id} className="tile flex items-center justify-between gap-2 text-xs">
+                <span><b className="text-fg">{id}</b> · {FAULTS[f.type].label}{f.random ? ' (random)' : ''}<span className="block text-[10px] text-fg-faint">since {formatMyt(f.since, 'short')}</span></span>
+                <span className="flex gap-1"><Button size="sm" variant="ghost" onClick={() => { setAssetId(id); setDetail(null); }}>Chart</Button><Button size="sm" variant="secondary" onClick={() => s.clearFault(id)}>Restore</Button></span>
+              </li>
+            ))}
+          </ul>
+        </Drawer>
+      )}
+      {detail === 'rules' && (
+        <Drawer width={480} eyebrow="Detection rules" title="How tampering is detected" onClose={() => setDetail(null)}>
+          <div className="space-y-3 text-xs text-fg-muted leading-relaxed">
+            <p>Each reading is compared with the asset's daily load profile. The difference is scored against the last {TAMPER_RULES.window} readings taken in the same state (lamp on or off): <span className="kbd">z = (residual − mean) / max(sd, sensor noise)</span>.</p>
+            <ul className="space-y-2">
+              <li className="tile"><b className="text-fg">Cable cut</b> (HIGH): current below {TAMPER_RULES.cutFraction * 100}% of the expected load while it should be flowing.</li>
+              <li className="tile"><b className="text-fg">Panel opened</b> (HIGH): door contact open between 22:00 and 06:00. In daytime it is logged but not alerted (maintenance).</li>
+              <li className="tile"><b className="text-fg">Pole struck</b> (HIGH): tilt above {TAMPER_RULES.tiltDeg}°.</li>
+              <li className="tile"><b className="text-fg">Abnormal current draw</b> (MEDIUM): |z| above {TAMPER_RULES.z} without a cut, e.g. illegal tapping.</li>
+            </ul>
+            <p>One alert is kept per asset and cause while it is active, so a cut cable does not raise a new alert every 5 minutes.</p>
+          </div>
+        </Drawer>
+      )}
+      <EntityDrawer panel={panel} onChange={setPanel} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { PageHeader, Card, Button, Badge, Icon, DataTable } from '../components/ui';
 import { Title, Ms, ThreatGauge, LevelBadge, Toggle } from '../components/guard/common';
 import { useData } from '../data/DataProvider';
@@ -8,9 +8,11 @@ import { scoreThreat, videoMetrics, nearZone, THREAT_RULES, LEVELS } from '../ai
 import { estimateLoss } from '../ai/linking';
 import { isNight, toMytInput, fromMytInput, formatMyt } from '../ai/time';
 import { ASSET_TYPES } from '../data/reference';
+import { SAMPLE_FOOTAGE, FOOTAGE_SOURCE, footageUrl, recordedLabel, replayTime, durationLabel } from '../data/footage';
 import { resolveColor } from '../components/charts/chartTheme';
 
 const DEFAULT_ZONE = { x: 0.4, y: 0.05, w: 0.2, h: 0.9 };
+const DEFAULT_MIN_SCORE = 0.35;
 const pct = (v) => `${(v * 100).toFixed(2)}%`;
 
 const loadImage = (url) => new Promise((resolve, reject) => {
@@ -71,13 +73,17 @@ export default function CctvAnalyzer() {
   const [zone, setZone] = useState(DEFAULT_ZONE);
   const [draft, setDraft] = useState(null);
   const [margin, setMargin] = useState(0.08);
-  const [minScore, setMinScore] = useState(0.35);
-  const [assetId, setAssetId] = useState('SL-SEM-06');
+  const [minScore, setMinScore] = useState(DEFAULT_MIN_SCORE);
+  const [params] = useSearchParams();
+  const [assetId, setAssetId] = useState(params.get('asset') || 'SL-SEM-06');
+  useEffect(() => { if (params.get('asset')) setAssetId(params.get('asset')); }, [params]);
   const [captureTime, setCaptureTime] = useState(toMytInput(Date.now()));
   const [inferNight, setInferNight] = useState(true);
   const [dwellManual, setDwellManual] = useState(0);
   const [alertId, setAlertId] = useState(null);
   const [over, setOver] = useState(false);
+  const [sample, setSample] = useState(null);     // the bundled sample clip on stage, if any
+  const [fetching, setFetching] = useState(null); // id of the sample being downloaded
   const fileInput = useRef(null);
   const stageRef = useRef(null);
 
@@ -89,28 +95,32 @@ export default function CctvAnalyzer() {
   const camera = cameras.find((c) => c.id === asset?.cameraId);
 
   /* ─── Analysis ──────────────────────────────────────────── */
-  const runImage = useCallback(async (canvas) => {
+  const runImage = useCallback(async (canvas, score = minScore) => {
     setBusy('Detecting people and vehicles…');
-    const r = await analyseFrame(canvas, { minScore });
+    const r = await analyseFrame(canvas, { minScore: score });
     setAnalysis({ kind: 'image', detections: r.detections, luminance: r.luminance, lowLight: r.lowLight, enhancedUrl: r.enhanced?.toDataURL('image/jpeg', 0.9) || null, enhanced: r.enhanced });
     setBusy(null);
   }, [minScore]);
 
-  const runVideo = useCallback(async (video) => {
+  const runVideo = useCallback(async (video, score = minScore) => {
     setBusy('Sampling video frames… 0%');
-    const r = await analyseVideo(video, { minScore, onProgress: (p) => setBusy(`Sampling video frames… ${Math.round(p * 100)}%`) });
+    const r = await analyseVideo(video, { minScore: score, onProgress: (p) => setBusy(`Sampling video frames… ${Math.round(p * 100)}%`) });
     setAnalysis({ kind: 'video', ...r });
     setBusy(null);
     return r;
   }, [minScore]);
 
-  const onFile = async (file) => {
+  // `preset` is a sample from SAMPLE_FOOTAGE: it brings its own asset zone and confidence.
+  const onFile = async (file, preset = null) => {
     if (!file) return;
+    const startZone = preset?.zone || DEFAULT_ZONE;
+    const score = preset?.minScore ?? minScore;
     setError(null);
     setAnalysis(null);
     setAlertId(null);
-    setZone(DEFAULT_ZONE);
+    setZone(startZone);
     setDwellManual(0);
+    setSample(preset);
     if (media?.url) URL.revokeObjectURL(media.url);
     const url = URL.createObjectURL(file);
     try {
@@ -118,18 +128,44 @@ export default function CctvAnalyzer() {
       if (file.type.startsWith('video/')) {
         const video = await openVideo(url);
         setMedia({ kind: 'video', name: file.name, url, video });
-        const r = await runVideo(video);
-        const m = videoMetrics(r.frames, DEFAULT_ZONE, margin, r.step);
+        const r = await runVideo(video, score);
+        const m = videoMetrics(r.frames, startZone, margin, r.step);
         setViewIndex(m.keyIndex);
       } else {
         const img = await loadImage(url);
         const canvas = toCanvas(img, img.naturalWidth, img.naturalHeight);
         setMedia({ kind: 'image', name: file.name, url, canvas });
-        await runImage(canvas);
+        await runImage(canvas, score);
       }
     } catch (e) {
       setBusy(null);
       setError(e.message || 'Analysis failed');
+    }
+  };
+
+  // Loads a bundled sample on the asset it is paired with (pole → streetlight,
+  // wall panel → distribution box). An asset picked through the URL is kept
+  // when it is the same kind. The clip replays at the time of day it was recorded.
+  const loadSample = async (s) => {
+    setFetching(s.id);
+    setError(null);
+    try {
+      const res = await fetch(footageUrl(s.file));
+      if (!res.ok) throw new Error(`Could not load ${s.file} (HTTP ${res.status})`);
+      const blob = await res.blob();
+      const pinned = assets.find((a) => a.id === params.get('asset'));
+      const suggested = assets.find((a) => a.id === s.assetId);
+      setAssetId(pinned && pinned.type === suggested?.type ? pinned.id : s.assetId);
+      // The recording time is known, so a dark frame is not taken as night by itself.
+      setCaptureTime(toMytInput(replayTime(s)));
+      setInferNight(false);
+      setMinScore(s.minScore ?? DEFAULT_MIN_SCORE);
+      setFetching(null);
+      await onFile(new File([blob], s.file, { type: blob.type || (s.kind === 'video' ? 'video/mp4' : 'image/jpeg') }), { ...s, minScore: s.minScore ?? DEFAULT_MIN_SCORE });
+    } catch (e) {
+      setError(e.message || 'Could not load the sample');
+    } finally {
+      setFetching(null);
     }
   };
 
@@ -166,29 +202,35 @@ export default function CctvAnalyzer() {
   const nearSet = new Set(nearZone(detections, zone, margin));
 
   /* ─── Alerting: a HIGH score raises (then keeps updating) one alert ── */
+  // Sample clips are never attributed to a DBKU camera.
+  const footageLabel = sample ? `Sample footage, MEVA ${sample.camera}` : camera?.id || 'Uploaded footage';
   const buildSnapshot = useCallback(async () => {
-    const caption = `GuardGrid · ${camera?.id || 'Uploaded footage'} · ${assetId} · ${formatMyt(captureMs, 'short')} MYT · Score ${threat.score} ${threat.level}${lowLight ? ' · low-light enhanced' : ''}`;
+    const caption = `GuardGrid · ${footageLabel} · ${assetId} · ${formatMyt(captureMs, 'short')} MYT · Score ${threat.score} ${threat.level}${lowLight ? ' · low-light enhanced' : ''}`;
     if (analysis.kind === 'video') {
       const f = analysis.frames[metrics.keyIndex];
       const c = await frameAt(media.video, f.t);
       return composeSnapshot(c, { detections: f.detections, zone, margin, caption });
     }
     return composeSnapshot(lowLight && analysis.enhanced ? analysis.enhanced : media.canvas, { detections: analysis.detections, zone, margin, caption });
-  }, [analysis, media, metrics, zone, margin, camera, assetId, captureMs, threat, lowLight]);
+  }, [analysis, media, metrics, zone, margin, footageLabel, assetId, captureMs, threat, lowLight]);
 
   const alertPayload = useCallback(async () => ({
     source: 'cctv', level: threat.level, type: 'intrusion', score: threat.score,
     title: `Intrusion near asset · ${assetId}`,
-    message: `${threat.near.map((d) => d.class).join(', ') || 'Object'} near ${asset.name} (${ASSET_TYPES[asset.type].label.toLowerCase()})${night ? ' at night' : ''}${dwell > THREAT_RULES.dwellMinutes ? `, ${dwell.toFixed(1)} min dwell` : ''}`,
+    message: `${threat.near.map((d) => d.class).join(', ') || 'Object'} near ${asset.name} (${ASSET_TYPES[asset.type].label.toLowerCase()})${night ? ' at night' : ''}${dwell > THREAT_RULES.dwellMinutes ? `, ${dwell.toFixed(1)} min dwell` : ''}${sample ? ' · sample footage' : ''}`,
     assetId, zone: asset.zone, lat: asset.lat, lng: asset.lng,
     estimatedLossRM: estimateLoss({ asset, assets, type: 'intrusion' }).totalRM,
     evidence: {
-      snapshot: await buildSnapshot(), cameraId: camera?.id || null, capturedAt: new Date(captureMs).toISOString(), fileName: media.name,
+      snapshot: await buildSnapshot(), cameraId: sample ? null : camera?.id || null, capturedAt: new Date(captureMs).toISOString(), fileName: media.name,
+      sample: sample ? {
+        id: sample.id, title: sample.title, camera: `MEVA ${sample.camera}`, site: sample.site,
+        recorded: recordedLabel(sample), license: FOOTAGE_SOURCE.license, credit: FOOTAGE_SOURCE.credit,
+      } : null,
       detections: scoringDetections.map((d) => ({ class: d.class, score: d.score, box: d.box, near: nearZone([d], zone, margin).length > 0 })),
       factors: threat.factors, zone, margin, lowLight, luminance: analysis.kind === 'image' ? analysis.luminance : null,
       nightBasis: night ? (nightByClock ? 'capture time' : 'low light') : null,
     },
-  }), [threat, assetId, asset, assets, night, nightByClock, dwell, buildSnapshot, camera, captureMs, media, scoringDetections, zone, margin, lowLight, analysis]);
+  }), [threat, assetId, asset, assets, night, nightByClock, dwell, buildSnapshot, camera, sample, captureMs, media, scoringDetections, zone, margin, lowLight, analysis]);
 
   const scoreKey = threat ? `${threat.score}|${assetId}|${JSON.stringify(zone)}|${margin}|${scoringDetections.length}` : '';
   useEffect(() => {
@@ -226,7 +268,7 @@ export default function CctvAnalyzer() {
     <div className="space-y-4">
       <PageHeader
         title={<Title en="CCTV Analyzer" ms="Analisis CCTV" />}
-        subtitle="Upload CCTV stills or video. COCO-SSD runs in your browser, so footage never leaves this device."
+        subtitle="Upload CCTV stills or video, or pick a sample clip. COCO-SSD runs in your browser, so footage never leaves this device."
         actions={
           <>
             {model.state === 'loading' && <Badge tone="info" dot>Loading COCO-SSD model…</Badge>}
@@ -239,7 +281,7 @@ export default function CctvAnalyzer() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <div className="xl:col-span-2 space-y-4">
           <Card
-            title={media ? media.name : 'Footage'}
+            title={media ? (sample ? `${sample.title} · ${media.name}` : media.name) : 'Footage'}
             subtitle={analysis ? 'Drag on the image to redraw the asset zone (the lamp post, box or switchboard).' : 'Image (JPG/PNG) or video (MP4/WebM)'}
             actions={media && (
               <>
@@ -261,11 +303,19 @@ export default function CctvAnalyzer() {
               >
                 <Icon name="camera" size={28} />
                 <p className="text-sm font-semibold">Drop CCTV footage here or click to upload</p>
-                <p className="text-xs">Try a night-time photo of a person beside a lamp post. <Ms>Muat naik rakaman CCTV</Ms></p>
+                <p className="text-xs">Or pick a sample clip below. <Ms>Muat naik rakaman CCTV</Ms></p>
               </div>
             )}
+            {!media && error && <p className="tile tone-danger text-xs mt-3">{error}</p>}
             {media && (
               <div className="space-y-3">
+                {sample && (
+                  <p className="tile text-[11px] text-fg-muted">
+                    <b className="text-fg">Sample footage, not a DBKU camera.</b> MEVA camera {sample.camera}, {sample.site}, {FOOTAGE_SOURCE.site} ·
+                    recorded {recordedLabel(sample)} · {sample.cut}. Capture time is set to {sample.replayAt} MYT, the same time of day, so the night rule
+                    applies as it would to a live camera.{sample.minScore !== DEFAULT_MIN_SCORE ? ` Minimum confidence ${Math.round(sample.minScore * 100)}% for this camera view.` : ''} {FOOTAGE_SOURCE.license}, Kitware Inc. and IARPA.
+                  </p>
+                )}
                 <div className="stage" ref={stageRef}>
                   {stageSrc ? <img src={stageSrc} alt="Analysed frame" draggable={false} /> : <div style={{ aspectRatio: '16/9' }} />}
                   {analysis && (
@@ -347,6 +397,41 @@ export default function CctvAnalyzer() {
               />
             </Card>
           )}
+
+          <Card
+            title={<span>Sample CCTV footage <Ms>Rakaman CCTV contoh</Ms></span>}
+            subtitle="Real fixed-camera surveillance video from the open MEVA dataset. Pick one to run it through the detector with its asset zone already marked."
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {SAMPLE_FOOTAGE.map((s) => {
+                const active = sample?.id === s.id;
+                return (
+                  <button key={s.id} type="button" disabled={Boolean(fetching || busy)} onClick={() => loadSample(s)} aria-pressed={active}
+                    className={`flex flex-col text-left rounded-lg border overflow-hidden transition-colors disabled:opacity-60 ${active ? 'border-primary bg-primary-soft' : 'hover:border-line-strong'}`}>
+                    <span className="relative block">
+                      <img src={footageUrl(s.poster)} alt="" loading="lazy" className="w-full aspect-video object-cover" />
+                      <span className="absolute top-1.5 left-1.5 flex gap-1 text-[10px] font-semibold text-white">
+                        <span className="rounded bg-black/70 px-1.5 py-0.5">{s.kind === 'video' ? `Video ${durationLabel(s.durationSec)}` : 'Still'}</span>
+                        <span className="rounded bg-black/70 px-1.5 py-0.5">{s.light}</span>
+                      </span>
+                      {fetching === s.id && <span className="absolute inset-0 flex items-center justify-center bg-black/60 text-white text-xs font-semibold">Loading…</span>}
+                    </span>
+                    <span className="block p-2.5 space-y-1">
+                      <span className="block text-xs font-semibold text-fg leading-snug">{s.title}</span>
+                      <span className="block text-[10px] text-fg-faint">MEVA {s.camera} · {recordedLabel(s)} · zone on {s.assetId}{s.minScore ? ` · min. confidence ${Math.round(s.minScore * 100)}%` : ''}</span>
+                      <span className="block text-[11px] text-fg-muted">{s.scene}</span>
+                      <span className="block text-[10px] text-fg-faint"><b className="text-fg-muted">Expected:</b> {s.expect}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-[10px] text-fg-faint mt-3">
+              Footage: {FOOTAGE_SOURCE.credit}, licensed <a className="link-btn" href={FOOTAGE_SOURCE.licenseUrl} target="_blank" rel="noreferrer">{FOOTAGE_SOURCE.license}</a>
+              {' '}(<a className="link-btn" href={FOOTAGE_SOURCE.url} target="_blank" rel="noreferrer">mevadata.org</a>). Recorded with consenting actors at the {FOOTAGE_SOURCE.site}, March 2018.
+              {' '}{FOOTAGE_SOURCE.changes} None of it shows DBKU assets.
+            </p>
+          </Card>
         </div>
 
         <div className="space-y-4">
@@ -414,13 +499,33 @@ export default function CctvAnalyzer() {
                 {alertId ? (
                   <div className={`tile tone-${LEVELS[threat.level].tone} text-xs`}>
                     <p className="font-bold">{threat.level === 'HIGH' ? 'HIGH alert raised' : 'Event logged'}: {alertId}</p>
-                    <p className="text-fg-muted">Snapshot, timestamp, asset ID and bounding boxes saved. <Link className="link-btn" to="/">VIEW ON MAP</Link></p>
+                    <p className="text-fg-muted">Snapshot, timestamp, asset ID and bounding boxes saved. <Link className="link-btn" to={`/?alert=${alertId}`}>OPEN ALERT</Link> · <Link className="link-btn" to={`/twin?asset=${assetId}`}>ASSET TWIN</Link></p>
                   </div>
                 ) : (
                   <Button variant="secondary" block icon="plus" onClick={logEvent} disabled={Boolean(busy)}>Log as {threat.level} event</Button>
                 )}
               </div>
             )}
+          </Card>
+
+          <Card padded={false} title={<span>Existing CCTV units <Ms>Unit CCTV sedia ada</Ms></span>} subtitle="Solar 2MP cameras with no analytics; GuardGrid scores their footage">
+            <ul>
+              {cameras.map((c) => {
+                const active = c.covers.includes(assetId);
+                return (
+                  <li key={c.id}>
+                    <button type="button" onClick={() => setAssetId(c.mountedOn)}
+                      className={`w-full text-left px-4 py-2.5 border-b text-xs transition-colors ${active ? 'bg-primary-soft' : 'hover:bg-surface-raised'}`}>
+                      <span className="flex items-center justify-between gap-2">
+                        <b className="text-fg">{c.id}</b>
+                        <span className="text-[10px] text-fg-faint">{zones.find((z) => z.id === c.zone)?.short}</span>
+                      </span>
+                      <span className="block text-[10px] text-fg-faint mt-0.5">On {c.mountedOn} · covers {c.covers.join(', ')}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </Card>
         </div>
       </div>

@@ -101,13 +101,26 @@ export function scoreThreat({ detections, zone, margin, night, dwellMinutes = 0,
   const near = nearZone(detections, zone, margin);
   const nearVehicles = near.filter((d) => isVehicle(d.class));
   const parked = vehicleParked ?? nearVehicles.length > 0;
-  const summary = (list) => list.map((d) => d.class).join(', ');
+  return {
+    ...scoreObservation({
+      near: near.map((d) => d.class), night, dwellMinutes, vehicleParked: parked,
+      vehicleDetail: nearVehicles.length ? nearVehicles.map((d) => d.class).join(', ') : 'Stationary vehicle in video',
+    }),
+    near,
+  };
+}
 
+/**
+ * Factors and score from what was observed, without detections: used for
+ * operator-logged pilot alerts, and by scoreThreat for live footage.
+ *   near           classes seen near the asset, e.g. ['person', 'car']
+ */
+export function scoreObservation({ near = [], night, dwellMinutes = 0, vehicleParked = false, vehicleDetail }) {
   const factors = [
     {
       key: 'near', label: 'Object near asset zone', labelMs: 'Objek berhampiran aset', points: THREAT_RULES.nearAsset,
       met: near.length > 0,
-      detail: near.length ? `${near.length} detected: ${summary(near)}` : 'No person or vehicle near the asset zone',
+      detail: near.length ? `${near.length} detected: ${near.join(', ')}` : 'No person or vehicle near the asset zone',
     },
     {
       key: 'night', label: 'Night-time (22:00–06:00)', labelMs: 'Waktu malam', points: THREAT_RULES.night,
@@ -121,11 +134,10 @@ export function scoreThreat({ detections, zone, margin, night, dwellMinutes = 0,
     },
     {
       key: 'vehicle', label: 'Vehicle parked beside asset', labelMs: 'Kenderaan diletak di sisi aset', points: THREAT_RULES.vehicleParked,
-      met: Boolean(parked),
-      detail: parked ? (nearVehicles.length ? summary(nearVehicles) : 'Stationary vehicle in video') : 'No vehicle beside the asset',
+      met: Boolean(vehicleParked),
+      detail: vehicleParked ? (vehicleDetail || near.filter(isVehicle).join(', ') || 'Stationary vehicle') : 'No vehicle beside the asset',
     },
   ];
-
   const score = Math.min(100, factors.reduce((s, f) => s + (f.met ? f.points : 0), 0));
-  return { score, level: levelFor(score), factors, near };
+  return { score, level: levelFor(score), factors };
 }

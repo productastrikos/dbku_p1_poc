@@ -207,22 +207,91 @@ for (const z of ZONES) {
   z.radiusM = Math.round(Math.max(...za.map((a) => haversine(c, [a.lat, a.lng]))) + 60);
 }
 
+// Zone outline: convex hull of the zone's assets and cable routes, pushed out by 45 m.
+function hull(points) {
+  const p = points.map(([lat, lng]) => [lng, lat]).sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lower = []; const upper = [];
+  for (const q of p) { while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], q) <= 0) lower.pop(); lower.push(q); }
+  for (const q of [...p].reverse()) { while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], q) <= 0) upper.pop(); upper.push(q); }
+  return [...lower.slice(0, -1), ...upper.slice(0, -1)].map(([lng, lat]) => [lat, lng]);
+}
+for (const z of ZONES) {
+  const k = Math.cos(toRad(z.center[0]));
+  // A 45 m ring around every hull corner, hulled again, gives rounded corners.
+  const ring = ([lat, lng]) => Array.from({ length: 12 }, (_, i) => {
+    const t = (i / 12) * 2 * Math.PI;
+    return [lat + (45 * Math.cos(t)) / 111320, lng + (45 * Math.sin(t)) / (111320 * k)];
+  });
+  const core = hull(assets.filter((a) => a.zone === z.id).flatMap((a) => a.path || [[a.lat, a.lng]]));
+  z.boundary = hull(core.flatMap(ring)).map(([lat, lng]) => [round(lat), round(lng)]);
+}
+
 /* ─── CCTV: existing solar units (low-res, no analytics) ──── */
+// Each unit is fixed to the asset it is mounted on and has one or two fixed
+// 2MP heads (dual-lens pole units), aimed at the assets it was installed to
+// watch. What it covers is then worked out from geometry: within CAM.rangeM
+// and inside a head's horizontal field of view.
+const CAM = { fovDeg: 90, rangeM: 150, mountHeightM: 6 };
 const CAMERA_PLAN = {
-  SEM: [['SL-SEM-04', ['SL-SEM-02', 'SL-SEM-03', 'SL-SEM-04', 'SL-SEM-05', 'DB-SEM-01', 'CB-SEM-01']], ['MSB-SEM-01', ['MSB-SEM-01', 'DB-SEM-04', 'SL-SEM-06', 'SL-SEM-07', 'SL-SEM-10']]],
-  KUL: [['SL-KUL-02', ['SL-KUL-01', 'SL-KUL-02', 'SL-KUL-03', 'DB-KUL-01', 'CB-KUL-01']], ['MSB-KUL-01', ['MSB-KUL-01', 'SL-KUL-10', 'SL-KUL-11', 'DB-KUL-03']]],
-  BIN: [['SL-BIN-02', ['SL-BIN-01', 'SL-BIN-02', 'SL-BIN-03', 'SL-BIN-04', 'DB-BIN-01', 'CB-BIN-02']], ['MSB-BIN-01', ['MSB-BIN-01', 'SL-BIN-07', 'DB-BIN-03', 'CB-BIN-01']]],
+  SEM: [['SL-SEM-04', ['SL-SEM-03', 'SL-SEM-05', 'DB-SEM-01', 'CB-SEM-01']], ['MSB-SEM-01', ['DB-SEM-04', 'SL-SEM-05', 'CB-SEM-02']]],
+  KUL: [['SL-KUL-02', ['SL-KUL-01', 'SL-KUL-03', 'DB-KUL-01', 'CB-KUL-01']], ['MSB-KUL-01', ['SL-KUL-04', 'SL-KUL-10', 'SL-KUL-11', 'DB-KUL-01']]],
+  BIN: [['SL-BIN-02', ['SL-BIN-01', 'SL-BIN-03', 'SL-BIN-04', 'DB-BIN-01', 'CB-BIN-02']], ['MSB-BIN-01', ['SL-BIN-06', 'SL-BIN-07', 'SL-BIN-08']]],
 };
+function bearing([lat1, lng1], [lat2, lng2]) {
+  const y = Math.sin(toRad(lng2 - lng1)) * Math.cos(toRad(lat2));
+  const x = Math.cos(toRad(lat1)) * Math.sin(toRad(lat2)) - Math.sin(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.cos(toRad(lng2 - lng1));
+  return ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360;
+}
+const angleGap = (a, b) => Math.abs(((a - b + 540) % 360) - 180);
+// Nearest point of an asset (a cable's nearest route point) as { d metres, b bearing }.
+const sightOf = (o, a) => (a.path || [[a.lat, a.lng]]).map((p) => ({ d: haversine(o, p), b: bearing(o, p) })).sort((x, y) => x.d - y.d);
+const inView = (o, a, heads) => sightOf(o, a).some((s) => s.d <= CAM.rangeM && heads.some((h) => angleGap(s.b, h) <= CAM.fovDeg / 2));
+// One head if a single field of view takes in every target, else the best pair.
+function aimHeads(bearings) {
+  const fits = (heads) => bearings.filter((b) => heads.some((h) => angleGap(b, h) <= CAM.fovDeg / 2)).length;
+  const spread = (heads) => bearings.reduce((s, b) => s + Math.min(...heads.map((h) => angleGap(b, h))), 0);
+  let best = null;
+  for (let h = 0; h < 360; h += 2) {
+    const c = { heads: [h], n: fits([h]), s: spread([h]) };
+    if (!best || c.n > best.n || (c.n === best.n && c.s < best.s)) best = c;
+  }
+  if (best.n === bearings.length) return best.heads;
+  for (let h1 = 0; h1 < 360; h1 += 2) {
+    for (let h2 = h1 + CAM.fovDeg; h2 < 360; h2 += 2) {
+      const c = { heads: [h1, h2], n: fits([h1, h2]), s: spread([h1, h2]) };
+      if (c.n > best.n || (c.n === best.n && c.s < best.s)) best = c;
+    }
+  }
+  return best.heads;
+}
 const cameras = [];
 for (const z of ZONES) {
-  CAMERA_PLAN[z.id].forEach(([mountId, covers], i) => {
+  CAMERA_PLAN[z.id].forEach(([mountId, targets], i) => {
     const m = assets.find((a) => a.id === mountId);
-    const id = `CAM-${z.id}-${i + 1}`;
-    cameras.push({ id, zone: z.id, lat: round(m.lat + 0.00008), lng: round(m.lng + 0.00008), mountedOn: mountId, covers, model: 'Solar CCTV 2MP (existing, no analytics)' });
-    covers.forEach((aid) => { const a = assets.find((x) => x.id === aid); if (a && !a.cameraId) a.cameraId = id; });
+    const o = [m.lat, m.lng];
+    const tb = targets.map((id) => {
+      const s = sightOf(o, assets.find((a) => a.id === id))[0];
+      if (s.d > CAM.rangeM) throw new Error(`${id} is ${Math.round(s.d)} m from ${mountId}, beyond camera range`);
+      return s.b;
+    });
+    const heads = aimHeads(tb);
+    const covers = [m, ...assets.filter((a) => a.zone === z.id && a.id !== m.id && inView(o, a, heads))
+      .sort((a, b) => sightOf(o, a)[0].d - sightOf(o, b)[0].d)].map((a) => a.id);
+    targets.forEach((id) => { if (!covers.includes(id)) throw new Error(`${mountId} camera does not see its target ${id}`); });
+    cameras.push({
+      id: `CAM-${z.id}-${i + 1}`, zone: z.id, lat: m.lat, lng: m.lng, mountedOn: mountId,
+      heads: heads.map((h) => ({ heading: h, fovDeg: CAM.fovDeg, rangeM: CAM.rangeM })),
+      mountHeightM: CAM.mountHeightM, covers,
+      model: `Solar CCTV 2MP, ${heads.length === 2 ? 'dual-lens' : 'single-lens'} (existing, no analytics)`,
+    });
   });
 }
-assets.forEach((a) => { if (!a.cameraId) a.cameraId = null; });
+// An asset seen by two units is assigned to the nearer one.
+for (const a of assets) {
+  const seen = cameras.filter((c) => c.covers.includes(a.id)).sort((x, y) => sightOf([x.lat, x.lng], a)[0].d - sightOf([y.lat, y.lng], a)[0].d);
+  a.cameraId = seen[0]?.id || null;
+}
 
 /* ─── Scrap dealers (fictional; real Kuching localities) ──── */
 const dealers = [
@@ -256,12 +325,12 @@ const INCIDENTS = [
   ['2023-12-27', '03:15', 'SEM', 'switchboard_vandalism', 'Main switchboard stripped at Bulatan Semariang', 'Enclosure forced; incoming copper cable and busbars removed. Whole roundabout dark.', ['MSB-SEM-01'], 168900, 13, 3],
   ['2021-12-18', '03:10', 'KUL', 'cable_theft', 'About 300 m stolen along Jalan Kulas', 'Feeder cable cut at both ends and dragged out through the pits.', ['CB-KUL-02'], 96500, 6, 2],
   ['2022-01-27', '01:55', 'BIN', 'streetlight_wiring_theft', 'Bridge deck lights stripped', 'Wiring stripped from 6 poles on Jambatan Datuk Amar Juma\'ani.', ['SL-BIN-01', 'SL-BIN-02', 'SL-BIN-03'], 33700, 6, 1],
-  ['2022-04-16', '02:30', 'SEM', 'cable_theft', 'Roundabout ring circuit cable stolen', 'About 410 m of 4-core cable taken from the roundabout ring circuit.', ['DB-SEM-04', 'SL-SEM-06'], 112400, 9, 4],
+  ['2022-04-16', '02:30', 'SEM', 'cable_theft', 'Roundabout ring circuit cable stolen', 'About 410 m of 4-core cable taken from the roundabout ring circuit.', ['DB-SEM-04', 'SL-SEM-05'], 112400, 9, 4],
   ['2022-10-07', '23:55', 'KUL', 'streetlight_wiring_theft', 'Interchange lights stripped', 'Hatches forced on 4 poles at the Satok–Kulas interchange.', ['SL-KUL-10', 'SL-KUL-11'], 27600, 4, 2],
   ['2022-02-19', '03:30', 'BIN', 'switchboard_vandalism', 'Main switchboard broken into near the bridge', 'Busbars and incoming cable removed from the Jalan Kulas east switchboard.', ['MSB-BIN-01'], 118600, 10, 2],
   ['2022-05-06', '01:05', 'SEM', 'distribution_box_break_in', 'Feeder pillar forced, JTARY eastbound', 'Pillar forced open; outgoing cables cut.', ['DB-SEM-02'], 46200, 6, 3],
   ['2023-08-26', '02:40', 'KUL', 'switchboard_vandalism', 'Interchange switchboard stripped', 'Main switchboard at the Satok–Kulas interchange stripped of copper.', ['MSB-KUL-01'], 161200, 11, 3],
-  ['2023-12-02', '02:50', 'SEM', 'cable_theft', 'Feeder removed between poles 03–09', 'About 350 m feeder cable removed between streetlights 03 and 09.', ['CB-SEM-01', 'SL-SEM-03'], 98700, 7, 5],
+  ['2023-12-02', '02:50', 'SEM', 'cable_theft', 'Feeder removed between poles 01–04', 'About 350 m of feeder cable removed between streetlights 01 and 04.', ['CB-SEM-01', 'SL-SEM-03'], 98700, 7, 5],
   ['2023-09-16', '01:20', 'KUL', 'cable_theft', 'Bridge approach cable stolen again', 'About 260 m removed from the rebuilt cable tray.', ['CB-KUL-01'], 88300, 5, 2],
   ['2025-01-18', '03:35', 'SEM', 'switchboard_vandalism', 'Second break-in at Semariang switchboard', 'Replacement copper busbars taken.', ['MSB-SEM-01'], 154300, 13, 4],
   ['2024-11-24', '02:05', 'BIN', 'cable_theft', 'Bridge deck cable stolen', 'About 280 m of bridge deck lighting cable removed.', ['CB-BIN-02'], 91200, 4, 2],
@@ -294,6 +363,10 @@ const incidents = INCIDENTS.map((r, i) => {
 incidents[5].costRM += TARGET_TOTAL - incidents.reduce((s, x) => s + x.costRM, 0);
 incidents.sort((a, b) => a.occurredAt.localeCompare(b.occurredAt));
 incidents.forEach((x, i) => { x.id = `INC-${x.occurredAt.slice(0, 4)}-${String(i + 1).padStart(2, '0')}`; });
+// The three pilot-period incidents were raised by GuardGrid itself (see the pilot alerts below).
+const PILOT_SOURCE = { 'Hatches forced on 4 poles, Jalan Semariang': 'AL-P003', 'Feeder pillar broken into, Jalan Kulas': 'AL-P004', 'Cable cut at roundabout approach': 'AL-P006' };
+incidents.forEach((x) => { if (PILOT_SOURCE[x.title]) { x.reportedBy = `GuardGrid tamper sensor (${PILOT_SOURCE[x.title]})`; x.alertId = PILOT_SOURCE[x.title]; } });
+const incByTitle = (title) => incidents.find((x) => x.title === title);
 
 /* ─── Streetlight outage episodes (lighting-status history) ── */
 const outages = [];
@@ -323,15 +396,118 @@ outages.push({ zone: 'BIN', start: daysBefore(9, '20:00'), end: null, lightsOut:
 outages.forEach((o) => { if (o.cause.includes('repair after') && o.end === null && ms(o.start) < asOfMs - 20 * DAY) o.end = daysBefore(12, '16:00'); });
 outages.sort((a, b) => a.start.localeCompare(b.start));
 
-// Which streetlights are dark right now (from the open episodes).
-const DARK_NOW = { SEM: ['SL-SEM-01', 'SL-SEM-02', 'SL-SEM-03', 'SL-SEM-04', 'SL-SEM-09'], KUL: ['SL-KUL-12', 'SL-KUL-13'], BIN: ['SL-BIN-08'] };
+// Which streetlights are dark right now (from the open episodes), and why.
+const semCut = incByTitle('Cable cut at roundabout approach');
+const kulBreakIn = incByTitle('Feeder pillar broken into, Jalan Kulas');
+const lampFail = (zone) => outages.find((o) => o.zone === zone && o.end === null && o.cause === 'lamp/driver failure');
+const DARK_NOW = {
+  'SL-SEM-01': semCut, 'SL-SEM-02': semCut, 'SL-SEM-03': semCut, 'SL-SEM-04': semCut,
+  'SL-SEM-09': lampFail('SEM'), 'SL-KUL-08': kulBreakIn, 'SL-KUL-09': kulBreakIn, 'SL-BIN-08': lampFail('BIN'),
+};
+const causeOf = (src) => (src.id ? { since: src.occurredAt, cause: `Circuit cut in ${src.id}` } : { since: src.start, cause: 'Lamp/driver failure' });
 for (const a of assets) {
   if (a.type !== 'streetlight') continue;
-  a.lighting = DARK_NOW[a.zone].includes(a.id) ? 'out' : 'on';
+  a.lighting = DARK_NOW[a.id] ? 'out' : 'on';
+  if (DARK_NOW[a.id]) { const c = causeOf(DARK_NOW[a.id]); a.lightingSince = c.since; a.lightingCause = c.cause; }
 }
 // Assets on circuits cut in the latest incidents have no sensor feed until repaired.
-const OFFLINE = ['SL-SEM-01', 'SL-SEM-02', 'SL-SEM-03', 'SL-SEM-04', 'CB-SEM-01', 'SL-KUL-12', 'SL-KUL-13'];
-assets.forEach((a) => { a.sensor = OFFLINE.includes(a.id) ? 'offline' : 'online'; });
+const OFFLINE = { 'SL-SEM-01': semCut, 'SL-SEM-02': semCut, 'SL-SEM-03': semCut, 'SL-SEM-04': semCut, 'CB-SEM-01': semCut, 'SL-KUL-08': kulBreakIn, 'SL-KUL-09': kulBreakIn };
+assets.forEach((a) => {
+  a.sensor = OFFLINE[a.id] ? 'offline' : 'online';
+  if (OFFLINE[a.id]) { a.sensorSince = OFFLINE[a.id].occurredAt; a.sensorCause = `No feed since the circuit was cut in ${OFFLINE[a.id].id}`; }
+});
+
+/* ─── Electrical network ──────────────────────────────────── */
+// Supply runs Sarawak Energy → main switchboard (MSB) → feeders to the
+// pillars → street-lighting circuits. A monitored cable run carries the
+// feeder or circuit it sits on. Each asset records what feeds it
+// (`upstream`); pillars sit on a feeder, lights on a circuit. Circuits follow
+// the geometry (nearest pillar, cable along the poles it serves) and the
+// incident record (the latest cuts darkened exactly their circuit's lights).
+// feeders: [label, cable or null, pillars]; circuits: [label, source, cable or null, streetlight numbers]
+const NETWORK = {
+  SEM: {
+    feeders: [['F1', null, ['DB-SEM-01']], ['F2', null, ['DB-SEM-02']], ['F3', null, ['DB-SEM-03']], ['F4', null, ['DB-SEM-04']]],
+    circuits: [['C1', 'DB-SEM-01', 'CB-SEM-01', [1, 2, 3, 4]], ['C2', 'DB-SEM-04', null, [5, 9]], ['C3', 'DB-SEM-02', null, [6, 7, 8]], ['C4', 'DB-SEM-03', 'CB-SEM-02', [10, 11, 12, 13]]],
+  },
+  KUL: {
+    feeders: [['F1', null, ['DB-KUL-01']], ['F2', null, ['DB-KUL-02']], ['F3', 'CB-KUL-02', ['DB-KUL-03']], ['F4', null, ['DB-KUL-04']]],
+    circuits: [['C1', 'DB-KUL-01', 'CB-KUL-01', [1, 2, 3]], ['C2', 'DB-KUL-01', null, [4, 10, 11]], ['C3', 'DB-KUL-02', null, [5, 6, 7]], ['C4', 'DB-KUL-03', null, [8, 9]], ['C5', 'DB-KUL-04', null, [12, 13]]],
+  },
+  BIN: {
+    feeders: [['F1', 'CB-BIN-01', ['DB-BIN-01', 'DB-BIN-02']], ['F2', null, ['DB-BIN-03']], ['F3', null, ['DB-BIN-04']]],
+    circuits: [['C1', 'DB-BIN-01', 'CB-BIN-02', [1, 2, 3]], ['C2', 'DB-BIN-02', null, [4]], ['C3', 'MSB-BIN-01', null, [5, 6, 7, 8]], ['C4', 'DB-BIN-03', null, [9, 10]], ['C5', 'DB-BIN-04', null, [11, 12, 13]]],
+  },
+};
+const byId = (id) => {
+  const a = assets.find((x) => x.id === id);
+  if (!a) throw new Error(`Network: unknown asset ${id}`);
+  return a;
+};
+for (const z of ZONES) {
+  const msb = byId(`MSB-${z.id}-01`);
+  msb.upstream = null;
+  for (const [label, cable, pillars] of NETWORK[z.id].feeders) {
+    if (cable) Object.assign(byId(cable), { upstream: msb.id, feeder: `${z.id}-${label}` });
+    pillars.forEach((id) => Object.assign(byId(id), { upstream: cable || msb.id, feeder: `${z.id}-${label}` }));
+  }
+  for (const [label, source, cable, nums] of NETWORK[z.id].circuits) {
+    const circuit = `${z.id}-${label}`;
+    if (cable) Object.assign(byId(cable), { upstream: source, circuit });
+    nums.forEach((n) => Object.assign(byId(`SL-${z.id}-${String(n).padStart(2, '0')}`), { upstream: cable || source, circuit }));
+  }
+}
+assets.forEach((a) => {
+  if (a.upstream === undefined) throw new Error(`Network: ${a.id} is not connected`);
+  for (let p = a, hops = 0; p.upstream; p = byId(p.upstream)) { if (++hops > 5) throw new Error(`Network loop at ${a.id}`); }
+  if (a.type === 'streetlight' && !a.circuit) throw new Error(`Network: ${a.id} has no circuit`);
+  // A light darkened by a circuit cut sits downstream of what the incident cut.
+  const cut = /^Circuit cut in (INC-\S+)/.exec(a.lightingCause || '');
+  if (cut && !incidents.find((x) => x.id === cut[1]).assetIds.includes(a.upstream)) throw new Error(`${a.id} is dark from ${cut[1]} but is not fed by what was cut`);
+});
+['SEM', 'KUL', 'BIN'].forEach((z) => {
+  const used = [...NETWORK[z].feeders.map((f) => f[1]), ...NETWORK[z].circuits.map((c) => c[2])].filter(Boolean);
+  const cables = assets.filter((a) => a.zone === z && a.type === 'cable').map((a) => a.id);
+  if (used.length !== new Set(used).size || cables.some((c) => !used.includes(c))) throw new Error(`Network: every cable in ${z} must carry exactly one feeder or circuit`);
+});
+
+/* ─── Specifications and sensor nodes ─────────────────────── */
+// A separate seeded stream, so adding fields never changes the data above or below.
+const devRand = mulberry32(20261022);
+const ROAD_CLASS = (a) => (a.road.startsWith('Jambatan') ? 'bridge' : /Tun Abdul Rahman|Satok-Kulas/.test(a.road) ? 'arterial' : 'local');
+const COPPER_KG_PER_MM2_M = 0.00896; // 8,960 kg/m³
+const NODE = {
+  streetlight: 'Pole node: supply current, base-hatch contact, tilt',
+  distribution_box: 'Cabinet node: incoming current, door contact, tilt',
+  switchboard: 'Cabinet node: incoming current, door contact, tilt',
+  cable: 'Current clamp at the feed end',
+};
+const nodeCount = {};
+for (const a of assets) {
+  // Outgoing ways: the distinct feeders and circuits leaving this asset.
+  const outgoing = [...new Set(assets.filter((x) => x.upstream === a.id).map((x) => x.feeder || x.circuit))];
+  if (a.type === 'streetlight') {
+    a.spec = { poleHeightM: { bridge: 10, arterial: 12, local: 9 }[ROAD_CLASS(a)], lamp: 'HPS 250 W (SON-T)', luminaire: 'Full cut-off road lantern', pole: 'Galvanised steel, bolted base hatch' };
+  } else if (a.type === 'distribution_box') {
+    a.spec = { enclosure: a.name.startsWith('Feeder pillar') ? 'Feeder pillar, stainless steel' : 'Distribution box, GRP', ratingA: 100, ways: 4, waysUsed: outgoing.length, lock: 'Padlock and numbered seal' };
+  } else if (a.type === 'switchboard') {
+    a.spec = { supply: 'Sarawak Energy, 415 V three-phase', ratingA: 400, outgoing: outgoing.length, metering: 'Sarawak Energy kWh meter', enclosure: 'Steel kiosk, double door' };
+  } else {
+    const feederCable = Boolean(a.feeder);
+    const mm2 = feederCable ? 35 : 16;
+    a.spec = {
+      role: feederCable ? 'feeder' : 'circuit',
+      conductor: `4-core ${mm2} mm² copper, XLPE/SWA/PVC`, cores: 4, mm2,
+      laid: /tray|deck/i.test(a.name) ? 'Cable tray on the bridge' : /Riverside/.test(a.name) ? 'Buried along the riverbank' : 'Underground ducts, 0.6 m deep',
+      copperKg: Math.round(a.lengthM * 4 * mm2 * COPPER_KG_PER_MM2_M),
+    };
+  }
+  nodeCount[a.zone] = (nodeCount[a.zone] || 0) + 1;
+  a.node = {
+    id: `GGN-${a.zone}-${String(nodeCount[a.zone]).padStart(3, '0')}`, kind: NODE[a.type],
+    link: 'LoRaWAN, AS923', rssiDbm: -(84 + Math.floor(devRand() * 29)), firmware: '2.3.1', intervalMin: 5,
+  };
+}
 
 /* ─── Scrap transactions (200, ≈ 8 planted suspicious) ────── */
 const MATERIALS = [
@@ -441,42 +617,86 @@ const transactions = all.map((x, i) => ({
 
 /* ─── Pilot alerts (GuardGrid pilot since 1 Sep) ──────────── */
 const A = (id) => assets.find((x) => x.id === id);
+// `observed` records what the operator log says was seen. The app derives the
+// CCTV threat factors (and score) and the sensor reading from it, so the
+// numbers always follow the same rules as live alerts.
 const alertSeed = [
-  [40, '02:12', 'sensor', 'HIGH', 'panel_opened', 'DB-SEM-02', 'Door contact opened at night', 'intercepted', 'Patrol arrived 02:29. Two men left on a motorcycle; panel intact.'],
-  [33, '23:48', 'cctv', 'HIGH', 'intrusion', 'SL-KUL-02', 'Person and parked van beside bridge lighting cable', 'intercepted', 'Patrol and PDRM MPV attended 00:05. Cable intact; vehicle details passed to PDRM.'],
-  [25, '02:20', 'sensor', 'HIGH', 'cable_cut', 'SL-SEM-10', 'Current dropped to 0 A on streetlight circuit', 'confirmed_theft', 'Theft confirmed at 02:50. Linked to the Jalan Semariang hatch incident.'],
-  [19, '02:35', 'sensor', 'HIGH', 'panel_opened', 'DB-KUL-03', 'Door contact opened at night', 'confirmed_theft', 'Patrol arrived after the cables were cut.'],
-  [14, '01:30', 'cctv', 'MEDIUM', 'intrusion', 'SL-BIN-02', 'Person near bridge lighting for 2 min', 'false_alarm', 'Angler on the bridge; no tampering.'],
-  [11, '01:50', 'sensor', 'HIGH', 'cable_cut', 'CB-SEM-01', 'Current dropped to 0 A on feeder', 'confirmed_theft', 'About 240 m of cable stolen before patrol arrival.'],
-  [6, '03:05', 'cctv', 'HIGH', 'intrusion', 'MSB-SEM-01', 'Two people beside the main switchboard for 4 min', 'intercepted', 'Patrol arrived 03:16; suspects fled on foot. Switchboard secured.'],
-  [3, '00:40', 'sensor', 'HIGH', 'pole_struck', 'SL-BIN-05', 'Tilt sensor read 17° after impact', 'resolved', 'Vehicle collision (accident). Referred to JKR for pole replacement.'],
-  [0, '01:14', 'cctv', 'MEDIUM', 'intrusion', 'DB-KUL-02', 'Person beside feeder pillar at night', 'acknowledged', 'Monitoring. Patrol passing at 02:00.'],
+  [40, '02:12', 'sensor', 'HIGH', 'panel_opened', 'DB-SEM-02', 'Door contact opened at night', 'intercepted', 'Patrol arrived 02:29. Two men left on a motorcycle; panel intact.', { door: 1 }],
+  [33, '23:48', 'cctv', 'HIGH', 'intrusion', 'SL-KUL-02', 'Person and parked van beside bridge lighting cable', 'intercepted', 'Patrol and PDRM MPV attended 00:05. Cable intact; vehicle details passed to PDRM.', { objects: ['person', 'car'], dwellMinutes: 2.5, vehicleParked: true }],
+  [25, '02:20', 'sensor', 'HIGH', 'cable_cut', 'SL-SEM-10', 'Current dropped to 0 A on streetlight circuit', 'confirmed_theft', 'Theft confirmed at 02:50. Linked to the Jalan Semariang hatch incident.', { current: 0 }],
+  [19, '02:35', 'sensor', 'HIGH', 'panel_opened', 'DB-KUL-03', 'Door contact opened at night', 'confirmed_theft', 'Patrol arrived after the cables were cut.', { door: 1 }],
+  [14, '01:30', 'cctv', 'MEDIUM', 'intrusion', 'SL-BIN-02', 'Person near bridge lighting for 2 min', 'false_alarm', 'Angler on the bridge; no tampering.', { objects: ['person'], dwellMinutes: 2, vehicleParked: false }],
+  [11, '01:50', 'sensor', 'HIGH', 'cable_cut', 'CB-SEM-01', 'Current dropped to 0 A on feeder', 'confirmed_theft', 'About 240 m of cable stolen before patrol arrival.', { current: 0 }],
+  [6, '03:05', 'cctv', 'HIGH', 'intrusion', 'MSB-SEM-01', 'Two people beside the main switchboard for 4 min', 'intercepted', 'Patrol arrived 03:16; suspects fled on foot. Switchboard secured.', { objects: ['person', 'person'], dwellMinutes: 4, vehicleParked: false }],
+  [3, '00:40', 'sensor', 'HIGH', 'pole_struck', 'SL-BIN-05', 'Tilt sensor read 17° after impact', 'resolved', 'Vehicle collision (accident). Referred to JKR for pole replacement.', { tilt: 17 }],
+  [0, '01:14', 'cctv', 'MEDIUM', 'intrusion', 'DB-KUL-01', 'Person beside feeder pillar at night', 'acknowledged', 'Monitoring. Added to tonight\'s patrol route for a site check.', { objects: ['person'], dwellMinutes: 1, vehicleParked: false }],
 ];
 const TYPE_TITLE = { panel_opened: 'Panel opened', cable_cut: 'Cable cut', pole_struck: 'Pole struck', intrusion: 'Intrusion near asset' };
-const alerts = alertSeed.map(([days, time, source, level, type, assetId, message, status, note], i) => {
+const alerts = alertSeed.map(([days, time, source, level, type, assetId, message, status, note, observed], i) => {
   const a = A(assetId);
   if (!a) throw new Error(`Unknown asset ${assetId}`);
+  if (source === 'cctv' && !a.cameraId) throw new Error(`CCTV alert on ${assetId}, which no camera covers`);
   return {
     id: `AL-P${String(i + 1).padStart(3, '0')}`,
     source, level, type, title: `${TYPE_TITLE[type]} · ${assetId}`, message,
     assetId, zone: a.zone, lat: a.lat, lng: a.lng,
     createdAt: daysBefore(days, time), status, note,
-    score: source === 'cctv' ? (level === 'HIGH' ? (type === 'intrusion' && assetId.startsWith('MSB') ? 85 : 100) : 60) : null,
-    evidence: { snapshot: null, mock: true },
+    evidence: { snapshot: null, mock: true, observed, ...(source === 'cctv' ? { cameraId: a.cameraId } : {}) },
     pilot: true,
   };
 });
 
+/* ─── Operations already under way (work orders, patrols, PDRM) ─ */
+// [daysBefore, time, kind, title, team, priority, status, assetIds, alertId, details, history [[days, time, status, note]]]
+const taskSeed = [
+  [11, '06:30', 'work_order', 'Replace stolen feeder and restore SL-SEM-01 to 04', 'DBKU Electrical', 'Critical', 'in_progress', ['CB-SEM-01', 'SL-SEM-01', 'SL-SEM-02', 'SL-SEM-03', 'SL-SEM-04'], 'AL-P006',
+    `About 240 m of feeder cable stolen (${semCut.id}). Lay new armoured cable, reconnect the four streetlights and the tamper sensors.`,
+    [[11, '06:30', 'open', 'Raised after the theft was confirmed'], [8, '09:00', 'in_progress', 'Cable ordered; trenching started at the roundabout approach']]],
+  [19, '08:00', 'work_order', 'Repair feeder pillar DB-KUL-03 and restore SL-KUL-08, 09', 'DBKU Electrical', 'High', 'in_progress', ['DB-KUL-03', 'SL-KUL-08', 'SL-KUL-09'], 'AL-P004',
+    `Pillar forced and outgoing cables cut (${kulBreakIn.id}). Replace the door lock and cables, then restore the two streetlights.`,
+    [[19, '08:00', 'open', 'Raised after the break-in'], [12, '10:30', 'in_progress', 'Door replaced; waiting for replacement cable']]],
+  [6, '09:15', 'work_order', 'Replace lamp driver, SL-SEM-09', 'DBKU Electrical', 'Normal', 'open', ['SL-SEM-09'], null,
+    'Lamp/driver failure reported by the night inspection. Not theft-related.', [[6, '09:15', 'open', 'Logged from the night inspection']]],
+  [9, '09:40', 'work_order', 'Replace lamp driver, SL-BIN-08', 'DBKU Electrical', 'Normal', 'open', ['SL-BIN-08'], null,
+    'Lamp/driver failure. Not theft-related.', [[9, '09:40', 'open', 'Logged from the night inspection']]],
+  [3, '08:20', 'work_order', 'Replace pole SL-BIN-05 after vehicle impact', 'JKR Sarawak', 'High', 'open', ['SL-BIN-05'], 'AL-P008',
+    'Tilt sensor read 17° after a vehicle collision. Pole made safe; full replacement referred to JKR.', [[3, '08:20', 'open', 'Referred to JKR']]],
+  [11, '03:10', 'pdrm', 'Police report for the cable theft at the roundabout approach', 'IPD Kuching', 'Immediate', 'done', ['CB-SEM-01'], 'AL-P006',
+    'Report lodged with photos of the cut pits; scrap dealers near Jalan Semariang to be checked.', [[11, '03:10', 'open', 'Phone report to the duty officer'], [10, '11:00', 'done', 'Police report reference received']]],
+  [33, '00:20', 'pdrm', 'Vehicle details from the bridge intrusion', 'Balai Polis Satok', 'Immediate', 'done', ['SL-KUL-02'], 'AL-P002',
+    'Van seen parked beside the bridge lighting cable; registration and description passed to PDRM.', [[33, '00:20', 'open', 'Passed at the scene'], [33, '09:00', 'done', 'Acknowledged by Balai Polis Satok']]],
+  [0, '01:20', 'patrol', 'Site check at feeder pillar DB-KUL-01', 'DBKU Enforcement Unit B', 'Tonight', 'open', ['DB-KUL-01'], 'AL-P009',
+    'Person seen beside the pillar at 01:14. Check the door, lock and seal on tonight\'s round.', [[0, '01:20', 'open', 'Added to tonight\'s route']]],
+];
+const KIND_PREFIX = { work_order: 'WO', patrol: 'PT', pdrm: 'PD' };
+const tasks = taskSeed.map(([days, time, kind, title, team, priority, status, assetIds, alertId, details, history], i) => ({
+  id: `${KIND_PREFIX[kind]}-P${String(i + 1).padStart(3, '0')}`,
+  kind, title, team, priority, status, details, assetIds, alertId,
+  zone: A(assetIds[0]).zone,
+  createdAt: daysBefore(days, time),
+  updatedAt: daysBefore(history[history.length - 1][0], history[history.length - 1][1]),
+  history: history.map(([d, t, s, n]) => ({ at: daysBefore(d, t), status: s, note: n })),
+  source: alertId ? `Alert ${alertId}` : 'Night inspection',
+  pilot: true,
+}));
+
 /* ─── Write ───────────────────────────────────────────────── */
 const meta = {
   asOf: AS_OF,
+  // Records on or after liveSince are placed relative to asOf; the app moves
+  // them to the current date when it loads (src/data/rebase.js).
+  liveSince: isoMyt(asOfMs - 180 * DAY),
   timeZone: 'Asia/Kuching',
-  programme: { incidents: incidents.length, since: 2020, years: 7, totalCostRM: incidents.reduce((s, x) => s + x.costRM, 0), residentsAffected: 179693 },
+  pilotStart: isoMyt(asOfMs - 44 * DAY),
+  programme: { incidents: incidents.length, since: 2020, totalCostRM: incidents.reduce((s, x) => s + x.costRM, 0), residentsAffected: 179693 },
   patrolBase: { name: 'DBKU, Bukit Siol (approx.)', lat: 1.5762, lng: 110.3488 },
   notes: 'Mock data for the GuardGrid prototype. Road geometry © OpenStreetMap contributors (ODbL). Dealers, sellers, incidents and costs are fictional.',
 };
+// Dated history must stay before liveSince (it keeps its real dates); relative records must fall after it.
+if (INCIDENTS.some((r) => typeof r[0] === 'string' && Date.parse(at(r[0], r[1])) >= Date.parse(meta.liveSince))) throw new Error('A dated incident falls after liveSince');
+if ([...transactions.map((t) => t.date), ...alerts.map((a) => a.createdAt)].some((d) => Date.parse(d) < Date.parse(meta.liveSince))) throw new Error('A relative record falls before liveSince');
 fs.mkdirSync(OUT, { recursive: true });
-const files = { meta, zones: ZONES, assets, cameras, dealers, incidents, outages, transactions, alerts };
+const files = { meta, zones: ZONES, assets, cameras, dealers, incidents, outages, transactions, alerts, tasks };
 for (const [name, data] of Object.entries(files)) {
   fs.writeFileSync(path.join(OUT, `${name}.json`), `${JSON.stringify(data, null, 1)}\n`);
 }
@@ -486,7 +706,7 @@ const byZone = (list) => ZONES.map((z) => `${z.id}:${list.filter((x) => x.zone =
 console.log(`as-of ${AS_OF}`);
 console.log(`assets ${assets.length} (${byZone(assets)})  cameras ${cameras.length}`);
 console.log(`incidents ${incidents.length} (${byZone(incidents)})  total RM ${meta.programme.totalCostRM.toLocaleString()}`);
-console.log(`outages ${outages.length}  transactions ${transactions.length} (planted ${planted.length})  alerts ${alerts.length}`);
+console.log(`outages ${outages.length}  transactions ${transactions.length} (planted ${planted.length})  alerts ${alerts.length}  tasks ${tasks.length}`);
 for (const z of ZONES) {
   const near = dealers.map((d) => ({ d: d.id, km: haversine(z.center, [d.lat, d.lng]) / 1000 })).sort((a, b) => a.km - b.km).slice(0, 2);
   console.log(`zone ${z.id} centre ${z.center} r=${z.radiusM}m nearest dealers ${near.map((n) => `${n.d} ${n.km.toFixed(2)}km`).join(', ')}`);

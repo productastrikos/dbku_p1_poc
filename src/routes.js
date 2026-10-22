@@ -11,6 +11,8 @@
    keywords  extra words for the header search (optional)
    ═══════════════════════════════════════════════════════════════════════ */
 import Dashboard from './pages/Dashboard';
+import DigitalTwin from './pages/DigitalTwin';
+import Operations from './pages/Operations';
 import CctvAnalyzer from './pages/CctvAnalyzer';
 import Sensors from './pages/Sensors';
 import RiskForecast from './pages/RiskForecast';
@@ -22,6 +24,8 @@ export const NAV_SECTIONS = [
     label: 'Command',
     items: [
       { path: '/', label: 'Command Dashboard', labelMs: 'Pusat Kawalan', icon: 'home', element: <Dashboard />, keywords: 'home overview kpi map alerts feed pusat kawalan' },
+      { path: '/twin', label: 'Digital Twin', labelMs: 'Kembar Digital', icon: 'layers', element: <DigitalTwin />, keywords: 'digital twin asset map layers telemetry streetlight switchboard cable cctv coverage kembar' },
+      { path: '/operations', label: 'Operations', labelMs: 'Operasi', icon: 'clipboard', element: <Operations />, keywords: 'tasks patrol work order pdrm notification dispatch command log operasi' },
     ],
   },
   {

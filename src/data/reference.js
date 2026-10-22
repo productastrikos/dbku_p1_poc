@@ -9,10 +9,10 @@ export const ASSET_TYPES = {
 
 // Map colour coding for assets.
 export const ASSET_STATUS = {
-  alert:   { label: 'Active alert',     labelMs: 'Amaran aktif', tone: 'danger' },
-  watch:   { label: 'Watch',            labelMs: 'Pantau',       tone: 'warning' },
-  offline: { label: 'Offline / dark',   labelMs: 'Luar talian',  tone: 'neutral' },
-  normal:  { label: 'Normal',           labelMs: 'Normal',       tone: 'success' },
+  alert:   { label: 'Active alert',     labelMs: 'Amaran aktif', tone: 'danger',  hint: 'Open HIGH alert' },
+  watch:   { label: 'Watch',            labelMs: 'Pantau',       tone: 'warning', hint: 'Open MEDIUM alert or streetlight dark' },
+  offline: { label: 'Sensor offline',   labelMs: 'Luar talian',  tone: 'neutral', hint: 'No sensor feed (circuit cut)' },
+  normal:  { label: 'Normal',           labelMs: 'Normal',       tone: 'success', hint: 'Operating normally' },
 };
 
 export const SOURCES = {
@@ -40,12 +40,27 @@ export const REVIEW_STATUS = {
 
 export const ZONE_TONE = { High: 'danger', Medium: 'warning', Low: 'success' };
 
+// Operations: what the command centre has asked people to do.
+export const TASK_KINDS = {
+  patrol:     { label: 'Patrol',            labelMs: 'Rondaan',          icon: 'truck',    prefix: 'PT' },
+  pdrm:       { label: 'PDRM notification', labelMs: 'Makluman PDRM',    icon: 'siren',    prefix: 'PD' },
+  work_order: { label: 'Work order',        labelMs: 'Arahan kerja',     icon: 'wrench',   prefix: 'WO' },
+};
+export const TASK_STATUS = {
+  open:        { label: 'Open',        labelMs: 'Dibuka',       tone: 'warning', active: true },
+  in_progress: { label: 'In progress', labelMs: 'Dalam proses', tone: 'info',    active: true },
+  done:        { label: 'Done',        labelMs: 'Selesai',      tone: 'success', active: false },
+  cancelled:   { label: 'Cancelled',   labelMs: 'Dibatalkan',   tone: 'neutral', active: false },
+};
+export const PRIORITY_TONE = { Critical: 'danger', Immediate: 'danger', High: 'warning', Tonight: 'warning', Normal: 'neutral', 'Next patrol cycle': 'neutral' };
+export const PATROL_TEAMS = ['DBKU Enforcement Unit A', 'DBKU Enforcement Unit B', 'Joint DBKU–PDRM patrol'];
+
 // Forms opened by AI-insight action buttons. Field types: select | text | textarea
 export const ACTION_FORMS = {
   dispatch: {
     title: 'Dispatch night patrol',
     fields: [
-      { key: 'team',     label: 'Team',     type: 'select', options: ['DBKU Enforcement Unit A', 'DBKU Enforcement Unit B', 'Joint DBKU–PDRM patrol'] },
+      { key: 'team',     label: 'Team',     type: 'select', options: PATROL_TEAMS },
       { key: 'priority', label: 'Priority', type: 'select', options: ['Immediate', 'Tonight', 'Next patrol cycle'] },
       { key: 'notes',    label: 'Notes',    type: 'textarea', placeholder: 'Stops, timing, radio channel…' },
     ],
@@ -62,8 +77,8 @@ export const ACTION_FORMS = {
     title: 'Create work order',
     fields: [
       { key: 'title',    label: 'Title',    type: 'text', placeholder: 'Short description' },
-      { key: 'team',     label: 'Team',     type: 'select', options: ['DBKU Electrical', 'Sarawak Energy', 'Ministry of Utility & Telecommunication'] },
-      { key: 'priority', label: 'Priority', type: 'select', options: ['Critical', 'High', 'Normal'] },
+      { key: 'team',     label: 'Team',     type: 'select', options: ['DBKU Electrical', 'Sarawak Energy', 'JKR Sarawak', 'Ministry of Utility & Telecommunication'] },
+      { key: 'priority', label: 'Priority', type: 'select', options: ['Normal', 'High', 'Critical'] },
       { key: 'details',  label: 'Details',  type: 'textarea', placeholder: 'What needs to be done…' },
     ],
   },

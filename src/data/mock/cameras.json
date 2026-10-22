@@ -2,91 +2,171 @@
  {
   "id": "CAM-SEM-1",
   "zone": "SEM",
-  "lat": 1.57792,
-  "lng": 110.33048,
+  "lat": 1.57784,
+  "lng": 110.3304,
   "mountedOn": "SL-SEM-04",
-  "covers": [
-   "SL-SEM-02",
-   "SL-SEM-03",
-   "SL-SEM-04",
-   "SL-SEM-05",
-   "DB-SEM-01",
-   "CB-SEM-01"
+  "heads": [
+   {
+    "heading": 74,
+    "fovDeg": 90,
+    "rangeM": 150
+   },
+   {
+    "heading": 232,
+    "fovDeg": 90,
+    "rangeM": 150
+   }
   ],
-  "model": "Solar CCTV 2MP (existing, no analytics)"
+  "mountHeightM": 6,
+  "covers": [
+   "SL-SEM-04",
+   "CB-SEM-01",
+   "DB-SEM-01",
+   "SL-SEM-03",
+   "SL-SEM-05"
+  ],
+  "model": "Solar CCTV 2MP, dual-lens (existing, no analytics)"
  },
  {
   "id": "CAM-SEM-2",
   "zone": "SEM",
-  "lat": 1.57786,
-  "lng": 110.33252,
+  "lat": 1.57778,
+  "lng": 110.33244,
   "mountedOn": "MSB-SEM-01",
+  "heads": [
+   {
+    "heading": 340,
+    "fovDeg": 90,
+    "rangeM": 150
+   }
+  ],
+  "mountHeightM": 6,
   "covers": [
    "MSB-SEM-01",
    "DB-SEM-04",
-   "SL-SEM-06",
-   "SL-SEM-07",
-   "SL-SEM-10"
+   "SL-SEM-05",
+   "CB-SEM-01",
+   "CB-SEM-02"
   ],
-  "model": "Solar CCTV 2MP (existing, no analytics)"
+  "model": "Solar CCTV 2MP, single-lens (existing, no analytics)"
  },
  {
   "id": "CAM-KUL-1",
   "zone": "KUL",
-  "lat": 1.55511,
-  "lng": 110.32541,
+  "lat": 1.55503,
+  "lng": 110.32533,
   "mountedOn": "SL-KUL-02",
+  "heads": [
+   {
+    "heading": 132,
+    "fovDeg": 90,
+    "rangeM": 150
+   },
+   {
+    "heading": 254,
+    "fovDeg": 90,
+    "rangeM": 150
+   }
+  ],
+  "mountHeightM": 6,
   "covers": [
-   "SL-KUL-01",
    "SL-KUL-02",
+   "CB-KUL-01",
+   "SL-KUL-10",
+   "SL-KUL-01",
    "SL-KUL-03",
    "DB-KUL-01",
-   "CB-KUL-01"
+   "MSB-KUL-01"
   ],
-  "model": "Solar CCTV 2MP (existing, no analytics)"
+  "model": "Solar CCTV 2MP, dual-lens (existing, no analytics)"
  },
  {
   "id": "CAM-KUL-2",
   "zone": "KUL",
-  "lat": 1.55444,
-  "lng": 110.32646,
+  "lat": 1.55436,
+  "lng": 110.32638,
   "mountedOn": "MSB-KUL-01",
+  "heads": [
+   {
+    "heading": 60,
+    "fovDeg": 90,
+    "rangeM": 150
+   },
+   {
+    "heading": 228,
+    "fovDeg": 90,
+    "rangeM": 150
+   }
+  ],
+  "mountHeightM": 6,
   "covers": [
    "MSB-KUL-01",
-   "SL-KUL-10",
+   "DB-KUL-01",
+   "SL-KUL-04",
+   "SL-KUL-03",
    "SL-KUL-11",
-   "DB-KUL-03"
+   "SL-KUL-10",
+   "SL-KUL-05",
+   "DB-KUL-02"
   ],
-  "model": "Solar CCTV 2MP (existing, no analytics)"
+  "model": "Solar CCTV 2MP, dual-lens (existing, no analytics)"
  },
  {
   "id": "CAM-BIN-1",
   "zone": "BIN",
-  "lat": 1.55795,
-  "lng": 110.33677,
+  "lat": 1.55787,
+  "lng": 110.33669,
   "mountedOn": "SL-BIN-02",
-  "covers": [
-   "SL-BIN-01",
-   "SL-BIN-02",
-   "SL-BIN-03",
-   "SL-BIN-04",
-   "DB-BIN-01",
-   "CB-BIN-02"
+  "heads": [
+   {
+    "heading": 154,
+    "fovDeg": 90,
+    "rangeM": 150
+   },
+   {
+    "heading": 264,
+    "fovDeg": 90,
+    "rangeM": 150
+   }
   ],
-  "model": "Solar CCTV 2MP (existing, no analytics)"
+  "mountHeightM": 6,
+  "covers": [
+   "SL-BIN-02",
+   "CB-BIN-02",
+   "CB-BIN-01",
+   "SL-BIN-01",
+   "SL-BIN-03",
+   "DB-BIN-01",
+   "SL-BIN-04",
+   "DB-BIN-02"
+  ],
+  "model": "Solar CCTV 2MP, dual-lens (existing, no analytics)"
  },
  {
   "id": "CAM-BIN-2",
   "zone": "BIN",
-  "lat": 1.55399,
-  "lng": 110.33488,
+  "lat": 1.55391,
+  "lng": 110.3348,
   "mountedOn": "MSB-BIN-01",
+  "heads": [
+   {
+    "heading": 68,
+    "fovDeg": 90,
+    "rangeM": 150
+   },
+   {
+    "heading": 298,
+    "fovDeg": 90,
+    "rangeM": 150
+   }
+  ],
+  "mountHeightM": 6,
   "covers": [
    "MSB-BIN-01",
    "SL-BIN-07",
-   "DB-BIN-03",
-   "CB-BIN-01"
+   "SL-BIN-06",
+   "SL-BIN-08"
   ],
-  "model": "Solar CCTV 2MP (existing, no analytics)"
+  "model": "Solar CCTV 2MP, dual-lens (existing, no analytics)"
  }
 ]

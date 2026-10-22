@@ -1,7 +1,8 @@
 import React from 'react';
 import { Badge, Icon } from '../ui';
 import { LEVELS } from '../../ai/threatScore';
-import { ALERT_STATUS, SOURCES } from '../../data/reference';
+import { ALERT_STATUS, SOURCES, TASK_STATUS, TASK_KINDS, PRIORITY_TONE } from '../../data/reference';
+import { formatMyt } from '../../ai/time';
 
 /** Small Bahasa Malaysia label shown next to an English one. */
 export const Ms = ({ children, className = '' }) => <span className={`ms-label ${className}`}>{children}</span>;
@@ -26,6 +27,18 @@ export function StatusBadge({ status }) {
   return <Badge tone={s.tone} plain>{s.label.toUpperCase()}</Badge>;
 }
 
+export function TaskStatusBadge({ status }) {
+  const s = TASK_STATUS[status] || TASK_STATUS.open;
+  return <Badge tone={s.tone} plain>{s.label.toUpperCase()}</Badge>;
+}
+
+export function TaskKindBadge({ kind }) {
+  const k = TASK_KINDS[kind];
+  return <Badge tone={kind === 'pdrm' ? 'danger' : kind === 'patrol' ? 'info' : 'primary'}><Icon name={k?.icon || 'clipboard'} size={11} />{k?.label || kind}</Badge>;
+}
+
+export const PriorityBadge = ({ priority }) => <Badge tone={PRIORITY_TONE[priority] || 'neutral'} plain>{String(priority || '').toUpperCase()}</Badge>;
+
 export function SourceIcon({ source, size = 14 }) {
   return <Icon name={SOURCES[source]?.icon || 'alert'} size={size} />;
 }
@@ -43,6 +56,12 @@ export function Toggle({ on, onChange, label, hint }) {
       </span>
     </button>
   );
+}
+
+/** Sensor network clock: LIVE on the real clock, or the simulated time. */
+export function SensorModeBadge({ sensors, showTime = false }) {
+  if (sensors.live) return <Badge tone="success" dot>LIVE{showTime ? ` · ${formatMyt(sensors.time, 'time')}` : ''}</Badge>;
+  return <span title="The sensor clock is simulated and runs ahead of real time"><Badge tone="warning" dot>SIMULATION · {formatMyt(sensors.time, 'short')}</Badge></span>;
 }
 
 /** Banner that says whether the LLM is live or the offline fallback is in use. */
