@@ -4,7 +4,7 @@
   "description": "GuardGrid: AI early warning for vandalism and electrical theft, Dewan Bandaraya Kuching Utara (prototype)",
   "private": true,
   "engines": {
-    "node": ">=18"
+    "node": ">=20.12"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.134.0",

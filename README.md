@@ -17,7 +17,7 @@ npm test                        # AI acceptance tests (Jest)
 
 Without an API key everything still works: the photo check is skipped and police reports use an offline template. The UI says which mode is active. The key is only read by the server routes in `server/llm.js` (mounted into the dev server by `src/setupProxy.js`); it is never bundled into the browser.
 
-Production: `npm run build && npm run serve` (Express on port 8080, serves `build/` and the LLM routes).
+Production: the static build (`npm run build` → `build/`) and the API (`server/index.js`, the LLM routes) run as two processes on their own subdomains, `dbku.astrikos.xyz` and `dbku-api.astrikos.xyz`. The frontend reads the API address from `REACT_APP_API_URL` in `.env.production`. See [DEPLOY.md](DEPLOY.md) for ports, pm2, nginx and Cloudflare. Requires Node 20.12 or later.
 
 ## Screens
 
@@ -93,7 +93,7 @@ Recent records are generated relative to `--asof` (default 2026-10-15). When the
 ## Project structure
 
 ```
-server/            llm.js (Claude routes), index.js (production server)
+server/            llm.js (Claude routes), index.js (production API server)
 public/footage/    sample CCTV clips (MEVA, CC BY 4.0) and their attribution
 scripts/           mock-data generator + OSM road geometry
 src/

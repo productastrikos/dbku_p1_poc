@@ -1,8 +1,12 @@
 /* Browser client for the server-side LLM routes in server/llm.js.
    The API key never reaches the browser; these calls go to /api/llm. */
 
+// Backend origin from REACT_APP_API_URL (.env.production for the deployed build).
+// Unset in development, where npm start mounts the routes itself (setupProxy.js).
+const API = `${(process.env.REACT_APP_API_URL || '').replace(/\/+$/, '')}/api/llm`;
+
 async function post(path, body) {
-  const res = await fetch(`/api/llm/${path}`, {
+  const res = await fetch(`${API}/${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
@@ -14,11 +18,11 @@ async function post(path, body) {
 
 export async function getLlmStatus() {
   try {
-    const res = await fetch('/api/llm/status');
+    const res = await fetch(`${API}/status`);
     if (!res.ok) throw new Error(String(res.status));
     return await res.json();
   } catch (e) {
-    return { enabled: false, reason: 'LLM service not reachable. Run the app with npm start.' };
+    return { enabled: false, reason: `LLM service not reachable at ${API}` };
   }
 }
 
