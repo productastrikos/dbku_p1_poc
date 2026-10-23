@@ -10,6 +10,7 @@ import { isNight, toMytInput, fromMytInput, formatMyt } from '../ai/time';
 import { ASSET_TYPES } from '../data/reference';
 import { SAMPLE_FOOTAGE, FOOTAGE_SOURCE, footageUrl, recordedLabel, replayTime, durationLabel } from '../data/footage';
 import { resolveColor } from '../components/charts/chartTheme';
+import { toneVar } from '../theme/tones';
 
 const DEFAULT_ZONE = { x: 0.4, y: 0.05, w: 0.2, h: 0.9 };
 const DEFAULT_MIN_SCORE = 0.35;
@@ -22,7 +23,9 @@ const loadImage = (url) => new Promise((resolve, reject) => {
   img.src = url;
 });
 
-/* Burns detections, the asset zone and a caption strip into a JPEG snapshot. */
+/* Burns detections, the asset zone and a caption strip into a JPEG snapshot.
+   The strip is black with white text in both themes: evidence images must not
+   change with the viewer's theme. */
 function composeSnapshot(canvas, { detections, zone, margin, caption }) {
   const scale = Math.min(1, 960 / canvas.width);
   const w = Math.round(canvas.width * scale);
@@ -35,7 +38,7 @@ function composeSnapshot(canvas, { detections, zone, margin, caption }) {
   ctx.fillStyle = '#000';
   ctx.fillRect(0, 0, w, strip);
   ctx.drawImage(canvas, 0, strip, w, h);
-  ctx.font = '600 12px Inter, system-ui, sans-serif';
+  ctx.font = '700 12px Lato, system-ui, sans-serif';
   ctx.fillStyle = '#fff';
   ctx.fillText(caption, 8, 17);
   ctx.setLineDash([8, 6]);
@@ -205,7 +208,7 @@ export default function CctvAnalyzer() {
   // Sample clips are never attributed to a DBKU camera.
   const footageLabel = sample ? `Sample footage, MEVA ${sample.camera}` : camera?.id || 'Uploaded footage';
   const buildSnapshot = useCallback(async () => {
-    const caption = `GuardGrid · ${footageLabel} · ${assetId} · ${formatMyt(captureMs, 'short')} MYT · Score ${threat.score} ${threat.level}${lowLight ? ' · low-light enhanced' : ''}`;
+    const caption = `DBKU · ${footageLabel} · ${assetId} · ${formatMyt(captureMs, 'short')} MYT · Score ${threat.score} ${threat.level}${lowLight ? ' · low-light enhanced' : ''}`;
     if (analysis.kind === 'video') {
       const f = analysis.frames[metrics.keyIndex];
       const c = await frameAt(media.video, f.t);
@@ -346,7 +349,7 @@ export default function CctvAnalyzer() {
                         return (
                           <button key={f.t} type="button" title={`${f.t}s · ${f.detections.length} objects${n ? `, ${n} near asset` : ''}`}
                             className={`timeline-bar ${i === viewIndex ? 'is-active' : ''}`} onClick={() => setViewIndex(i)}
-                            style={{ height: `${20 + Math.min(80, f.detections.length * 20)}%`, background: `var(--color-${n ? 'danger' : f.detections.length ? 'info' : 'neutral-soft'})` }} />
+                            style={{ height: `${20 + Math.min(80, f.detections.length * 20)}%`, background: toneVar(n ? 'danger' : f.detections.length ? 'info' : 'neutral-soft') }} />
                         );
                       })}
                     </div>
@@ -389,7 +392,7 @@ export default function CctvAnalyzer() {
                 emptyText="No person, car, motorcycle or truck detected. Try lowering the confidence."
                 columns={[
                   { key: 'class', header: 'Object', strong: true },
-                  { key: 'score', header: 'Confidence', render: (d) => `${Math.round(d.score * 100)}%` },
+                  { key: 'score', header: 'Confidence', numeric: true, render: (d) => `${Math.round(d.score * 100)}%` },
                   { key: 'near', header: 'Near asset', render: (d) => (d.isNear ? <Badge tone="danger">Yes</Badge> : <Badge tone="neutral">No</Badge>) },
                   { key: 'pass', header: 'Pass', render: (d) => (d.pass === 'enhanced' ? 'Low-light enhanced' : 'Original') },
                   { key: 'box', header: 'Box (x, y, w, h)', mono: true, render: (d) => [d.box.x, d.box.y, d.box.w, d.box.h].map((v) => v.toFixed(2)).join(', ') },
@@ -508,7 +511,7 @@ export default function CctvAnalyzer() {
             )}
           </Card>
 
-          <Card padded={false} title={<span>Existing CCTV units <Ms>Unit CCTV sedia ada</Ms></span>} subtitle="Solar 2MP cameras with no analytics; GuardGrid scores their footage">
+          <Card padded={false} title={<span>Existing CCTV units <Ms>Unit CCTV sedia ada</Ms></span>} subtitle="Solar 2MP cameras with no analytics; the command centre scores their footage">
             <ul>
               {cameras.map((c) => {
                 const active = c.covers.includes(assetId);

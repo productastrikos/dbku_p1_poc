@@ -4,11 +4,12 @@ import { useTheme } from '../../theme/ThemeProvider';
 import { Drawer, Badge, Button, Icon } from '../ui';
 import { TimeframeToggle } from './ChartCard';
 import {
-  cssVar, withAlpha, tooltipOptions, legendOptions, axisOptions,
+  cssVar, seriesColor, withAlpha, tooltipOptions, legendOptions, axisOptions,
   timeframeLabels, timeframePoints, TIMEFRAMES,
 } from './chartTheme';
 import { STATUS, getStatus } from '../../utils';
 import { APP } from '../../config';
+import { toneVar } from '../../theme/tones';
 
 /* Generates a sample history from the current value and trend.
    Replace with real history from your data source. */
@@ -51,8 +52,8 @@ export default function MetricDetailDrawer({ metric, onClose, timeframes = TIMEF
   const pred = useMemo(() => sampleForecast(hist, metric.trend), [hist, metric.trend]);
 
   const labels = forecast ? [...timeframeLabels(tf), ...pred.map((_, i) => `+${i + 1}`)] : timeframeLabels(tf);
-  const primary = cssVar('--color-primary');
-  const accent = cssVar('--color-accent');
+  const primary = seriesColor(0);   // accent
+  const accent = seriesColor(1);    // teal: the forecast is the second series
   const data = {
     labels,
     datasets: [
@@ -64,8 +65,8 @@ export default function MetricDetailDrawer({ metric, onClose, timeframes = TIMEF
   const lines = [];
   if (metric.thresholds) {
     const { good, warn } = metric.thresholds;
-    lines.push({ value: good, color: cssVar('--color-success'), label: 'Target', dash: [6, 4] });
-    lines.push({ value: warn, color: cssVar('--color-warning'), label: 'Warn', dash: [3, 3] });
+    lines.push({ value: good, color: cssVar('--app-success'), label: 'Target', dash: [6, 4] });
+    lines.push({ value: warn, color: cssVar('--app-warning'), label: 'Warn', dash: [3, 3] });
   }
   const options = {
     responsive: true, maintainAspectRatio: false,
@@ -159,7 +160,7 @@ export default function MetricDetailDrawer({ metric, onClose, timeframes = TIMEF
             <div className="space-y-2">
               {metric.events.map((e, i) => (
                 <div key={i} className="flex gap-2 text-[11px]">
-                  <span className="font-bold tabular-nums" style={{ color: `var(--color-${e.tone || 'neutral'})` }}>{e.time}</span>
+                  <span className="font-bold tabular-nums" style={{ color: toneVar(e.tone || 'neutral') }}>{e.time}</span>
                   <span className="text-fg leading-snug">{e.text}</span>
                 </div>
               ))}
@@ -183,13 +184,13 @@ export default function MetricDetailDrawer({ metric, onClose, timeframes = TIMEF
 
       {metric.insights?.length > 0 && (
         <div className="tile tone-accent">
-          <p className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-accent mb-2">
+          <p className="astk-eyebrow flex items-center gap-1.5 !text-accent mb-2">
             <Icon name="sparkles" size={13} /> AI insights
           </p>
           <ol className="grid sm:grid-cols-3 gap-3">
             {metric.insights.map((s, i) => (
               <li key={i} className="flex gap-2 text-[11px] text-fg leading-snug">
-                <span className="w-4 h-4 rounded-full bg-accent text-white text-[9px] font-bold flex items-center justify-center shrink-0">{i + 1}</span>
+                <span className="num-dot">{i + 1}</span>
                 {s}
               </li>
             ))}

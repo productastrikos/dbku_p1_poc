@@ -38,8 +38,8 @@ app.use((req, res, next) => {
   return next();
 });
 
-app.get('/', (req, res) => res.json({ service: 'guardgrid-api', ok: true }));
+app.get('/', (req, res) => res.json({ service: 'dbku-api', ok: true }));
 app.use('/api/llm', createLlmRouter());
 app.use((req, res) => res.status(404).json({ error: 'Not found' }));
 
-app.listen(port, () => console.log(`GuardGrid API listening on port ${port}`));
+app.listen(port, () => console.log(`DBKU Command Centre API listening on port ${port}`));

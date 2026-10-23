@@ -1,4 +1,4 @@
-/* Time helpers. Everything GuardGrid reasons about (night windows, hour of
+/* Time helpers. Everything the command centre reasons about (night windows, hour of
    day, day of week) is in Malaysia Time (UTC+8, no DST), whatever the
    browser's own time zone is. */
 

@@ -68,7 +68,7 @@ function PowerSupply({ asset, network, onSelectAsset }) {
   const item = (a, sub) => (
     <button type="button" onClick={() => onSelectAsset?.(a.id)} disabled={a.id === asset.id}
       className="w-full text-left flex items-center gap-2 text-xs py-0.5 hover:text-primary disabled:hover:text-fg">
-      <span className="legend-dot shrink-0" style={{ background: network.energised(a.id) ? '#f59e0b' : '#9ca3af' }} />
+      <span className="legend-dot shrink-0" style={{ background: network.energised(a.id) ? 'var(--app-warning)' : 'var(--app-text-faint)' }} />
       <b className={a.id === asset.id ? 'text-primary' : 'text-fg'}>{a.id}</b>
       <span className="text-fg-faint truncate">{TYPE_ROLE[a.type]}{sub ? ` · ${sub}` : ''}</span>
     </button>
@@ -77,7 +77,7 @@ function PowerSupply({ asset, network, onSelectAsset }) {
     <Section title="Power supply" ms="Bekalan kuasa" extra={<Badge tone={live ? 'success' : 'danger'} dot>{live ? 'Energised' : 'No supply'}</Badge>}>
       <div className="tile !py-2">
         <p className="text-[10px] text-fg-faint mb-1">Sarawak Energy, 415 V three-phase</p>
-        <ol className="space-y-0.5 border-l-2 pl-2" style={{ borderColor: live ? '#f59e0b' : '#9ca3af' }}>
+        <ol className="space-y-0.5 border-l-2 pl-2" style={{ borderColor: live ? 'var(--app-warning)' : 'var(--app-text-faint)' }}>
           {chain.map((a) => <li key={a.id}>{item(a, a.upstream ? linkLabel(a) : null)}</li>)}
         </ol>
       </div>

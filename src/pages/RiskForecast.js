@@ -8,6 +8,7 @@ import { useData } from '../data/DataProvider';
 import { BAND, RISK_BANDS, FEATURE_NAMES, GROUPS, bandFor } from '../ai/riskModel';
 import { mytParts, mytDayStart, DAY, DAYS_EN, formatMyt } from '../ai/time';
 import { ASSET_TYPES, ZONE_TONE } from '../data/reference';
+import { toneVar } from '../theme/tones';
 
 const FEATURE_LABEL = {
   zone_SEM: 'Zone: Bulatan Semariang', zone_KUL: 'Zone: Jalan Kulas Bridge', zone_BIN: 'Zone: Jambatan Amar Juma\'ani',
@@ -28,7 +29,7 @@ function HeatGrid({ heat, start }) {
             <span className="heat-head text-left font-semibold">{dayLabel(start + d * DAY)}</span>
             {row.map((p, h) => (
               <span key={h} className="heat-cell" title={`${dayLabel(start + d * DAY)} ${hh(h)} · score ${p.toFixed(2)}`}
-                style={{ background: `var(--color-${ZONE_TONE[bandFor(p)]})`, opacity: 0.2 + 0.8 * p }} />
+                style={{ background: toneVar(ZONE_TONE[bandFor(p)]), opacity: 0.2 + 0.8 * p }} />
             ))}
           </React.Fragment>
         ))}
@@ -91,7 +92,7 @@ export default function RiskForecast() {
                   <Badge tone={ZONE_TONE[f.band]} dot>{f.band.toUpperCase()} · {BAND[f.band].labelMs}</Badge>
                 </div>
                 <div className="flex items-end gap-3">
-                  <span className="text-3xl font-extrabold text-fg leading-none">{f.risk.toFixed(2)}</span>
+                  <span className="text-3xl font-bold text-fg leading-none">{f.risk.toFixed(2)}</span>
                   <span className="text-[11px] text-fg-faint pb-0.5">7-day risk · peak {f.peak.p.toFixed(2)} on {DAYS_EN[f.features.nightOf]} night around {hh(f.peak.hour)}</span>
                 </div>
                 <ProgressBar value={f.risk} max={1} tone={ZONE_TONE[f.band]} />
@@ -101,7 +102,7 @@ export default function RiskForecast() {
                 <ol className="space-y-2">
                   {f.reasons.map((r, k) => (
                     <li key={r.key} className="flex gap-2">
-                      <span className="w-4 h-4 rounded-full bg-primary text-[9px] font-bold flex items-center justify-center shrink-0 mt-0.5" style={{ color: 'var(--color-on-primary)' }}>{k + 1}</span>
+                      <span className="num-dot mt-0.5">{k + 1}</span>
                       <span className="min-w-0 flex-1">
                         <span className="flex items-center gap-2">
                           <span className="text-[11px] font-bold text-fg">{r.label}</span>
@@ -162,9 +163,9 @@ export default function RiskForecast() {
           actions={<Tabs size="sm" value={active} onChange={setZoneTab} tabs={forecast.map((f) => ({ value: f.zone, label: zoneOf(f.zone).short }))} />}>
           <HeatGrid heat={sel.heat} start={start} />
           <div className="flex gap-4 mt-3 text-[10px] text-fg-faint">
-            <span><span className="legend-dot" style={{ background: 'var(--color-success)' }} />Low &lt; {RISK_BANDS.medium}</span>
-            <span><span className="legend-dot" style={{ background: 'var(--color-warning)' }} />Medium {RISK_BANDS.medium}–{RISK_BANDS.high}</span>
-            <span><span className="legend-dot" style={{ background: 'var(--color-danger)' }} />High &gt; {RISK_BANDS.high}</span>
+            <span><span className="legend-dot" style={{ background: 'var(--app-success)' }} />Low &lt; {RISK_BANDS.medium}</span>
+            <span><span className="legend-dot" style={{ background: 'var(--app-warning)' }} />Medium {RISK_BANDS.medium}–{RISK_BANDS.high}</span>
+            <span><span className="legend-dot" style={{ background: 'var(--app-danger)' }} />High &gt; {RISK_BANDS.high}</span>
           </div>
         </Card>
         <ChartCard title="Nightly peak score" subtitle="Highest hourly score each night, 22:00–06:00" legend height={230} yMax={1}
@@ -194,7 +195,7 @@ export default function RiskForecast() {
                 render: (r) => (
                   <span className="flex items-center gap-2">
                     <span className="w-24 h-1.5 rounded bg-surface-raised relative">
-                      <span className="absolute h-1.5 rounded" style={{ left: r.w >= 0 ? '50%' : `${50 + Math.max(-50, (r.w / 2) * 50)}%`, width: `${Math.min(50, Math.abs(r.w / 2) * 50)}%`, background: `var(--color-${r.w >= 0 ? 'danger' : 'success'})` }} />
+                      <span className="absolute h-1.5 rounded" style={{ left: r.w >= 0 ? '50%' : `${50 + Math.max(-50, (r.w / 2) * 50)}%`, width: `${Math.min(50, Math.abs(r.w / 2) * 50)}%`, background: toneVar(r.w >= 0 ? 'danger' : 'success') }} />
                     </span>
                     <span className="font-mono">{r.w >= 0 ? '+' : ''}{r.w.toFixed(2)}</span>
                   </span>

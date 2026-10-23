@@ -62,9 +62,9 @@ function KpiDrawer({ kind, onClose, onOpen }) {
             { key: 'id', header: 'Alert', mono: true },
             { key: 'when', header: 'When', render: (a) => formatMyt(a.createdAt, 'short') },
             { key: 'what', header: 'What', strong: true, render: (a) => a.title },
-            { key: 'loss', header: 'Value protected', render: (a) => <b className="text-fg">{formatRM(a.estimatedLossRM)}</b> },
+            { key: 'loss', header: 'Value protected', numeric: true, render: (a) => <b className="text-fg">{formatRM(a.estimatedLossRM)}</b> },
           ]} />
-        <p className="text-[11px] text-fg-faint px-4 py-3 border-t">Value protected is the replacement cost of the asset (plus a feeder section for streetlights and RM 1,500 call-out), from the GuardGrid replacement-cost table. It counts only alerts marked “Intercepted, no loss”.</p>
+        <p className="text-[11px] text-fg-faint px-4 py-3 border-t">Value protected is the replacement cost of the asset (plus a feeder section for streetlights and RM 1,500 call-out), from the DBKU replacement-cost table. It counts only alerts marked “Intercepted, no loss”.</p>
       </Drawer>
     );
   }
@@ -195,7 +195,7 @@ export default function Dashboard() {
         </Card>
       </div>
 
-      <Card title="Why GuardGrid" subtitle="From reactive repair to prevention">
+      <Card title="Why early warning" subtitle="From reactive repair to prevention">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="grid grid-cols-3 gap-2 h-fit">
             <div className="tile"><p className="label-caps">Incidents</p><p className="text-lg font-bold text-fg">{meta.programme.incidents}</p><p className="text-[10px] text-fg-faint">since 2020</p></div>

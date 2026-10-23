@@ -9,6 +9,7 @@ import { formatMyt, sameMytDay } from '../../ai/time';
 import { NAV_SECTIONS, ROUTES } from '../../routes';
 import { APP, USER } from '../../config';
 import { initials } from '../../utils';
+import { toneVar } from '../../theme/tones';
 
 // Closes a popup when clicking outside `ref` or pressing Escape.
 function useDismiss(ref, open, onClose) {
@@ -96,7 +97,7 @@ function Search() {
       {open && query.trim() && (
         <div className="menu left-0 right-0">
           <div className="menu-section">
-            {results.length === 0 && <p className="text-xs text-fg-faint text-center py-3">No results for “{query}”</p>}
+            {results.length === 0 && <p className="menu-empty">No results for “{query}”. Try an asset ID, road or dealer name.</p>}
             {results.map((r) => (
               <button key={`${r.key}-${r.path}`} type="button" className="menu-item" onMouseDown={(e) => { e.preventDefault(); go(r.path); }}>
                 <Icon name={r.icon} size={15} />
@@ -120,7 +121,7 @@ function Clock() {
     return () => clearInterval(t);
   }, []);
   return (
-    <span className="hidden md:inline-block font-mono text-xs text-fg-muted px-2 py-1 rounded-md border bg-surface-raised">
+    <span className="header-clock hidden md:inline-block">
       {now.toLocaleTimeString(APP.locale, { hour12: false, timeZone: APP.timeZone })} <span className="text-fg-faint">MYT</span>
     </span>
   );
@@ -137,7 +138,7 @@ function ProfileModal({ onClose }) {
       <div className="space-y-3">
         <DetailGrid items={[
           { label: 'Unit', value: 'DBKU Enforcement' },
-          { label: 'Station', value: 'GuardGrid command centre' },
+          { label: 'Station', value: APP.subtitle },
           { label: 'Decisions today', value: today.length },
           { label: 'Open tasks', value: tasks.filter((t) => ['open', 'in_progress'].includes(t.status)).length },
           { label: 'Theme', value: theme === 'dark' ? 'Dark' : 'Light' },
@@ -158,24 +159,25 @@ function ProfileMenu({ onOpenNotifications, onSignOut }) {
   const { toggleTheme } = useTheme();
   useDismiss(ref, open, () => setOpen(false));
 
-  const item = (icon, label, onClick) => (
-    <button type="button" className="menu-item" role="menuitem" onClick={() => { setOpen(false); onClick?.(); }}>
+  const item = (icon, label, onClick, tone) => (
+    <button type="button" className={`menu-item ${tone || ''}`} role="menuitem" onClick={() => { setOpen(false); onClick?.(); }}>
       <Icon name={icon} size={15} />{label}
     </button>
   );
 
   return (
     <div className="relative" ref={ref}>
-      <button type="button" className="avatar" onClick={() => setOpen((o) => !o)} aria-haspopup="menu" aria-expanded={open} title={USER.name}>
+      <button type="button" className="avatar" onClick={() => setOpen((o) => !o)} aria-haspopup="menu" aria-expanded={open} title={USER.name} aria-label={`Account menu for ${USER.name}`}>
         {initials(USER.name)}
       </button>
       {open && (
         <div className="menu right-0" role="menu">
-          <div className="flex items-center gap-3 px-4 py-3 border-b">
-            <div className="avatar">{initials(USER.name)}</div>
+          <div className="profile-menu-header">
+            <div className="avatar" aria-hidden="true">{initials(USER.name)}</div>
             <div className="min-w-0">
-              <p className="text-xs font-bold text-fg truncate">{USER.name}</p>
-              <p className="text-[10px] text-fg-faint">{USER.role}</p>
+              <p className="name truncate">{USER.name}</p>
+              <p className="role">{USER.role}</p>
+              <p className="status">On duty</p>
             </div>
           </div>
           <div className="menu-section">
@@ -184,7 +186,7 @@ function ProfileMenu({ onOpenNotifications, onSignOut }) {
             {item('settings', 'Toggle theme', toggleTheme)}
           </div>
           <div className="menu-section">
-            {item('logout', 'Sign out', onSignOut)}
+            {item('logout', 'Sign out', onSignOut, 'danger')}
           </div>
         </div>
       )}
@@ -208,8 +210,8 @@ export default function Header({ onToggleSidebar, activePanel, onTogglePanel, on
       <IconButton icon="menu" label="Toggle sidebar" onClick={onToggleSidebar} />
 
       <div className="hidden sm:flex flex-col ml-1 mr-2 leading-tight">
-        <span className="text-[11px] font-bold uppercase tracking-widest text-fg">{APP.subtitle}</span>
-        <span className="text-[10px] text-fg-faint">{pageTitle}</span>
+        <span className="header-eyebrow">{APP.subtitle}</span>
+        <span className="text-[11px] text-fg-muted mt-0.5">{pageTitle}</span>
       </div>
 
       {f.search && <Search />}
@@ -221,15 +223,17 @@ export default function Header({ onToggleSidebar, activePanel, onTogglePanel, on
       )}
 
       {f.insights && (
-        <Button variant="accent" icon="sparkles" onClick={() => onTogglePanel('insights')} aria-pressed={activePanel === 'insights'}>
+        <button type="button" className={`app-advisory-btn ${activePanel === 'insights' ? 'is-on' : ''}`}
+          onClick={() => onTogglePanel('insights')} aria-pressed={activePanel === 'insights'} aria-label="AI Insights">
+          <Icon name="sparkles" size={16} />
           <span className="hidden md:inline">AI Insights</span>
-        </Button>
+        </button>
       )}
 
       {f.notifications && (
         <IconButton icon="bell" label="Notifications" active={activePanel === 'notifications'} onClick={() => onTogglePanel('notifications')}>
           {unread.length > 0 && (
-            <span className="notify-count" style={{ background: `var(--color-${hasDanger ? 'danger' : 'warning'})` }}>{unread.length}</span>
+            <span className="notify-count" style={{ background: toneVar(hasDanger ? 'danger' : 'warning') }}>{unread.length}</span>
           )}
         </IconButton>
       )}

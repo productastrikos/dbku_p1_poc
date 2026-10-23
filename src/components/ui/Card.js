@@ -4,7 +4,7 @@ import React from 'react';
  * Card: the standard panel surface.
  *   title / subtitle / actions render a header row with a divider.
  *   padded=false removes body padding (for tables and edge-to-edge content).
- *   hoverable lifts the card on hover.
+ *   Every card lifts on hover (spec §7.5); `hoverable` is kept for callers.
  */
 export default function Card({
   title, subtitle, actions, children,
@@ -12,7 +12,7 @@ export default function Card({
 }) {
   const hasHeader = title || subtitle || actions;
   return (
-    <div className={`card ${hoverable ? 'card-hoverable' : ''} ${padded ? '' : 'overflow-hidden'} ${className}`} style={style}>
+    <div className={`card ${className}`} style={style}>
       {hasHeader && (
         <div className="card-header">
           <div className="flex-1 min-w-0">

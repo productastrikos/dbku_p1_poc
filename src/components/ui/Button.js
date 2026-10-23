@@ -7,7 +7,7 @@ import Icon from './Icon';
  *   size:    'sm' | 'md' | 'lg'
  *   icon:    icon name placed before the label
  *   block:   full width
- * Colours come from the --btn-* tokens in theme.css.
+ * One primary per view; everything else is secondary, ghost or soft (spec §7.6 in theme.css).
  */
 export default function Button({
   variant = 'primary', size = 'md', icon, block = false,

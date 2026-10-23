@@ -53,5 +53,5 @@ export function estimateLoss({ asset, assets = [], recordedCostRM, type }) {
     if (feeder) items.push({ item: `Feeder cable section (≈ ${Math.round(feeder.lengthM / 3)} m)`, rm: Math.round(feeder.replacementCostRM / 3 / 100) * 100 });
   }
   items.push({ item: 'Emergency make-safe and call-out', rm: CALL_OUT_RM });
-  return { totalRM: items.reduce((s, x) => s + x.rm, 0), items, basis: 'GuardGrid replacement-cost table (indicative)' };
+  return { totalRM: items.reduce((s, x) => s + x.rm, 0), items, basis: 'DBKU replacement-cost table (indicative)' };
 }

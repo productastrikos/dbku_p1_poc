@@ -5,24 +5,37 @@ import { NAV_SECTIONS } from '../../routes';
 import { APP, USER } from '../../config';
 import { initials } from '../../utils';
 
-export function BrandMark() {
+// `compact` swaps in the square mark where the full crest would be too small.
+export function BrandMark({ compact = false, height = 40 }) {
+  if (compact && APP.logoCompact) return <img src={APP.logoCompact} alt={APP.fullName || APP.name} className="brand-logo-compact" />;
   return APP.logo
-    ? <img src={APP.logo} alt={APP.name} style={{ height: 32, width: 'auto' }} />
+    ? <span className="brand-logo"><img src={APP.logo} alt={`${APP.fullName || APP.name} crest`} style={{ height }} /></span>
     : <div className="brand-mark">{APP.logoInitials || initials(APP.name)}</div>;
 }
 
-export default function Sidebar({ collapsed }) {
+/* open: the off-canvas drawer is showing (below 1024px).
+   onNavigate: called after a nav item is chosen, so the drawer can close. */
+export default function Sidebar({ collapsed, open = false, onNavigate }) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const go = (path) => { navigate(path); onNavigate?.(); };
 
   return (
-    <aside className={`sidebar ${collapsed ? 'is-collapsed' : ''}`}>
-      <div className="sidebar-brand" onClick={() => navigate('/')}>
-        <BrandMark />
-        {!collapsed && <span className="brand-name">{APP.name}</span>}
-      </div>
+    <aside className={`sidebar ${collapsed ? 'is-collapsed' : ''} ${open ? 'is-open' : ''}`}>
+      <button type="button" className="sidebar-brand astk-lockup" onClick={() => go('/')} title={APP.fullName} aria-label={`${APP.fullName || APP.name}: go to the dashboard`}>
+        <BrandMark compact={collapsed} />
+        {!collapsed && (
+          <>
+            <span className="astk-lockup-rule" />
+            <span className="astk-lockup-text">
+              <span className="astk-lockup-name">{APP.name}</span>
+              {APP.fullName && <span className="astk-lockup-descriptor">{APP.fullName}</span>}
+            </span>
+          </>
+        )}
+      </button>
 
-      <nav className="nav">
+      <nav className="nav" aria-label="Main">
         {NAV_SECTIONS.map((section) => (
           <div key={section.label}>
             {collapsed ? <div className="h-3" /> : <p className="nav-section-label">{section.label}</p>}
@@ -31,10 +44,12 @@ export default function Sidebar({ collapsed }) {
                 key={item.path}
                 type="button"
                 className={`nav-item ${pathname === item.path ? 'is-active' : ''}`}
-                onClick={() => navigate(item.path)}
+                aria-current={pathname === item.path ? 'page' : undefined}
+                onClick={() => go(item.path)}
                 title={collapsed ? item.label : undefined}
+                aria-label={collapsed ? item.label : undefined}
               >
-                <Icon name={item.icon} size={18} />
+                <Icon name={item.icon} size={16} />
                 {!collapsed && <span className="truncate">{item.label}</span>}
               </button>
             ))}
@@ -44,9 +59,9 @@ export default function Sidebar({ collapsed }) {
 
       {!collapsed && (
         <div className="sidebar-user">
-          <div className="avatar" style={{ width: 30, height: 30, fontSize: 11, borderRadius: 8 }}>{initials(USER.name)}</div>
+          <div className="avatar" style={{ width: 30, height: 30, fontSize: 11 }}>{initials(USER.name)}</div>
           <div className="min-w-0">
-            <p className="text-xs font-semibold text-fg truncate">{USER.name}</p>
+            <p className="text-xs font-bold text-fg truncate">{USER.name}</p>
             <p className="text-[10px] text-fg-faint truncate">{USER.role}</p>
           </div>
         </div>

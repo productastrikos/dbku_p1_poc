@@ -263,7 +263,7 @@ describe('Data consistency (what every screen shows)', () => {
     });
   });
 
-  test('incidents raised by GuardGrid match their pilot alert', () => {
+  test('incidents raised by the command centre match their pilot alert', () => {
     const raised = incidents.filter((i) => i.alertId);
     expect(raised).toHaveLength(3);
     raised.forEach((i) => {

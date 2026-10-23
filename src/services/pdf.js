@@ -1,10 +1,11 @@
 /* Renders an incident brief as an A4 PDF (jsPDF, loaded on demand). */
 import { formatRM } from '../data/reference';
 
-const BRAND = [47, 111, 219]; // template primary (#2f6fdb)
-const INK = [15, 31, 29];
-const MUTED = [91, 118, 114];
-const LINE = [205, 222, 219];
+// Astrikos light-theme palette (paper): brand ink, steel and hairline.
+const BRAND = [53, 50, 72];    // #353248 ink, header band and section rules
+const INK = [53, 50, 72];      // #353248 body ink
+const MUTED = [86, 85, 89];    // #565559 steel
+const LINE = [226, 223, 239];  // #E2DFEF hairline
 const M = 16; // page margin, mm
 
 // The built-in Helvetica font only covers WinAnsi characters: map the common
@@ -16,6 +17,24 @@ const keep = (c) => {
   return c === '\n' || c === '\t' || (code >= 0x20 && code <= 0x7e) || (code >= 0xa0 && code <= 0xff) || WIN_ANSI_EXTRA.has(code);
 };
 const pdfSafe = (s) => Array.from(String(s ?? ''), (c) => SAFE[c] ?? (keep(c) ? c : '')).join('');
+
+// DBKU crest (on its teal ground) for the letterhead. The brief still builds
+// if it fails to load.
+async function loadCrest() {
+  try {
+    const res = await fetch(`${process.env.PUBLIC_URL || ''}/dbku-crest.png`);
+    if (!res.ok) return null;
+    const blob = await res.blob();
+    return await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => resolve(null);
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
+}
 
 function imageSize(dataUrl) {
   return new Promise((resolve) => {
@@ -84,15 +103,24 @@ export async function buildReportPdf({ brief, caseFile, images = [] }) {
     y += 3;
   };
 
-  /* Header band */
+  /* Header band, with the DBKU crest */
   doc.setFillColor(...BRAND);
   doc.rect(0, 0, W, 30, 'F');
-  font(8, 'bold', [214, 228, 250]);
-  doc.text('DEWAN BANDARAYA KUCHING UTARA  ·  GUARDGRID', M, 10);
+  const crest = await loadCrest();
+  let tx = M;
+  if (crest) {
+    const size = await imageSize(crest);
+    const ch = 22;
+    const cw = size ? (ch * size.w) / size.h : ch * 1.47;
+    doc.addImage(crest, 'PNG', M, 4, cw, ch);
+    tx = M + cw + 6;
+  }
+  font(8, 'bold', [214, 210, 228]);   // #D6D2E4 on ink
+  doc.text('DEWAN BANDARAYA KUCHING UTARA  ·  COMMAND CENTRE', tx, 10);
   font(15, 'bold', [255, 255, 255]);
-  doc.text('Incident Brief for PDRM', M, 18);
-  font(8.5, 'normal', [228, 237, 252]);
-  doc.text(pdfSafe(`Laporan ringkas insiden untuk PDRM  ·  Ref ${caseFile.reference}`), M, 24.5);
+  doc.text('Incident Brief for PDRM', tx, 18);
+  font(8.5, 'normal', [232, 230, 242]); // #E8E6F2 mist
+  doc.text(pdfSafe(`Laporan ringkas insiden untuk PDRM  ·  Ref ${caseFile.reference}`), tx, 24.5);
   y = 38;
 
   font(13, 'bold');
@@ -172,7 +200,7 @@ export async function buildReportPdf({ brief, caseFile, images = [] }) {
   for (let p = 1; p <= pages; p++) {
     doc.setPage(p);
     font(7, 'normal', MUTED);
-    doc.text(pdfSafe(`GuardGrid prototype · mock data · drafted by ${brief.model || 'LLM'}; verify before submission`), M, H - 8);
+    doc.text(pdfSafe(`DBKU Command Centre prototype · mock data · drafted by ${brief.model || 'LLM'}; verify before submission`), M, H - 8);
     doc.text(`${p} / ${pages}`, W - M, H - 8, { align: 'right' });
   }
   return doc;

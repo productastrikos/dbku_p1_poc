@@ -90,9 +90,9 @@ export function buildCaseFile(event, { assets, zones, dealers, transactions, scr
     .sort((x, y) => Date.parse(y.occurredAt) - Date.parse(x.occurredAt));
 
   return {
-    reference: `GG/${event.zone}/${mytDate(event.time)}/${event.id}`,
+    reference: `DBKU/${event.zone}/${mytDate(event.time)}/${event.id}`,
     preparedAt: formatMyt(Date.now()),
-    reportingUnit: 'Dewan Bandaraya Kuching Utara (DBKU), GuardGrid early-warning system',
+    reportingUnit: 'Dewan Bandaraya Kuching Utara (DBKU), Command Centre early-warning system',
     event: {
       id: event.id,
       type: EVENT_TYPES[event.type]?.label || event.type,
@@ -163,7 +163,7 @@ export function offlineBrief(cf, event) {
     ],
     dbkuActions: [
       'Make the site safe and restore lighting.',
-      'Add the site to tonight\'s patrol route and keep GuardGrid monitoring active.',
+      'Add the site to tonight\'s patrol route and keep it under command-centre monitoring.',
       'Notify Sarawak Energy and the Ministry of Utility and Telecommunication.',
     ],
     ringkasanBM: `Pada ${cf.event.occurredAt}, ${typeMs} dikesan di ${asset?.id} (${cf.location.road}, ${cf.location.zone}). `

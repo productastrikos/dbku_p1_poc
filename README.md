@@ -1,4 +1,4 @@
-# GuardGrid · DBKU
+# DBKU Command Centre · Dewan Bandaraya Kuching Utara
 
 AI early-warning prototype for vandalism and electrical theft for **Dewan Bandaraya Kuching Utara (DBKU)**, Sarawak. It moves DBKU from *incident → complaint → inspection → repair → repeat* to **prevention, early detection and disruption of the resale channel**: protect assets, trace scrap sales, and coordinate with PDRM, Sarawak Energy and the Ministry of Utility & Telecommunication.
 
@@ -94,6 +94,8 @@ Recent records are generated relative to `--asof` (default 2026-10-15). When the
 
 ```
 server/            llm.js (Claude routes), index.js (production API server)
+public/            DBKU logo: dbku-logo.png (as supplied, crest + wordmark; apple-touch icon), and crops of it without the wordmark:
+                   dbku-crest.png (sidebar, sign-out screen, PDF letterhead), dbku-mark.png (square: favicon, collapsed sidebar)
 public/footage/    sample CCTV clips (MEVA, CC BY 4.0) and their attribution
 scripts/           mock-data generator + OSM road geometry
 src/
@@ -102,7 +104,7 @@ src/
   services/        llm client, case file + offline brief, PDF, browser storage
   components/      ui/ and charts/ (design system), layout/ (shell), guard/ (map, asset twin, alert/task drawers, alert feed…)
   pages/           Dashboard, DigitalTwin, Operations, CctvAnalyzer, Sensors, RiskForecast, ScrapRegistry, Reports
-  theme/           theme.css (template colour tokens, light + dark), components.css
+  theme/           theme.css (Astrikos UI theme: tokens for dark + light and every component class; spec in ASTRIKOS-UI-THEME 1.md), tones.js, ThemeProvider.js
 ```
 
 ## Limits of the prototype

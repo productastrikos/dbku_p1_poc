@@ -1,4 +1,4 @@
-# Deploy: GuardGrid (`dbku`) on astrikos.xyz
+# Deploy: DBKU Command Centre (`dbku`) on astrikos.xyz
 
 Follows the astrikos.xyz deployment convention: one frontend port, one backend port, one nginx block each.
 
@@ -108,8 +108,8 @@ sudo nginx -t && sudo systemctl reload nginx
 ## 5. Verify
 
 ```bash
-curl -k https://dbku.astrikos.xyz:8443                       # SPA HTML (<title>GuardGrid…)
-curl -k https://dbku-api.astrikos.xyz:8443/                  # {"service":"guardgrid-api","ok":true}
+curl -k https://dbku.astrikos.xyz:8443                       # SPA HTML (<title>DBKU Command Centre…)
+curl -k https://dbku-api.astrikos.xyz:8443/                  # {"service":"dbku-api","ok":true}
 curl -k https://dbku-api.astrikos.xyz:8443/api/llm/status    # {"enabled":true,"model":"claude-opus-5-5"}
 
 # CORS preflight from the frontend origin → 204 with Access-Control-Allow-Origin

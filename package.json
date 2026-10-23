@@ -1,7 +1,7 @@
 {
-  "name": "guardgrid",
+  "name": "dbku-command-centre",
   "version": "1.0.0",
-  "description": "GuardGrid: AI early warning for vandalism and electrical theft, Dewan Bandaraya Kuching Utara (prototype)",
+  "description": "DBKU Command Centre: AI early warning for vandalism and electrical theft, Dewan Bandaraya Kuching Utara (prototype)",
   "private": true,
   "engines": {
     "node": ">=20.12"

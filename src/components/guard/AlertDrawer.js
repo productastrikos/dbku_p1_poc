@@ -149,7 +149,7 @@ export default function AlertDrawer({ alertId, onClose, onOpenAsset, onOpenTask 
               </Button>
             ))}
           </div>
-          {done && <p className="tile tone-success text-[11px] font-semibold">✓ {done}</p>}
+          {done && <p className="tile tone-success text-[11px] font-bold text-fg flex items-center gap-2" role="status"><Icon name="check" size={14} className="text-success shrink-0" />{done}</p>}
           <p className="text-[10px] text-fg-faint flex items-center gap-1"><Icon name="info" size={12} />Marking an alert intercepted adds its value to “RM loss avoided”. Closing an alert completes its open patrol.</p>
         </div>
       </div>

@@ -330,7 +330,7 @@
   "costRM": 23960,
   "lightsCut": 4,
   "lightsDarkBefore": 2,
-  "reportedBy": "GuardGrid tamper sensor (AL-P003)",
+  "reportedBy": "DBKU tamper sensor (AL-P003)",
   "alertId": "AL-P003"
  },
  {
@@ -347,7 +347,7 @@
   "costRM": 63660,
   "lightsCut": 2,
   "lightsDarkBefore": 0,
-  "reportedBy": "GuardGrid tamper sensor (AL-P004)",
+  "reportedBy": "DBKU tamper sensor (AL-P004)",
   "alertId": "AL-P004"
  },
  {
@@ -368,7 +368,7 @@
   "costRM": 86530,
   "lightsCut": 4,
   "lightsDarkBefore": 4,
-  "reportedBy": "GuardGrid tamper sensor (AL-P006)",
+  "reportedBy": "DBKU tamper sensor (AL-P006)",
   "alertId": "AL-P006"
  }
 ]

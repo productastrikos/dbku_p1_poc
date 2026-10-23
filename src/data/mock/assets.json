@@ -25,7 +25,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-001",
+   "id": "SN-SEM-001",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -100,
@@ -59,7 +59,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-002",
+   "id": "SN-SEM-002",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -90,
@@ -93,7 +93,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-003",
+   "id": "SN-SEM-003",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -100,
@@ -127,7 +127,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-004",
+   "id": "SN-SEM-004",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -94,
@@ -157,7 +157,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-005",
+   "id": "SN-SEM-005",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -87,
@@ -187,7 +187,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-006",
+   "id": "SN-SEM-006",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -94,
@@ -217,7 +217,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-007",
+   "id": "SN-SEM-007",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -91,
@@ -247,7 +247,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-008",
+   "id": "SN-SEM-008",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -105,
@@ -279,7 +279,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-009",
+   "id": "SN-SEM-009",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -94,
@@ -309,7 +309,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-010",
+   "id": "SN-SEM-010",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -94,
@@ -339,7 +339,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-011",
+   "id": "SN-SEM-011",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -105,
@@ -369,7 +369,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-012",
+   "id": "SN-SEM-012",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -97,
@@ -399,7 +399,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-SEM-013",
+   "id": "SN-SEM-013",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -100,
@@ -428,7 +428,7 @@
    "enclosure": "Steel kiosk, double door"
   },
   "node": {
-   "id": "GGN-SEM-014",
+   "id": "SN-SEM-014",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -95,
@@ -458,7 +458,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-SEM-015",
+   "id": "SN-SEM-015",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -90,
@@ -488,7 +488,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-SEM-016",
+   "id": "SN-SEM-016",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -87,
@@ -518,7 +518,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-SEM-017",
+   "id": "SN-SEM-017",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -101,
@@ -548,7 +548,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-SEM-018",
+   "id": "SN-SEM-018",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -85,
@@ -620,7 +620,7 @@
    "copperKg": 271
   },
   "node": {
-   "id": "GGN-SEM-019",
+   "id": "SN-SEM-019",
    "kind": "Current clamp at the feed end",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -90,
@@ -690,7 +690,7 @@
    "copperKg": 249
   },
   "node": {
-   "id": "GGN-SEM-020",
+   "id": "SN-SEM-020",
    "kind": "Current clamp at the feed end",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -110,
@@ -720,7 +720,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-001",
+   "id": "SN-KUL-001",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -106,
@@ -750,7 +750,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-002",
+   "id": "SN-KUL-002",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -106,
@@ -780,7 +780,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-003",
+   "id": "SN-KUL-003",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -93,
@@ -810,7 +810,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-004",
+   "id": "SN-KUL-004",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -104,
@@ -840,7 +840,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-005",
+   "id": "SN-KUL-005",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -109,
@@ -870,7 +870,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-006",
+   "id": "SN-KUL-006",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -104,
@@ -900,7 +900,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-007",
+   "id": "SN-KUL-007",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -104,
@@ -934,7 +934,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-008",
+   "id": "SN-KUL-008",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -89,
@@ -968,7 +968,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-009",
+   "id": "SN-KUL-009",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -93,
@@ -998,7 +998,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-010",
+   "id": "SN-KUL-010",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -100,
@@ -1028,7 +1028,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-011",
+   "id": "SN-KUL-011",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -109,
@@ -1058,7 +1058,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-012",
+   "id": "SN-KUL-012",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -91,
@@ -1088,7 +1088,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-KUL-013",
+   "id": "SN-KUL-013",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -101,
@@ -1117,7 +1117,7 @@
    "enclosure": "Steel kiosk, double door"
   },
   "node": {
-   "id": "GGN-KUL-014",
+   "id": "SN-KUL-014",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -108,
@@ -1147,7 +1147,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-KUL-015",
+   "id": "SN-KUL-015",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -94,
@@ -1177,7 +1177,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-KUL-016",
+   "id": "SN-KUL-016",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -89,
@@ -1207,7 +1207,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-KUL-017",
+   "id": "SN-KUL-017",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -109,
@@ -1237,7 +1237,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-KUL-018",
+   "id": "SN-KUL-018",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -94,
@@ -1307,7 +1307,7 @@
    "copperKg": 170
   },
   "node": {
-   "id": "GGN-KUL-019",
+   "id": "SN-KUL-019",
    "kind": "Current clamp at the feed end",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -94,
@@ -1377,7 +1377,7 @@
    "copperKg": 349
   },
   "node": {
-   "id": "GGN-KUL-020",
+   "id": "SN-KUL-020",
    "kind": "Current clamp at the feed end",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -100,
@@ -1407,7 +1407,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-001",
+   "id": "SN-BIN-001",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -84,
@@ -1437,7 +1437,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-002",
+   "id": "SN-BIN-002",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -99,
@@ -1467,7 +1467,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-003",
+   "id": "SN-BIN-003",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -102,
@@ -1497,7 +1497,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-004",
+   "id": "SN-BIN-004",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -105,
@@ -1527,7 +1527,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-005",
+   "id": "SN-BIN-005",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -86,
@@ -1557,7 +1557,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-006",
+   "id": "SN-BIN-006",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -87,
@@ -1587,7 +1587,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-007",
+   "id": "SN-BIN-007",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -111,
@@ -1619,7 +1619,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-008",
+   "id": "SN-BIN-008",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -101,
@@ -1649,7 +1649,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-009",
+   "id": "SN-BIN-009",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -111,
@@ -1679,7 +1679,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-010",
+   "id": "SN-BIN-010",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -104,
@@ -1709,7 +1709,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-011",
+   "id": "SN-BIN-011",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -96,
@@ -1739,7 +1739,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-012",
+   "id": "SN-BIN-012",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -108,
@@ -1769,7 +1769,7 @@
    "pole": "Galvanised steel, bolted base hatch"
   },
   "node": {
-   "id": "GGN-BIN-013",
+   "id": "SN-BIN-013",
    "kind": "Pole node: supply current, base-hatch contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -88,
@@ -1798,7 +1798,7 @@
    "enclosure": "Steel kiosk, double door"
   },
   "node": {
-   "id": "GGN-BIN-014",
+   "id": "SN-BIN-014",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -87,
@@ -1828,7 +1828,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-BIN-015",
+   "id": "SN-BIN-015",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -90,
@@ -1858,7 +1858,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-BIN-016",
+   "id": "SN-BIN-016",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -93,
@@ -1888,7 +1888,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-BIN-017",
+   "id": "SN-BIN-017",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -93,
@@ -1918,7 +1918,7 @@
    "lock": "Padlock and numbered seal"
   },
   "node": {
-   "id": "GGN-BIN-018",
+   "id": "SN-BIN-018",
    "kind": "Cabinet node: incoming current, door contact, tilt",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -98,
@@ -1988,7 +1988,7 @@
    "copperKg": 403
   },
   "node": {
-   "id": "GGN-BIN-019",
+   "id": "SN-BIN-019",
    "kind": "Current clamp at the feed end",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -97,
@@ -2058,7 +2058,7 @@
    "copperKg": 63
   },
   "node": {
-   "id": "GGN-BIN-020",
+   "id": "SN-BIN-020",
    "kind": "Current clamp at the feed end",
    "link": "LoRaWAN, AS923",
    "rssiDbm": -98,

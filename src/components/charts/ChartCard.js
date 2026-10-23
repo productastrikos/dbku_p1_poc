@@ -6,6 +6,7 @@ import {
   resolveColor, seriesColor, withAlpha, tooltipOptions, legendOptions, axisOptions,
   timeframeLabels, timeframePoints, resample,
 } from './chartTheme';
+import { toneVar } from '../../theme/tones';
 
 const CHARTS = { line: Line, bar: Bar, doughnut: Doughnut };
 
@@ -36,7 +37,7 @@ function styleDatasets(type, datasets) {
     }
     if (type === 'bar') {
       const bg = Array.isArray(color) ? color.map(resolveColor) : resolveColor(color || `chart-${(i % 8) + 1}`);
-      return { borderRadius: 4, maxBarThickness: 36, ...rest, backgroundColor: bg };
+      return { borderRadius: 6, maxBarThickness: 36, ...rest, backgroundColor: bg };
     }
     const c = resolveColor(color || `chart-${(i % 8) + 1}`);
     return {
@@ -147,8 +148,8 @@ function ThresholdLegend({ thresholds, stacked = false }) {
     <div className={`flex ${stacked ? 'flex-col' : 'flex-wrap'} gap-x-4 gap-y-2 mt-3 pt-3 border-t`}>
       {items.map((t) => (
         <div key={t.label} className="flex items-center gap-2 text-[10px]">
-          <span className="w-4 border-t-2 border-dashed" style={{ borderColor: `var(--color-${t.tone})` }} />
-          <span className="font-bold uppercase tracking-wide" style={{ color: `var(--color-${t.tone})` }}>{t.label}</span>
+          <span className="w-4 border-t-2 border-dashed" style={{ borderColor: toneVar(t.tone) }} />
+          <span className="font-bold uppercase tracking-wide" style={{ color: toneVar(t.tone) }}>{t.label}</span>
           {t.description && <span className="text-fg-muted">{t.description}</span>}
         </div>
       ))}

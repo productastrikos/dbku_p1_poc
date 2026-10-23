@@ -1,4 +1,5 @@
 import React from 'react';
+import { toneVar } from '../../theme/tones';
 
 // UI kit. Import from here: import { Card, Button, Badge } from '../components/ui';
 export { default as Icon } from './Icon';
@@ -15,7 +16,7 @@ export function ProgressBar({ value, max = 100, tone = 'primary', className = ''
   const pct = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
   return (
     <div className={`progress ${className}`}>
-      <div className="progress-bar" style={{ width: `${pct}%`, background: `var(--color-${tone})` }} />
+      <div className="progress-bar" style={{ width: `${pct}%`, background: toneVar(tone) }} />
     </div>
   );
 }
@@ -23,8 +24,8 @@ export function ProgressBar({ value, max = 100, tone = 'primary', className = ''
 /** PageHeader: page title, optional subtitle and right-aligned actions. */
 export function PageHeader({ title, subtitle, actions }) {
   return (
-    <div className="flex items-start justify-between flex-wrap gap-4">
-      <div>
+    <div className="page-header-block">
+      <div className="min-w-0">
         <h1 className="page-title">{title}</h1>
         {subtitle && <p className="page-subtitle">{subtitle}</p>}
       </div>

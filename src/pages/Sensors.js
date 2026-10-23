@@ -195,10 +195,10 @@ export default function Sensors() {
             columns={[
               { key: 'id', header: 'Asset', strong: true, render: (r) => <span className={r.id === asset.id ? 'text-primary font-bold' : ''}>{r.id}</span> },
               { key: 'type', header: 'Type', render: (r) => ASSET_TYPES[r.type].label },
-              { key: 'current', header: 'Current (A)', render: (r) => r.r?.current ?? '—' },
-              { key: 'z', header: 'z', render: (r) => <span className={Math.abs(r.e?.z || 0) > TAMPER_RULES.z ? 'text-danger font-bold' : ''}>{r.e?.z ?? '—'}</span> },
+              { key: 'current', header: 'Current (A)', numeric: true, render: (r) => r.r?.current ?? '—' },
+              { key: 'z', header: 'z', numeric: true, render: (r) => <span className={Math.abs(r.e?.z || 0) > TAMPER_RULES.z ? 'text-danger font-bold' : ''}>{r.e?.z ?? '—'}</span> },
               { key: 'door', header: 'Door', render: (r) => (r.r?.door == null ? '—' : r.r.door ? <b className="text-danger">OPEN</b> : 'closed') },
-              { key: 'tilt', header: 'Tilt', render: (r) => (r.r?.tilt == null ? '—' : `${r.r.tilt}°`) },
+              { key: 'tilt', header: 'Tilt', numeric: true, render: (r) => (r.r?.tilt == null ? '—' : `${r.r.tilt}°`) },
               { key: 'status', header: 'Status', render: (r) => <span className="flex gap-1 flex-wrap"><CauseBadges causes={r.e?.causes} />{r.fault && <Badge tone="neutral">fault: {r.fault.type}</Badge>}</span> },
             ]}
           />

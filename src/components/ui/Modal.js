@@ -14,8 +14,8 @@ function PanelHeader({ eyebrow, title, subtitle, extra, onClose }) {
     <div className="panel-header">
       <div className="min-w-0">
         {eyebrow && <p className="label-caps mb-0.5">{eyebrow}</p>}
-        <h2 className="text-base font-bold text-fg leading-tight">{title}</h2>
-        {subtitle && <p className="text-xs text-fg-faint mt-0.5">{subtitle}</p>}
+        <h2 className="app-modal-title">{title}</h2>
+        {subtitle && <p className="text-xs text-fg-muted mt-0.5">{subtitle}</p>}
       </div>
       <div className="flex items-center gap-2 shrink-0">
         {extra}
@@ -26,13 +26,13 @@ function PanelHeader({ eyebrow, title, subtitle, extra, onClose }) {
 }
 
 /** Modal: centred dialog. Render it conditionally: {open && <Modal …/>} */
-export default function Modal({ title, eyebrow, subtitle, onClose, footer, width = 440, children }) {
+export default function Modal({ title, eyebrow, subtitle, onClose, footer, width = 420, children }) {
   useEscape(onClose);
   return (
     <div className="overlay overlay-center" onClick={onClose}>
-      <div className="modal" style={{ maxWidth: width }} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+      <div className="modal" style={{ maxWidth: width }} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={typeof title === 'string' ? title : undefined}>
         <PanelHeader eyebrow={eyebrow} title={title} subtitle={subtitle} onClose={onClose} />
-        <div className="p-5">{children}</div>
+        <div className="modal-body">{children}</div>
         {footer && <div className="panel-footer">{footer}</div>}
       </div>
     </div>
@@ -44,7 +44,7 @@ export function Drawer({ title, eyebrow, subtitle, headerExtra, onClose, footer,
   useEscape(onClose);
   return (
     <div className="overlay overlay-right" onClick={onClose}>
-      <div className="drawer" style={{ width }} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+      <div className="drawer" style={{ width }} onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label={typeof title === 'string' ? title : undefined}>
         <PanelHeader eyebrow={eyebrow} title={title} subtitle={subtitle} extra={headerExtra} onClose={onClose} />
         <div className={`flex-1 min-h-0 ${bodyClassName}`}>{children}</div>
         {footer && <div className="panel-footer">{footer}</div>}
@@ -60,7 +60,7 @@ export function DetailGrid({ items, columns = 2 }) {
       {items.map(({ label, value }) => (
         <div key={label} className="tile">
           <p className="label-caps mb-1">{label}</p>
-          <div className="text-sm font-semibold text-fg">{value}</div>
+          <div className="text-sm font-bold text-fg tabular-nums">{value}</div>
         </div>
       ))}
     </div>

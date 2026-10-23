@@ -115,7 +115,7 @@ export default function Reports() {
 
   const download = async () => {
     const doc = await buildReportPdf({ brief: saved.brief, caseFile: saved.caseFile, images });
-    doc.save(`GuardGrid_${event.id}_PDRM_brief.pdf`);
+    doc.save(`DBKU_${event.id}_PDRM_brief.pdf`);
   };
 
   return (

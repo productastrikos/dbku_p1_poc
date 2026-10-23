@@ -10,6 +10,7 @@ import { useSensors } from '../data/SensorProvider';
 import { ASSET_TYPES, ASSET_STATUS, ZONE_TONE, formatRM, formatRMShort } from '../data/reference';
 import { formatMyt } from '../ai/time';
 import { metres } from '../data/network';
+import { toneVar } from '../theme/tones';
 
 const LAYERS = [
   ['streetlight', 'Streetlights', 'lightbulb'],
@@ -46,7 +47,7 @@ function Circuits({ assets, tasks, network, onSelectAsset, onOpenTask }) {
             className={`tile !py-1 !px-2 text-left transition-colors hover:border-line-strong ${c.dead ? 'tone-danger' : ''}`}>
             <span className="flex items-center justify-between gap-1 text-[11px]">
               <b className="text-fg">{c.id.slice(4)}<span className="font-normal text-fg-faint"> {c.zone}</span></b>
-              <span className="font-semibold" style={{ color: c.dead ? 'var(--color-danger)' : '#d97706' }}>{c.energised}/{c.total}</span>
+              <span className="font-semibold" style={{ color: c.dead ? 'var(--app-danger)' : 'var(--app-warning)' }}>{c.energised}/{c.total}</span>
             </span>
             <span className="block text-[10px] text-fg-faint truncate">{c.source?.id}{c.cable ? ` → ${c.cable.id}` : ''}</span>
           </button>
@@ -83,7 +84,7 @@ function NetworkOverview({ assets, cameras, tasks, network, onSelectAsset, onOpe
           <span className="label-caps px-3 py-2">Type</span>
           {STATUS_ORDER.map((s) => (
             <span key={s} className="py-2 flex justify-center" title={`${ASSET_STATUS[s].label}: ${ASSET_STATUS[s].hint}`}>
-              <span className="legend-dot !mr-0" style={{ background: `var(--color-${ASSET_STATUS[s].tone})` }} />
+              <span className="legend-dot !mr-0" style={{ background: toneVar(ASSET_STATUS[s].tone) }} />
             </span>
           ))}
           {types.map((t) => (
@@ -91,7 +92,7 @@ function NetworkOverview({ assets, cameras, tasks, network, onSelectAsset, onOpe
               <span className="px-3 py-1.5 border-t font-semibold text-fg">{ASSET_TYPES[t].label}</span>
               {STATUS_ORDER.map((s) => {
                 const n = assets.filter((a) => a.type === t && a.status === s).length;
-                return <span key={s} className="py-1.5 border-t text-center font-semibold" style={{ color: n && s !== 'normal' ? `var(--color-${ASSET_STATUS[s].tone})` : 'var(--color-text-muted)' }}>{n}</span>;
+                return <span key={s} className="py-1.5 border-t text-center font-semibold" style={{ color: n && s !== 'normal' ? toneVar(ASSET_STATUS[s].tone) : 'var(--app-text-muted)' }}>{n}</span>;
               })}
             </React.Fragment>
           ))}
@@ -122,7 +123,7 @@ function CameraPanel({ camera, onSelectAsset, onOpenAlert }) {
         <p><span className="label-caps mr-2">Mounted on</span><button type="button" className="link-btn" onClick={() => onSelectAsset(camera.mountedOn)}>{camera.mountedOn}</button>, {camera.mountHeightM} m up</p>
         <p><span className="label-caps mr-2">View</span>{camera.heads.length === 2 ? 'Two heads' : 'One head'}, {camera.heads[0].fovDeg}° each, aimed {camera.heads.map((h) => `${h.heading}° (${compass(h.heading)})`).join(' and ')}</p>
         <p><span className="label-caps mr-2">Range</span>{camera.heads[0].rangeM} m nominal; people are only reliably detected much closer in low light</p>
-        <p className="text-fg-faint">GuardGrid scores this camera's footage with COCO-SSD; the unit itself has no analytics.</p>
+        <p className="text-fg-faint">The command centre scores this camera's footage with COCO-SSD; the unit itself has no analytics.</p>
       </div>
       <div>
         <p className="label-caps mb-1.5">Covers {covered.length} assets</p>
@@ -130,7 +131,7 @@ function CameraPanel({ camera, onSelectAsset, onOpenAlert }) {
           {covered.map((a) => (
             <li key={a.id}>
               <button type="button" onClick={() => onSelectAsset(a.id)} className="w-full text-left flex items-center gap-2 text-xs py-1 hover:text-primary">
-                <span className="legend-dot shrink-0" style={{ background: `var(--color-${ASSET_STATUS[a.status].tone})` }} />
+                <span className="legend-dot shrink-0" style={{ background: toneVar(ASSET_STATUS[a.status].tone) }} />
                 <b className="text-fg shrink-0">{a.id}</b><span className="text-fg-faint truncate">{a.name}</span>
                 <span className="ml-auto text-[10px] text-fg-faint shrink-0">{a.id === camera.mountedOn ? 'mount' : `${distance(a)} m`}</span>
               </button>
@@ -219,7 +220,7 @@ export default function DigitalTwin() {
           return (
             <button key={value} type="button" onClick={() => setStatus(value)} title={ASSET_STATUS[value]?.hint}
               className={`tile !py-2 !px-3 flex items-center gap-2 text-xs transition-colors ${status === value ? `tone-${tone}` : 'hover:border-line-strong'}`}>
-              {value !== 'all' && <span className="legend-dot" style={{ background: `var(--color-${tone})` }} />}
+              {value !== 'all' && <span className="legend-dot" style={{ background: toneVar(tone) }} />}
               <span className="font-semibold text-fg">{label}</span>
               <span className="font-bold">{n}</span>
             </button>
@@ -243,7 +244,7 @@ export default function DigitalTwin() {
                 <li key={a.id}>
                   <button type="button" onClick={() => select(a.id)}
                     className={`w-full text-left px-4 py-2 border-b flex items-center gap-2.5 text-xs transition-colors ${a.id === selectedId ? 'bg-primary-soft' : 'hover:bg-surface-raised'}`}>
-                    <span className="legend-dot shrink-0" style={{ background: `var(--color-${ASSET_STATUS[a.status].tone})`, borderColor: a.lighting === 'out' ? '#111827' : undefined }} />
+                    <span className={`legend-dot shrink-0 ${a.lighting === 'out' ? 'is-dark' : ''}`} style={{ background: toneVar(ASSET_STATUS[a.status].tone) }} />
                     <Icon name={ASSET_TYPES[a.type].icon} size={13} className="text-fg-faint" />
                     <span className="min-w-0 flex-1">
                       <span className="block font-semibold text-fg">{a.id}</span>
@@ -287,13 +288,13 @@ export default function DigitalTwin() {
           onRowClick={(r) => setZone(zone === r.id ? 'all' : r.id)}
           columns={[
             { key: 'name', header: 'Zone', strong: true, render: (r) => <span className={zone === r.id ? 'text-primary font-bold' : ''}>{r.name}</span> },
-            { key: 'assets', header: 'Assets' },
-            { key: 'atRisk', header: 'At risk', render: (r) => <span className={r.atRisk ? 'text-warning font-semibold' : ''}>{r.atRisk}</span> },
-            { key: 'dark', header: 'Lights dark', render: (r) => `${r.dark} / ${r.lights}` },
-            { key: 'offline', header: 'Sensors offline' },
-            { key: 'cctv', header: 'CCTV cover', render: (r) => `${r.cctv} / ${r.assets} (${Math.round((r.cctv / r.assets) * 100)}%)` },
+            { key: 'assets', header: 'Assets', numeric: true },
+            { key: 'atRisk', header: 'At risk', numeric: true, render: (r) => <span className={r.atRisk ? 'text-warning font-semibold' : ''}>{r.atRisk}</span> },
+            { key: 'dark', header: 'Lights dark', numeric: true, render: (r) => `${r.dark} / ${r.lights}` },
+            { key: 'offline', header: 'Sensors offline', numeric: true },
+            { key: 'cctv', header: 'CCTV cover', numeric: true, render: (r) => `${r.cctv} / ${r.assets} (${Math.round((r.cctv / r.assets) * 100)}%)` },
             { key: 'risk', header: '7-day risk', render: (r) => (r.f ? <Badge tone={ZONE_TONE[r.f.band]} dot>{r.f.band} · {r.f.risk.toFixed(2)}</Badge> : '…') },
-            { key: 'incidents', header: 'Incidents since 2020', render: (r) => `${r.incidents} · ${formatRMShort(r.cost)}` },
+            { key: 'incidents', header: 'Incidents since 2020', numeric: true, render: (r) => `${r.incidents} · ${formatRMShort(r.cost)}` },
             { key: 'last', header: 'Last incident', render: (r) => (r.last ? formatMyt(r.last, 'date') : '—') },
           ]}
         />

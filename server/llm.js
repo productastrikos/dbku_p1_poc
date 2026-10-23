@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   GuardGrid LLM routes (Claude API). Mounted at /api/llm by
+   DBKU Command Centre LLM routes (Claude API). Mounted at /api/llm by
    src/setupProxy.js (npm start) and server/index.js (production), so the
    API key stays on the server and never reaches the browser bundle.
 
@@ -8,7 +8,7 @@
      POST /api/llm/report          { context, images: [{ data, mediaType, caption }] }
 
    Credentials: ANTHROPIC_API_KEY (or an `ant auth login` profile).
-   ANTHROPIC_MODEL overrides the model; GUARDGRID_LLM=off forces offline mode.
+   ANTHROPIC_MODEL overrides the model; DBKU_LLM=off forces offline mode.
    ═══════════════════════════════════════════════════════════════════════ */
 const express = require('express');
 const Anthropic = require('@anthropic-ai/sdk');
@@ -71,7 +71,7 @@ function getClient() {
 
 let statusCache = null;
 async function status() {
-  if (process.env.GUARDGRID_LLM === 'off') return { enabled: false, model: MODEL, reason: 'Disabled by GUARDGRID_LLM=off' };
+  if (process.env.DBKU_LLM === 'off') return { enabled: false, model: MODEL, reason: 'Disabled by DBKU_LLM=off' };
   if (statusCache && Date.now() < statusCache.until) return statusCache.value;
   let value;
   let ttl = 10 * 60000;

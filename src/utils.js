@@ -1,7 +1,7 @@
 /* Small shared helpers. */
 
 // Health status used by stat cards, charts and KPI details.
-// `tone` maps to the colour classes in theme/components.css (.tone-*).
+// `tone` maps to the .tone-* classes and --app-* tokens in theme/theme.css.
 export const STATUS = {
   normal:   { label: 'Normal',   tone: 'success' },
   warning:  { label: 'Warning',  tone: 'warning' },

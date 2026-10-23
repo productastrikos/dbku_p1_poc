@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Badge, IconButton } from '../ui';
+import { Badge, Icon, IconButton } from '../ui';
 import { useData } from '../../data/DataProvider';
 import { timeAgo } from '../../utils';
 import { formatMyt } from '../../ai/time';
@@ -22,10 +22,10 @@ export default function NotificationsPanel({ onClose }) {
   const open = (n) => { markRead(n.id); onClose(); navigate(n.link); };
 
   return (
-    <aside className="side-panel w-80 max-w-full">
+    <aside className="side-panel w-80 max-w-full" aria-label="Notifications">
       <div className="panel-header">
         <div>
-          <h3 className="text-sm font-semibold text-fg">Notifications</h3>
+          <h3 className="app-modal-title">Notifications</h3>
           <p className="text-xs text-fg-faint">{unread.length} unread · {notifications.length} active</p>
         </div>
         <IconButton icon="close" label="Close" plain onClick={onClose} />
@@ -46,7 +46,7 @@ export default function NotificationsPanel({ onClose }) {
               {items.map((n) => (
                 <div key={n.id} className={`tile tone-${tone} ${n.read ? 'opacity-60' : ''}`}>
                   <button type="button" className="w-full text-left" onClick={() => open(n)}>
-                    <span className="block text-xs font-semibold text-fg">{n.title}</span>
+                    <span className="block text-xs font-bold text-fg">{n.title}</span>
                     <span className="block text-[11px] text-fg-muted mt-0.5">{n.message}</span>
                   </button>
                   <div className="flex items-center justify-between mt-2">
@@ -61,7 +61,13 @@ export default function NotificationsPanel({ onClose }) {
             </div>
           );
         })}
-        {shown.length === 0 && <p className="text-center text-sm text-fg-faint py-8">You're all caught up</p>}
+        {shown.length === 0 && (
+          <div className="app-empty">
+            <Icon name="bell" size={44} className="app-empty-icon" />
+            <p className="app-empty-title">You're all caught up</p>
+            <p className="app-empty-text">{showRead ? 'There are no active notifications.' : 'No unread notifications. Choose Show read to see earlier ones.'}</p>
+          </div>
+        )}
       </div>
     </aside>
   );

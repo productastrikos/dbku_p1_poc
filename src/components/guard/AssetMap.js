@@ -7,7 +7,8 @@ import { useTheme } from '../../theme/ThemeProvider';
 import { ASSET_TYPES, ASSET_STATUS, ZONE_TONE } from '../../data/reference';
 import { lampsOnAt } from '../../data/network';
 import { formatMyt } from '../../ai/time';
-import './map.css';
+import { toneVar } from '../../theme/tones';
+import { Icon } from '../ui';
 
 const stopIcon = (n) => L.divIcon({ className: '', html: `<div class="route-stop">${n}</div>`, iconSize: [20, 20], iconAnchor: [10, 10] });
 
@@ -24,23 +25,27 @@ const readBasemap = () => { try { return localStorage.getItem('gg_basemap') || '
 const saveBasemap = (v) => { try { localStorage.setItem('gg_basemap', v); } catch { /* storage unavailable */ } };
 
 /* ─── Asset symbols ──────────────────────────────────────── */
+/* Constant parts read the theme tokens directly (the markup lives in the page),
+   so markers follow the theme; `fill` is the resolved status colour. */
+const ON = 'var(--app-on-color)';
+const FAINT = 'var(--app-text-faint)';
 const SIZE = { streetlight: 16, distribution_box: 16, switchboard: 22, camera: 18 };
 function symbol(type, fill, { dark, lit } = {}, size = SIZE[type]) {
   const wh = `width="${size}" height="${size}"`;
   if (type === 'streetlight') {
-    return `<svg ${wh} viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.4" fill="${dark ? '#111827' : fill}" stroke="${dark ? fill : '#fff'}" stroke-width="${dark ? 2.6 : 1.8}"/>`
-      + `<circle cx="8" cy="8" r="${lit ? 2.6 : 2}" fill="${dark ? '#6b7280' : lit ? '#fff4c2' : '#fff'}"/></svg>`;
+    return `<svg ${wh} viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.4" fill="${dark ? 'var(--app-bg)' : fill}" stroke="${dark ? fill : ON}" stroke-width="${dark ? 2.6 : 1.8}"/>`
+      + `<circle cx="8" cy="8" r="${lit ? 2.6 : 2}" fill="${dark ? 'var(--app-text-faint)' : lit ? 'var(--app-warning-soft)' : ON}"/></svg>`;
   }
   if (type === 'distribution_box') {
-    return `<svg ${wh} viewBox="0 0 16 16"><rect x="1.4" y="1.4" width="13.2" height="13.2" rx="2.6" fill="${fill}" stroke="#fff" stroke-width="1.8"/>`
-      + '<path d="M5 5.4h6M5 8h6M5 10.6h6" stroke="#fff" stroke-width="1.3" stroke-linecap="round"/></svg>';
+    return `<svg ${wh} viewBox="0 0 16 16"><rect x="1.4" y="1.4" width="13.2" height="13.2" rx="2.6" fill="${fill}" stroke="${ON}" stroke-width="1.8"/>`
+      + `<path d="M5 5.4h6M5 8h6M5 10.6h6" stroke="${ON}" stroke-width="1.3" stroke-linecap="round"/></svg>`;
   }
   if (type === 'switchboard') {
-    return `<svg ${wh} viewBox="0 0 22 22"><rect x="1.4" y="1.4" width="19.2" height="19.2" rx="3.6" fill="${fill}" stroke="#fff" stroke-width="2"/>`
-      + '<path d="M12.3 4.4 6.9 12.2h3.7l-1 5.4 5.5-7.8h-3.8z" fill="#fff"/></svg>';
+    return `<svg ${wh} viewBox="0 0 22 22"><rect x="1.4" y="1.4" width="19.2" height="19.2" rx="3.6" fill="${fill}" stroke="${ON}" stroke-width="2"/>`
+      + `<path d="M12.3 4.4 6.9 12.2h3.7l-1 5.4 5.5-7.8h-3.8z" fill="${ON}"/></svg>`;
   }
-  return `<svg ${wh} viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.8" fill="#0f172a" stroke="${fill}" stroke-width="1.8"/>`
-    + '<path d="M4.6 6.8h5.6a1 1 0 0 1 1 1v.4l2.3-1.4v4.4l-2.3-1.4v.4a1 1 0 0 1-1 1H4.6a1 1 0 0 1-1-1V7.8a1 1 0 0 1 1-1z" fill="#fff"/></svg>';
+  return `<svg ${wh} viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.8" fill="${fill}" stroke="${ON}" stroke-width="1.8"/>`
+    + `<path d="M4.6 6.8h5.6a1 1 0 0 1 1 1v.4l2.3-1.4v4.4l-2.3-1.4v.4a1 1 0 0 1-1 1H4.6a1 1 0 0 1-1-1V7.8a1 1 0 0 1 1-1z" fill="${ON}"/></svg>`;
 }
 const iconCache = new Map();
 function assetIcon(type, fill, opts = {}) {
@@ -161,7 +166,7 @@ export default function AssetMap({
       Status: <strong style={{ color: tone(a.status) }}>{ASSET_STATUS[a.status].label}</strong>
       {a.type === 'streetlight' && <> · {a.lighting === 'out' ? 'lamp dark' : lampsOn ? 'lamp on' : 'lamp off (daytime)'}</>}
       {network && a.upstream && <><br />Fed from {a.upstream}{a.circuit ? ` · circuit ${a.circuit}` : a.feeder ? ` · feeder ${a.feeder}` : ''}{live(a) ? '' : ' · no supply'}</>}
-      {a.openAlerts?.map((x) => <div key={x.id}>⚠ {x.title}</div>)}
+      {a.openAlerts?.map((x) => <div key={x.id} className="flex items-center gap-1" style={{ color: resolveColor('danger') }}><Icon name="alert" size={11} />{x.title}</div>)}
     </>
   );
   const hover = (a) => (onSelectAsset ? <Tooltip direction="top" offset={[0, -8]}>{info(a)}</Tooltip> : <Popup>{info(a)}</Popup>);
@@ -205,10 +210,10 @@ export default function AssetMap({
         {/* Lit area of each working lamp; a dashed ring where a lamp should be lighting the road but is dark. */}
         {lighting && assets.filter((a) => a.type === 'streetlight').map((a) => (lightOn(a) ? (
           <Circle key={`lp-${a.id}-${lampsOn}`} center={[a.lat, a.lng]} radius={20} interactive={false}
-            pathOptions={{ stroke: false, fillColor: '#fbbf24', fillOpacity: lampsOn ? 0.34 : 0.12 }} />
+            pathOptions={{ stroke: false, fillColor: resolveColor('warning-soft'), fillOpacity: lampsOn ? 0.34 : 0.12 }} />
         ) : (
           <Circle key={`lg-${a.id}-${theme}`} center={[a.lat, a.lng]} radius={20} interactive={false}
-            pathOptions={{ color: resolveColor('danger'), weight: 1.2, dashArray: '3 4', fillColor: '#000', fillOpacity: lampsOn ? 0.18 : 0.06 }} />
+            pathOptions={{ color: resolveColor('danger'), weight: 1.2, dashArray: '3 4', fillColor: resolveColor('danger'), fillOpacity: lampsOn ? 0.14 : 0.05 }} />
         )))}
 
         {coverage && cameras?.flatMap((c) => (c.heads || []).map((h, i) => (
@@ -218,7 +223,7 @@ export default function AssetMap({
 
         {links.map((l) => (
           <Polyline key={`n-${l.id}-${l.energised}-${theme}`} positions={l.positions}
-            pathOptions={{ color: l.energised ? '#f59e0b' : '#9ca3af', weight: l.kind === 'feeder' ? 3 : 1.6, opacity: 0.9, dashArray: l.energised ? undefined : '5 5' }}>
+            pathOptions={{ color: resolveColor(l.energised ? 'warning' : 'text-faint'), weight: l.kind === 'feeder' ? 3 : 1.6, opacity: 0.9, dashArray: l.energised ? undefined : '5 5' }}>
             <Tooltip sticky>{l.kind === 'feeder' ? `Feeder ${byId[l.childId].feeder}` : `Circuit ${byId[l.childId].circuit}`} · {l.parentId} → {l.childId}{l.energised ? '' : ' · no supply'}</Tooltip>
           </Polyline>
         ))}
@@ -235,7 +240,7 @@ export default function AssetMap({
           <>
             <Polyline key={`route-${theme}`} positions={[[route.base.lat, route.base.lng], ...route.stops.map((s) => [s.asset.lat, s.asset.lng])]}
               pathOptions={{ color: resolveColor('primary'), weight: 3, opacity: 0.85, dashArray: '8 6' }} />
-            <CircleMarker center={[route.base.lat, route.base.lng]} radius={7} pathOptions={{ color: '#fff', weight: 2, fillColor: resolveColor('primary'), fillOpacity: 1 }}>
+            <CircleMarker center={[route.base.lat, route.base.lng]} radius={7} pathOptions={{ color: resolveColor('on-color'), weight: 2, fillColor: resolveColor('primary'), fillOpacity: 1 }}>
               <Tooltip direction="top">{route.base.name} · patrol base</Tooltip>
             </CircleMarker>
             {route.stops.map((s, i) => (
@@ -249,7 +254,7 @@ export default function AssetMap({
 
         {dealers?.map((d) => (
           <CircleMarker key={`d-${d.id}-${theme}`} center={[d.lat, d.lng]} radius={6}
-            pathOptions={{ color: '#fff', weight: 1.5, fillColor: resolveColor('accent'), fillOpacity: 0.95 }}>
+            pathOptions={{ color: resolveColor('on-color'), weight: 1.5, fillColor: resolveColor('teal'), fillOpacity: 0.95 }}>
             <Popup><strong>{d.name}</strong><br />Licence {d.licenceNo}<br />{d.area}<br />Licensed since {d.licensedSince}</Popup>
           </CircleMarker>
         ))}
@@ -305,18 +310,18 @@ export default function AssetMap({
       {legend && (
         <div className="map-legend">
           {Object.entries(ASSET_STATUS).map(([k, s]) => (
-            <span key={k} title={s.hint}><span className="legend-dot" style={{ background: `var(--color-${s.tone})` }} />{s.label}</span>
+            <span key={k} title={s.hint}><span className="legend-dot" style={{ background: toneVar(s.tone) }} />{s.label}</span>
           ))}
-          <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('streetlight', '#94a3b8', {}, 11) }} />Streetlight</span>
-          <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('distribution_box', '#94a3b8', {}, 11) }} />Pillar</span>
-          <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('switchboard', '#94a3b8', {}, 12) }} />Switchboard</span>
-          {darkCount > 0 && <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('streetlight', '#94a3b8', { dark: true }, 11) }} />Lamp dark</span>}
-          {lighting && <span><span className="legend-dot" style={{ background: '#fbbf24', borderColor: '#fbbf24', opacity: 0.7 }} />Lit area</span>}
-          {power && <span><span className="gg-sym" style={{ width: 14, borderTop: '2px solid #f59e0b' }} />Supply</span>}
-          {power && network?.links.some((l) => !l.energised) && <span><span className="gg-sym" style={{ width: 14, borderTop: '2px dashed #9ca3af' }} />No supply</span>}
-          {cameras && <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('camera', 'var(--color-info)', {}, 12) }} />CCTV{coverage ? ' + view' : ''}</span>}
-          {dealers && <span><span className="legend-dot" style={{ background: 'var(--color-accent)' }} />Scrap dealer</span>}
-          {route?.stops?.length > 0 && <span><span className="legend-dot" style={{ background: 'var(--color-primary)' }} />Patrol stop</span>}
+          <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('streetlight', FAINT, {}, 11) }} />Streetlight</span>
+          <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('distribution_box', FAINT, {}, 11) }} />Pillar</span>
+          <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('switchboard', FAINT, {}, 12) }} />Switchboard</span>
+          {darkCount > 0 && <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('streetlight', FAINT, { dark: true }, 11) }} />Lamp dark</span>}
+          {lighting && <span><span className="legend-dot" style={{ background: 'var(--app-warning-soft)', borderColor: 'var(--app-warning-soft)', opacity: 0.7 }} />Lit area</span>}
+          {power && <span><span className="gg-sym" style={{ width: 14, borderTop: '2px solid var(--app-warning)' }} />Supply</span>}
+          {power && network?.links.some((l) => !l.energised) && <span><span className="gg-sym" style={{ width: 14, borderTop: '2px dashed var(--app-text-faint)' }} />No supply</span>}
+          {cameras && <span><span className="gg-sym" dangerouslySetInnerHTML={{ __html: symbol('camera', 'var(--app-info)', {}, 12) }} />CCTV{coverage ? ' + view' : ''}</span>}
+          {dealers && <span><span className="legend-dot" style={{ background: 'var(--app-teal)' }} />Scrap dealer</span>}
+          {route?.stops?.length > 0 && <span><span className="legend-dot" style={{ background: 'var(--app-accent)' }} />Patrol stop</span>}
         </div>
       )}
     </div>

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   GuardGrid mock-data generator.
+   DBKU Command Centre mock-data generator.
 
    Writes the JSON files in src/data/mock/. Output is deterministic (seeded),
    so re-running gives the same data for the same --asof date.
@@ -363,9 +363,9 @@ const incidents = INCIDENTS.map((r, i) => {
 incidents[5].costRM += TARGET_TOTAL - incidents.reduce((s, x) => s + x.costRM, 0);
 incidents.sort((a, b) => a.occurredAt.localeCompare(b.occurredAt));
 incidents.forEach((x, i) => { x.id = `INC-${x.occurredAt.slice(0, 4)}-${String(i + 1).padStart(2, '0')}`; });
-// The three pilot-period incidents were raised by GuardGrid itself (see the pilot alerts below).
+// The three pilot-period incidents were raised by the command centre itself (see the pilot alerts below).
 const PILOT_SOURCE = { 'Hatches forced on 4 poles, Jalan Semariang': 'AL-P003', 'Feeder pillar broken into, Jalan Kulas': 'AL-P004', 'Cable cut at roundabout approach': 'AL-P006' };
-incidents.forEach((x) => { if (PILOT_SOURCE[x.title]) { x.reportedBy = `GuardGrid tamper sensor (${PILOT_SOURCE[x.title]})`; x.alertId = PILOT_SOURCE[x.title]; } });
+incidents.forEach((x) => { if (PILOT_SOURCE[x.title]) { x.reportedBy = `DBKU tamper sensor (${PILOT_SOURCE[x.title]})`; x.alertId = PILOT_SOURCE[x.title]; } });
 const incByTitle = (title) => incidents.find((x) => x.title === title);
 
 /* ─── Streetlight outage episodes (lighting-status history) ── */
@@ -504,7 +504,7 @@ for (const a of assets) {
   }
   nodeCount[a.zone] = (nodeCount[a.zone] || 0) + 1;
   a.node = {
-    id: `GGN-${a.zone}-${String(nodeCount[a.zone]).padStart(3, '0')}`, kind: NODE[a.type],
+    id: `SN-${a.zone}-${String(nodeCount[a.zone]).padStart(3, '0')}`, kind: NODE[a.type],
     link: 'LoRaWAN, AS923', rssiDbm: -(84 + Math.floor(devRand() * 29)), firmware: '2.3.1', intervalMin: 5,
   };
 }
@@ -615,7 +615,7 @@ const transactions = all.map((x, i) => ({
   ...(x._plantedReason ? { _plantedReason: x._plantedReason } : {}),
 }));
 
-/* ─── Pilot alerts (GuardGrid pilot since 1 Sep) ──────────── */
+/* ─── Pilot alerts (early-warning pilot since 1 Sep) ─────── */
 const A = (id) => assets.find((x) => x.id === id);
 // `observed` records what the operator log says was seen. The app derives the
 // CCTV threat factors (and score) and the sensor reading from it, so the
@@ -690,7 +690,7 @@ const meta = {
   pilotStart: isoMyt(asOfMs - 44 * DAY),
   programme: { incidents: incidents.length, since: 2020, totalCostRM: incidents.reduce((s, x) => s + x.costRM, 0), residentsAffected: 179693 },
   patrolBase: { name: 'DBKU, Bukit Siol (approx.)', lat: 1.5762, lng: 110.3488 },
-  notes: 'Mock data for the GuardGrid prototype. Road geometry © OpenStreetMap contributors (ODbL). Dealers, sellers, incidents and costs are fictional.',
+  notes: 'Mock data for the DBKU Command Centre prototype. Road geometry © OpenStreetMap contributors (ODbL). Dealers, sellers, incidents and costs are fictional.',
 };
 // Dated history must stay before liveSince (it keeps its real dates); relative records must fall after it.
 if (INCIDENTS.some((r) => typeof r[0] === 'string' && Date.parse(at(r[0], r[1])) >= Date.parse(meta.liveSince))) throw new Error('A dated incident falls after liveSince');

@@ -4,7 +4,7 @@
    real fixed-camera surveillance video recorded with consenting actors at the
    Muscatatuck Urban Training Center, Indiana, USA, in March 2018. None of it
    shows DBKU assets. Each entry records where the clip came from, how it was
-   cut, the asset zone that matches what is in shot, and what GuardGrid's
+   cut, the asset zone that matches what is in shot, and what the command centre's
    rules make of it. The CCTV Analyzer replays a clip at the same time of day
    it was recorded, so the night rule applies as it would to a live camera. */
 import { atMytHour, DAY } from '../ai/time';

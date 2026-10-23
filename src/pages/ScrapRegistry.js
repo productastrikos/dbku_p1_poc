@@ -193,7 +193,7 @@ function ReviewQueue({ status, setStatus, initialOpen }) {
 
   return (
     <>
-      {saved && <p className="tile tone-success text-xs font-semibold mb-3">✓ {saved}. The decision is in the command log.</p>}
+      {saved && <p className="tile tone-success text-xs font-bold text-fg mb-3 flex items-center gap-2" role="status"><Icon name="check" size={14} className="text-success shrink-0" />{saved}. The decision is in the command log.</p>}
       <Card padded={false} title={<span>PDRM review queue <Ms>Senarai semakan PDRM</Ms></span>} subtitle="Click a sale to review it"
         actions={<FilterChips value={status} onChange={setStatus} options={[...Object.entries(REVIEW_STATUS).map(([value, s]) => ({ value, label: `${s.label} (${flagged.filter((t) => reviewOf(t.id).status === value).length})` })), { value: 'all', label: `All (${flagged.length})` }]} />}>
         <DataTable
@@ -301,7 +301,7 @@ function AllSales({ initialQuery = '', onReview }) {
             { key: 'dealer', header: 'Dealer', render: (r) => dealerById[r.dealerId].name },
             { key: 'seller', header: 'Seller', render: (r) => <span className="font-mono text-[11px] whitespace-nowrap">{r.sellerIcMasked}</span> },
             { key: 'material', header: 'Material', render: (r) => r.material },
-            { key: 'weight', header: 'kg', strong: true, render: (r) => r.weightKg },
+            { key: 'weight', header: 'kg', numeric: true, strong: true, render: (r) => r.weightKg },
             { key: 'flag', header: '', render: (r) => (screening[r.id]?.suspicious ? <Badge tone="danger" dot>Flagged</Badge> : null) },
           ]}
         />
@@ -356,7 +356,7 @@ export default function ScrapRegistry() {
     <div className="space-y-4">
       <PageHeader
         title={<Title en="Scrap Registry" ms="Daftar Besi Buruk" />}
-        subtitle="Dealers record each purchase under the Second-Hand Dealers Act 1946. GuardGrid screens every sale and queues suspicious ones for PDRM."
+        subtitle="Dealers record each purchase under the Second-Hand Dealers Act 1946. The command centre screens every sale and queues suspicious ones for PDRM."
         actions={<Tabs tabs={TABS} value={tab} onChange={setTab} />}
       />
       <StatGrid>

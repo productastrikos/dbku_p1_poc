@@ -1,4 +1,5 @@
 import React from 'react';
+import { toneVar } from '../../theme/tones';
 
 /**
  * Badge: a small coloured status pill.
@@ -9,7 +10,7 @@ import React from 'react';
 export default function Badge({ tone = 'neutral', dot = false, plain = false, className = '', children }) {
   if (plain) {
     return (
-      <span className={`status-text ${className}`} style={{ color: `var(--color-${tone})` }}>
+      <span className={`status-text ${className}`} style={{ color: toneVar(tone) }}>
         {dot && <span className="badge-dot" />}
         {children}
       </span>
