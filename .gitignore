@@ -2,3 +2,6 @@ node_modules/
 build/
 .env
 .env*.local
+
+# Shared astrikos.xyz deployment notes (internal, kept out of the repo)
+deployment_context*.md
